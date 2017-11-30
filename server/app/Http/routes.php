@@ -35,8 +35,11 @@ Route::post('/cadastrar', function (Request $req) {
 
 Route::post('/login', function (Request $req) {
 
-    if (Auth::attempt(['email' => $req->email, 'senha' => $req->senha])) {
-        $user = Auth::user();
+    $user = User::where('email', $req->email)->first();
+    $result = new stdClass();
+
+    if ($user->senha == $req->senha) {
+        unset($user->senha);
 
         return $user;
     }

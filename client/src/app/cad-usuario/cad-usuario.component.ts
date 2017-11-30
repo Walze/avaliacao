@@ -21,10 +21,9 @@ export class CadUsuarioComponent implements OnInit {
 
   constructor(private lara: LaravelService) {
 
-    this.lara.getFormData().subscribe(res => {
-      const json = res.json()
-      this.localidades = json.localidades
-      this.setores = json.setores.filter(setor => { return setor.nome != 'Ademir' })
+    this.lara.getFormData(res => {
+      this.localidades = res.localidades
+      this.setores = res.setores.filter(setor => { return setor.nome != 'Ademir' })
     })
 
   }

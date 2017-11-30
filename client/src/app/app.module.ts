@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { CadUsuarioComponent } from './cad-usuario/cad-usuario.component';
 import { LoginUsuarioComponent } from './login-usuario/login-usuario.component';
 import { LaravelService } from './laravel.service';
+import { CookieService } from 'ngx-cookie-service';
 
 const appRoutes: Routes = [
   {
@@ -41,7 +42,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [LaravelService],
+  providers: [LaravelService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
