@@ -11,14 +11,14 @@ class CreateGestoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('gestores', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nome');
-            $table->integer('localidade_id')->unsigned();
-            $table->foreign('localidade_id')->references('id')->on('localidades');
-            $table->integer('setor_id')->unsigned();
-            $table->foreign('setor_id')->references('id')->on('setores');
-        });
+        // Schema::create('gestores', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->string('nome');
+        //     $table->integer('localidade_id')->unsigned();
+        //     $table->foreign('localidade_id')->references('id')->on('localidades');
+        //     $table->integer('setor_id')->unsigned();
+        //     $table->foreign('setor_id')->references('id')->on('setores');
+        // });
     }
 
     /**

@@ -14,7 +14,7 @@ class CreateAvaliacoesTable extends Migration
         Schema::create('avaliacoes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('gestor_id')->unsigned();
-            $table->foreign('gestor_id')->references('id')->on('gestores');
+            $table->foreign('gestor_id')->references('id')->on('users');
             $table->integer('estagiario_id')->unsigned();
             $table->foreign('estagiario_id')->references('id')->on('estagiarios');
             $table->integer('media');

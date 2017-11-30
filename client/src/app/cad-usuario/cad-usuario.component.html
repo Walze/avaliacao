@@ -1,29 +1,50 @@
-<form class="container">
-  <h2>Sign Up</h2>
+<div class="container">
+  <h2>Cadastrar</h2>
+
   <br />
   <div class='row justify-content-center'>
     <div class="col-6">
       <div class="form-group col-12">
-        <label>Username</label>
-        <input name='username' type="text" class="form-control form-control-sm" placeholder="Insert Your Username" />
+        <label>Nome</label>
+        <input [(ngModel)]='usuario.nome' type="text" class="form-control" placeholder="Digite um nome" />
       </div>
 
       <div class="form-group col-12">
         <label>E-mail</label>
-        <input name='email' type="email" class="form-control form-control-sm" placeholder="example@any.com" />
+        <input [(ngModel)]='usuario.email' type="email" class="form-control" placeholder="Exemplo@telelistas.net" />
       </div>
 
       <div class="form-group col-12">
-        <label>Password</label>
-        <input name='password' type="password" class="form-control form-control-sm" placeholder="Insert Your Password" />
+        <label>Senha</label>
+        <input [(ngModel)]='usuario.senha' type="senha" class="form-control" placeholder="Digite uma senha" />
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <select [(ngModel)]='usuario.localidade_id' class="custom-select col-12">
+              <option selected disabled value="0">Selecione uma Localidade</option>
+              <option *ngFor="let local of localidades; let i = index" value={{local.id}}>{{local.nome}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="form-group">
+            <select [(ngModel)]='usuario.setor_id' class="custom-select col-12">
+              <option selected disabled value="0">Selecione uma setor</option>
+              <option *ngFor="let setor of setores; let i = index" value={{setor.id}}>{{setor.nome}}</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <br />
 
       <div class="col-12 form-group">
-        <button type='submit' class="col-12 btn btn-primary">Sign Up</button>
+        <button class="col-12 btn btn-primary" (click)="cadastrar()">Sign Up</button>
       </div>
     </div>
   </div>
 
-</form>
+</div>

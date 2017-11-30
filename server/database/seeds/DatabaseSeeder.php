@@ -24,14 +24,6 @@ class DatabaseSeeder extends Seeder
       ['nome' => 'Contábil']
     ]);
 
-    DB::table('gestores')->insert([
-      [
-        'nome' => 'Ademir',
-        'localidade_id' => 1,
-        'setor_id' => 1
-      ]
-    ]);
-
     DB::table('cargos')->insert([
       [
         'nome' => 'Relacionamento',

@@ -1,5 +1,4 @@
 <?php
-
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +11,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'gestor_id'
+        'nome', 'email', 'senha', 'localidade_id', 'setor_id'
     ];
 
     /**
@@ -21,6 +20,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'senha', 'remember_token',
     ];
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LaravelService } from '../laravel.service';
 
 @Component({
   selector: 'app-cad-usuario',
@@ -7,7 +8,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadUsuarioComponent implements OnInit {
 
-  constructor() { }
+  public usuario = {
+    nome: '',
+    email: '',
+    senha: '',
+    localidade_id: 0,
+    setor_id: 0
+  }
+
+  public localidades
+  public setores
+
+  constructor(private lara: LaravelService) {
+
+    this.lara.getFormData().subscribe(res => {
+      const json = res.json()
+      this.localidades = json.localidades
+      this.setores = json.setores.filter(setor => { return setor.nome != 'Ademir' })
+    })
+
+  }
+
+  cadastrar() {
+    const errors = []
+
+    for (let prop in this.usuario)
+      if (this.usuario[prop] == '')
+        errors.push(prop)
+
+
+    if (!errors.length)
+      this.lara.postUser(this.usuario)
+    else
+      alert(`Os seguintes campos estão vazios: ${errors.join(', ')}.`)
+  }
 
   ngOnInit() {
   }

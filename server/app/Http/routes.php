@@ -1,16 +1,34 @@
 <?php
+use App\Localidade;
+use App\Setor;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User;
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/form', function () {
+    $data = [
+        'setores' => Setor::all(),
+        'localidades' => Localidade::all(),
+    ];
+    return $data;
+});
+
+Route::post('/user', function (Request $req) {
+
+    $user = new User;
+
+    $user->nome = $req->nome;
+    $user->email = $req->email;
+    $user->localidade_id = $req->localidade_id;
+    $user->setor_id = $req->setor_id;
+    $user->senha = $req->senha;
+
+    $user->save();
+
+
+    return 200;
 });
