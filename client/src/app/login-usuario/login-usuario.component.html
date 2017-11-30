@@ -1,28 +1,25 @@
 <div class="container">
 
-  <form class="container">
-    <h2>Login</h2>
-    <br />
-    <div class='row justify-content-center'>
-      <div class="col-6">
-        <div class="form-group col-12">
-          <h5>E-mail</h5>
-          <input name='email' type="text" class="form-control form-control-lg" placeholder="Enter your e-mail" />
-        </div>
+  <h2>Login</h2>
+  <br />
+  <div class='row justify-content-center'>
+    <div class="col-6">
+      <div class="form-group col-12">
+        <h6>E-mail</h6>
+        <input [(ngModel)]="usuario.email" type="text" class="form-control" placeholder="Enter your e-mail" />
+      </div>
 
-        <div class="form-group col-12">
-          <h5>Password</h5>
-          <input name='password' type="password" class="form-control form-control-lg" placeholder="Enter Your Password" />
-        </div>
+      <div class="form-group col-12">
+        <h6>Password</h6>
+        <input [(ngModel)]="usuario.senha" type="password" class="form-control" placeholder="Enter Your Password" />
+      </div>
 
-        <br />
+      <br />
 
-        <div class="col-12 form-group ">
-          <button type='submit' class="col-12 btn btn-primary btn-lg" onClick={this.submit}>Login</button>
-        </div>
+      <div class="col-12 form-group ">
+        <button type='submit' class="col-12 btn btn-primary" (click)="logar()">Login</button>
       </div>
     </div>
-
-  </form>
+  </div>
 
 </div>

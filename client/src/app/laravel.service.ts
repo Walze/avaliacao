@@ -15,9 +15,21 @@ export class LaravelService {
 
   postUser(user) {
     this.http
-      .post('http://localhost:8000/user', user, { headers: this.headers })
+      .post('http://localhost:8000/cadastrar', user, { headers: this.headers })
       .subscribe(res => {
         console.warn(res.json() || res)
+      },
+      error => {
+        document.querySelector('html').innerHTML = error.text()
+      }
+      )
+  }
+
+  login(user) {
+    this.http
+      .post('http://localhost:8000/login', user, { headers: this.headers })
+      .subscribe(res => {
+        console.warn(res)
       },
       error => {
         document.querySelector('html').innerHTML = error.text()

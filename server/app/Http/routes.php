@@ -17,7 +17,7 @@ Route::get('/form', function () {
     return $data;
 });
 
-Route::post('/user', function (Request $req) {
+Route::post('/cadastrar', function (Request $req) {
 
     $user = new User;
 
@@ -31,4 +31,14 @@ Route::post('/user', function (Request $req) {
 
 
     return 200;
+});
+
+Route::post('/login', function (Request $req) {
+
+    if (Auth::attempt(['email' => $req->email, 'senha' => $req->senha])) {
+        $user = Auth::user();
+
+        return $user;
+    }
+
 });

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LaravelService } from '../laravel.service';
 
 @Component({
   selector: 'app-login-usuario',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginUsuarioComponent implements OnInit {
 
-  constructor() { }
+  private usuario = {}
+
+  constructor(private lara: LaravelService) { }
+
+  logar() {
+    this.lara.login(this.usuario)
+  }
 
   ngOnInit() {
   }
