@@ -34,7 +34,7 @@ const appRoutes: Routes = [
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true })
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
