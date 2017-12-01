@@ -6,7 +6,7 @@ import { Router } from '@angular/router'
 @Injectable()
 export class LaravelService {
   private _User
-  @Output() logged: EventEmitter<any> = new EventEmitter();
+  @Output() logged: EventEmitter<boolean> = new EventEmitter();
 
   private headers = new Headers({ 'Content-Type': 'application/json' })
 
@@ -39,7 +39,7 @@ export class LaravelService {
     this.http
       .post('http://localhost:8000/cadastrar', user, { headers: this.headers })
       .subscribe(
-      res => console.warn(res.json() || res),
+      () => this.router.navigate(['/login']),
       error => document.querySelector('html').innerHTML = error.text()
       )
   }

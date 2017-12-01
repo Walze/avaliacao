@@ -10,7 +10,7 @@ import { LaravelService } from './laravel.service'
 export class AppComponent implements OnInit {
   logged = false
 
-  private User
+  User
 
   constructor(
     private cookie: CookieService,
@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
       this.User = this.lara.User
     }
   }
-
 
   ngOnInit() {
     this.lara.logged.subscribe(e => {
