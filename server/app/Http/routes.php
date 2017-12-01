@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return User::all();
 });
 
 Route::get('/form', function () {

@@ -1,10 +1,25 @@
-<ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link active" routerLink="/login">Login</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/cadastro">Cadastrar</a>
-  </li>
-</ul>
+<nav *ngIf="logged; else notLogged">
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">
+        {{User.nome}}
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="sair($event)" href="#">Sair</a>
+    </li>
+  </ul>
+</nav>
+
+<ng-template #notLogged>
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" routerLink="/login">Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/cadastro">Cadastrar</a>
+    </li>
+  </ul>
+</ng-template>
 
 <router-outlet></router-outlet>

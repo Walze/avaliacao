@@ -11,19 +11,15 @@ import { CadUsuarioComponent } from './cad-usuario/cad-usuario.component';
 import { LoginUsuarioComponent } from './login-usuario/login-usuario.component';
 import { LaravelService } from './laravel.service';
 import { CookieService } from 'ngx-cookie-service';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
-  {
-    path: 'cadastro',
-    component: CadUsuarioComponent
-  },
-  {
-    path: 'login',
-    component: LoginUsuarioComponent
-  },
+  { path: 'cadastro', component: CadUsuarioComponent },
+  { path: 'login', component: LoginUsuarioComponent },
+  { path: 'home', component: HomeComponent },
   {
     path: '',
-    redirectTo: '/cadastro',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   { path: '**', component: LoginUsuarioComponent }
@@ -33,7 +29,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     CadUsuarioComponent,
-    LoginUsuarioComponent
+    LoginUsuarioComponent,
+    HomeComponent
   ],
   imports: [
     NgbModule.forRoot(),
