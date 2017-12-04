@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LaravelService } from '../laravel.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-estagiario',
@@ -21,16 +22,27 @@ export class EstagiarioComponent implements OnInit {
   public setores
   public cargos
 
-  constructor(private lara: LaravelService) {
+  id
+
+  constructor(private lara: LaravelService, private route: ActivatedRoute) {
     this.lara.getFormData(res => {
       this.localidades = res.localidades
       this.cargos = res.cargos
       this.setores = res.setores.filter(setor => { return setor.nome != 'Ademir' })
     })
+
+    this.route.params.subscribe(params => {
+      this.id = params.id;
+
+      this.lara.show('estagiario', params.id).subscribe(res => {
+        const data = res.json();
+        this.estagiario = data;
+      });
+    });
   }
 
   editarEstagiario() {
-    this.lara.post(this.estagiario, 'estagiario', '/home')
+    this.lara.post(this.estagiario, 'editEstagiario/' + this.id, '/home')
   }
 
   ngOnInit() {

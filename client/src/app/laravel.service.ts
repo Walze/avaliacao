@@ -66,6 +66,10 @@ export class LaravelService {
       })
   }
 
+  show(where, id) {
+    return this.http.get(`${this._API}${where}/${id}`, this.headers);
+  }
+
   login(user) {
     this.http
       .post('http://localhost:8000/login', user, this.headers)

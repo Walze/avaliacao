@@ -12,7 +12,7 @@ import { LoginUsuarioComponent } from './login-usuario/login-usuario.component';
 import { LaravelService } from './laravel.service';
 import { CookieService } from 'ngx-cookie-service';
 import { HomeComponent } from './home/home.component';
-import { EstagiarioComponent } from './home/estagiario/estagiario.component';
+import { EstagiarioComponent } from './estagiario/estagiario.component';
 import { CadEstagiarioComponent } from './cad-estagiario/cad-estagiario.component';
 import { AvaliarComponent } from './estagiario/avaliar/avaliar.component';
 import { AvaliacaoComponent } from './estagiario/avaliacao/avaliacao.component';
@@ -22,6 +22,7 @@ const appRoutes: Routes = [
   { path: 'cad-estagiario', component: CadEstagiarioComponent },
   { path: 'login', component: LoginUsuarioComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'estagiario/:id', component: EstagiarioComponent },
   {
     path: '',
     redirectTo: '/login',

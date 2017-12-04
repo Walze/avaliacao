@@ -21,7 +21,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let estagiario of estagiarios">
+      <tr (click)='handleClick($event.currentTarget)' data-id="{{estagiario.id}}" *ngFor="let estagiario of estagiarios">
         <td>{{estagiario.nome}}</td>
         <td>{{estagiario.cargo}}</td>
         <td>{{estagiario.local}}</td>
