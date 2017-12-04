@@ -29,17 +29,7 @@ export class CadUsuarioComponent implements OnInit {
   }
 
   cadastrar() {
-    const errors = []
-
-    for (let prop in this.usuario)
-      if (this.usuario[prop] == '')
-        errors.push(prop)
-
-
-    if (!errors.length)
-      this.lara.postUser(this.usuario)
-    else
-      alert(`Os seguintes campos estão vazios: ${errors.join(', ')}.`)
+    this.lara.post(this.usuario, 'cadastrar', '/login')
   }
 
   ngOnInit() {

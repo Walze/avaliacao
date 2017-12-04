@@ -1,0 +1,76 @@
+<div class="container">
+  <br />
+
+  <h2>Cadastrar Estagiário</h2>
+
+  <br />
+  <div class='row justify-content-center'>
+    <div class="col-6">
+
+      <div class="row">
+        <div class="form-group col">
+          <label>Nome</label>
+          <input [(ngModel)]='estagiario.nome' type="text" class="form-control" placeholder="Digite um nome" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>Nível</label>
+            <select [(ngModel)]='estagiario.nivel' class="custom-select col-12">
+              <option selected disabled value="0">Selecione</option>
+              <option value=1>1</option>
+              <option value=2>2</option>
+              <option value=3>3</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="form-group">
+            <label>Cargos</label>
+            <select [(ngModel)]='estagiario.cargo_id' class="custom-select col-12">
+              <option selected disabled value="0">Selecione</option>
+              <option *ngFor="let local of cargos; let i = index" value={{local.id}}>{{local.nome}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>Localidade</label>
+            <select [(ngModel)]='estagiario.localidade_id' class="custom-select col-12">
+              <option selected disabled value="0">Selecione</option>
+              <option *ngFor="let local of localidades; let i = index" value={{local.id}}>{{local.nome}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="form-group">
+            <label>Setor</label>
+            <select [(ngModel)]='estagiario.setor_id' class="custom-select col-12">
+              <option selected disabled value="0">Selecione</option>
+              <option *ngFor="let setor of setores; let i = index" value={{setor.id}}>{{setor.nome}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <button class="col btn btn-primary" type="submit" (click)="cadEstagiario()">Cadastrar</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

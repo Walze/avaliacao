@@ -12,9 +12,12 @@ import { LoginUsuarioComponent } from './login-usuario/login-usuario.component';
 import { LaravelService } from './laravel.service';
 import { CookieService } from 'ngx-cookie-service';
 import { HomeComponent } from './home/home.component';
+import { EstagiarioComponent } from './home/estagiario/estagiario.component';
+import { CadEstagiarioComponent } from './cad-estagiario/cad-estagiario.component';
 
 const appRoutes: Routes = [
   { path: 'cadastro', component: CadUsuarioComponent },
+  { path: 'cad-estagiario', component: CadEstagiarioComponent },
   { path: 'login', component: LoginUsuarioComponent },
   { path: 'home', component: HomeComponent },
   {
@@ -30,7 +33,9 @@ const appRoutes: Routes = [
     AppComponent,
     CadUsuarioComponent,
     LoginUsuarioComponent,
-    HomeComponent
+    HomeComponent,
+    EstagiarioComponent,
+    CadEstagiarioComponent
   ],
   imports: [
     NgbModule.forRoot(),
