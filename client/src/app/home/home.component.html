@@ -1,19 +1,31 @@
 <div class="container">
+
+  <br />
+  <h2>Estagiários</h2>
+  <br />
+  <div class="row">
+    <div class="col-3">
+      <input [ngModel]="sort" (ngModelChange)="search($event)" class="form-control form-control-sm" placeholder="Procurar" />
+    </div>
+  </div>
+  
+  <br />
+
   <table class="table table-hover table-bordered">
     <thead>
       <tr>
-        <th scope="col">Nome</th>
-        <th scope="col">Cargo</th>
-        <th scope="col">Localidade</th>
-        <th scope="col">Avaliado</th>
+        <th class='thead' name='nome' scope="col">Nome</th>
+        <th class='thead' name='cargo' scope="col">Cargo</th>
+        <th class='thead' name='local' scope="col">Localidade</th>
+        <th class='thead' name='avaliado' scope="col">Avaliado</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Mark</td>
-        <td>Web</td>
-        <td>Rio</td>
-        <td>Sim</td>
+      <tr *ngFor="let estagiario of estagiarios">
+        <td>{{estagiario.nome}}</td>
+        <td>{{estagiario.cargo}}</td>
+        <td>{{estagiario.local}}</td>
+        <td>{{estagiario.avaliado}}</td>
       </tr>
     </tbody>
   </table>

@@ -1,7 +1,7 @@
 <nav *ngIf="logged; else notLogged">
   <ul class="nav justify-content-center">
     <li class="nav-item">
-      <a class="nav-link active" href="#">
+      <a class="nav-link active" routerLink="/gestor">
         Usuário: {{User.nome}}
       </a>
     </li>

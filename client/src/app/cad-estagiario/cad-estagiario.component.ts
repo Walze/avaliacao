@@ -11,7 +11,7 @@ export class CadEstagiarioComponent implements OnInit {
   public estagiario = {
     nome: '',
     admissao: '',
-    nivel: 0,
+    nivel_id: 0,
     cargo_id: 0,
     localidade_id: 0,
     setor_id: 0
@@ -29,7 +29,7 @@ export class CadEstagiarioComponent implements OnInit {
   }
 
   cadEstagiario() {
-    this.lara.post(this.estagiario, 'cadastrarEstagiario', '/home')
+    this.lara.post(this.estagiario, 'estagiario', '/home')
   }
 
   ngOnInit() {

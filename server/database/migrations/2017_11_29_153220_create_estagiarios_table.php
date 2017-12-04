@@ -24,7 +24,7 @@ class CreateEstagiariosTable extends Migration
 			$table->integer('nivel_id')->unsigned();
 			$table->foreign('nivel_id')->references('id')->on('niveis');
 
-			$table->dateTime('admissao');
+			$table->date('admissao');
 			$table->dateTime('ultima_aval');
 			$table->boolean('avaliado')->default(0);
 		});
