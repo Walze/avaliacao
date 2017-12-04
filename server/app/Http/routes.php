@@ -41,10 +41,11 @@ Route::post('/cadastrarEstagiario', function (Request $req) {
     $estagiario = new Estagiario;
 
     $estagiario->nome = $req->nome;
-    $estagiario->email = $req->email;
+    $estagiario->nivel_id = $req->nivel;
+    $estagiario->admissao = $req->admissao;
     $estagiario->localidade_id = $req->localidade_id;
     $estagiario->setor_id = $req->setor_id;
-    $estagiario->senha = $req->senha;
+    $estagiario->cargo_id = $req->cargo_id;
 
     $estagiario->save();
 

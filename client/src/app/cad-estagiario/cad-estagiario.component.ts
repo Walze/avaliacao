@@ -10,6 +10,7 @@ export class CadEstagiarioComponent implements OnInit {
 
   public estagiario = {
     nome: '',
+    admissao: '',
     nivel: 0,
     cargo_id: 0,
     localidade_id: 0,
