@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core'
-import { LaravelService } from '../laravel.service'
+import { Component, OnInit } from '@angular/core';
+import { LaravelService } from '../laravel.service';
 
 @Component({
-  selector: 'app-cad-estagiario',
-  templateUrl: './cad-estagiario.component.html',
-  styleUrls: ['./cad-estagiario.component.css']
+  selector: 'app-estagiario',
+  templateUrl: './estagiario.component.html',
+  styleUrls: ['./estagiario.component.css']
 })
-export class CadEstagiarioComponent implements OnInit {
+export class EstagiarioComponent implements OnInit {
 
   public estagiario = {
     nome: '',
@@ -29,7 +29,7 @@ export class CadEstagiarioComponent implements OnInit {
     })
   }
 
-  cadEstagiario() {
+  editarEstagiario() {
     this.lara.post(this.estagiario, 'estagiario', '/home')
   }
 

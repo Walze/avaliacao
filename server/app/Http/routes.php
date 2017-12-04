@@ -51,6 +51,10 @@ Route::post('/cadastrar', function (Request $req) {
 	return 200;
 });
 
+Route::get('/estagiario/{id}', function ($id) {
+	return Estagiario::where('id', $id)->first();
+});
+
 Route::post('/estagiario', function (Request $req) {
 	Estagiario::create($req->all());
 	return 200;

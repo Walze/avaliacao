@@ -44,7 +44,7 @@ export class LaravelService {
     const errors = []
 
     for (let prop in obj)
-      if (obj[prop] == '')
+      if (obj[prop] === '' || obj[prop] === 0 || obj[prop] === '0')
         errors.push(prop)
 
     return new Promise(res => {
