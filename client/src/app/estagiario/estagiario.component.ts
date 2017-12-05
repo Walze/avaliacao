@@ -11,6 +11,7 @@ import { Estagiario } from './estagiario';
 export class EstagiarioComponent implements OnInit {
 
   public estagiario: Estagiario = {
+    id: 0,
     nome: '',
     admissao: '',
     avaliado: false,
@@ -19,6 +20,8 @@ export class EstagiarioComponent implements OnInit {
     localidade_id: 0,
     setor_id: 0
   }
+  public avaliacoes
+
   public localidades
   public setores
   public cargos
@@ -36,10 +39,13 @@ export class EstagiarioComponent implements OnInit {
       this.id = params.id
 
       this.lara.show('estagiario', this.id).subscribe(res => {
-        const data: Estagiario = res.json()
+        const data = res.json()
+
         if (!data.avaliado && typeof data.avaliado == 'number') data.avaliado = false
+
         console.log(data)
-        this.estagiario = data
+        this.estagiario = data.estagiario
+        this.avaliacoes = data.avaliacoes
       })
     })
   }
@@ -52,6 +58,10 @@ export class EstagiarioComponent implements OnInit {
   deletar() {
     if (confirm("Deseja mesmo fazer isso?"))
       this.lara.delete(this.estagiario.id, 'estagiario/', '/home')
+  }
+
+  handleClick(e) {
+    console.log(e)
   }
 
   ngOnInit() {

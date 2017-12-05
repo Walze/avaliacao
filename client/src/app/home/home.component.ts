@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core'
 import { LaravelService } from '../laravel.service'
 import { Router } from '@angular/router'
+import { Estagiario } from '../estagiario/estagiario';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +9,8 @@ import { Router } from '@angular/router'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public estagiarios
-  private estagiariosOriginal
+  public estagiarios: Estagiario[]
+  private estagiariosOriginal: Estagiario[]
   sort
   private cresOrDesc
 
@@ -69,7 +70,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.lara.estagiarios().subscribe(res => this.estagiarios = this.estagiariosOriginal = res.json())
+    this.lara.estagiarios()
+      .subscribe(res =>
+        this.estagiarios = this.estagiariosOriginal = res.json()
+      )
     this.lara.sessionChecker()
   }
 

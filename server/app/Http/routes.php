@@ -29,12 +29,7 @@ Route::get('/', function () {
 		->groupBy('estagiarios.id')
 		->get();
 
-	//$estag->total_avals = Avaliacao::where('estagiario_id', $estag->id)->count();
-
-	return [
-		"usuarios" => $estag,
-		"avaliacoes" => Avaliacao::all()
-	];
+	return $estag;
 });
 
 Route::get('/form', function () {
@@ -63,7 +58,10 @@ Route::post('/cadastrar', function (Request $req) {
 });
 
 Route::get('/estagiario/{id}', function ($id) {
-	return Estagiario::where('id', $id)->first();
+	return [
+		'estagiario' => Estagiario::where('id', $id)->first(),
+		'avaliacoes' => Avaliacao::where('estagiario_id', $id)->get()
+	];
 });
 
 Route::post('/editEstagiario/{id}', function (Request $req, $id) {
