@@ -66,6 +66,16 @@ export class LaravelService {
       })
   }
 
+  delete(what, where, redirectTo = '') {
+    this.http
+      .delete(`${this._API}${where}${what}`, this.headers)
+      .subscribe(
+      res => {
+        if (redirectTo) this.router.navigate([redirectTo])
+      },
+      error => document.querySelector('html').innerHTML = error.text())
+  }
+
   show(where, id) {
     return this.http.get(`${this._API}${where}/${id}`, this.headers);
   }

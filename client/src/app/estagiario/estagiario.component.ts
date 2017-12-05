@@ -44,8 +44,12 @@ export class EstagiarioComponent implements OnInit {
     })
   }
 
-  editarEstagiario() {
+  editar() {
     this.lara.post(this.estagiario, 'editEstagiario/' + this.id, '/home')
+  }
+
+  deletar() {
+    this.lara.delete(this.estagiario.id, 'estagiario/', '/home')
   }
 
   ngOnInit() {

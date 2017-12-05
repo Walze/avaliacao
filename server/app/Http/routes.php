@@ -64,6 +64,12 @@ Route::post('/estagiario', function (Request $req) {
 	return 200;
 });
 
+Route::delete('/estagiario/{id}', function ($id) {
+	Estagiario::find($id)->delete();
+
+	return ':ok_hand:';
+});
+
 Route::post('/login', function (Request $req) {
 	$user = User::where('email', $req->email)->first();
 

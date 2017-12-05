@@ -1,4 +1,5 @@
 export interface Estagiario {
+  id: number,
   nome: string,
   admissao: string,
   avaliado: boolean,

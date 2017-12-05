@@ -1,8 +1,8 @@
-<nav *ngIf="logged; else notLogged">
+<!-- <nav *ngIf="logged; else notLogged">
   <ul class="nav justify-content-center">
     <li class="nav-item">
-      <a class="nav-link active" routerLink="/gestor">
-        Usuário: {{User.nome}}
+      <a class="nav-link active" routerLink="/home">
+        Início
       </a>
     </li>
     <li class="nav-item">
@@ -11,7 +11,52 @@
     <li class="nav-item">
       <a class="nav-link" (click)="sair($event)" href="#">Sair</a>
     </li>
+    <li class="nav-item user">
+      <a class="nav-link active" routerLink="/gestor">
+        <span class="alert alert-primary">
+          Usuário: {{User.nome}}
+        </span>
+      </a>
+    </li>
   </ul>
+</nav> -->
+
+<nav *ngIf="logged; else notLogged">
+  <div class="container">
+
+    <ul class="nav">
+      <li class="nav-item">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/home">
+              Início
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/cad-estagiario">Cadastrar Estagiário</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item user">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/gestor">
+              <span class="alert alert-primary">
+                {{User.nome}}
+              </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="sair($event)" href="#">
+              <span class="alert alert-danger">
+                Sair
+              </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 <ng-template #notLogged>

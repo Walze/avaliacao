@@ -1,0 +1,22 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 780px) {
+    .container {
+        width: 99% !important;
+        max-width: 100% !important;
+    }
+}
+
+* {
+    position: relative;
+}
+
+.nav-item.user {
+    position: absolute !important;
+    top: 0;
+    right: 0;
+}
