@@ -4,11 +4,16 @@ use App\Estagiario;
 use App\Localidade;
 use App\Setor;
 use App\User;
+use \App\Avaliacao;
 
 use Illuminate\Http\Request;
 
+Route::get('/tak', function () {
+	return User::where('localidade_id', 1)->count();
+});
 Route::get('/', function () {
-	return Estagiario::select(
+	$estag = Estagiario::select(
+		'*',
 		'estagiarios.id',
 		'estagiarios.nome',
 		'setores.nome as setor',
@@ -16,14 +21,19 @@ Route::get('/', function () {
 		'cargos.nome as cargo',
 		'niveis.nivel as nivel',
 		'ultima_aval',
-		'admissao',
-		'avaliado'
+		'admissao'
 	)
 		->join('setores', 'estagiarios.setor_id', '=', 'setores.id')
 		->join('localidades', 'estagiarios.localidade_id', '=', 'localidades.id')
 		->join('cargos', 'estagiarios.cargo_id', '=', 'cargos.id')
 		->join('niveis', 'estagiarios.nivel_id', '=', 'niveis.id')
+		->groupBy('estagiarios.id')
+		->join('avaliacoes', 'avaliacoes.estagiario_id', '=', 'estagiarios.id')
 		->get();
+
+	//$estag->total_avals = Avaliacao::where('estagiario_id', $estag->id)->count();
+
+	return $estag;
 });
 
 Route::get('/form', function () {
