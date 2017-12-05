@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { LaravelService } from '../laravel.service';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { LaravelService } from '../laravel.service'
+import { ActivatedRoute } from '@angular/router'
+import { Estagiario } from './estagiario';
 
 @Component({
   selector: 'app-estagiario',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EstagiarioComponent implements OnInit {
 
-  public estagiario = {
+  public estagiario: Estagiario = {
     nome: '',
     admissao: '',
     avaliado: false,
@@ -32,13 +33,15 @@ export class EstagiarioComponent implements OnInit {
     })
 
     this.route.params.subscribe(params => {
-      this.id = params.id;
+      this.id = params.id
 
-      this.lara.show('estagiario', params.id).subscribe(res => {
-        const data = res.json();
-        this.estagiario = data;
-      });
-    });
+      this.lara.show('estagiario', this.id).subscribe(res => {
+        const data: Estagiario = res.json()
+        if (!data.avaliado && typeof data.avaliado == 'number') data.avaliado = false
+        console.log(data)
+        this.estagiario = data
+      })
+    })
   }
 
   editarEstagiario() {

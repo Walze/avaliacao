@@ -5,6 +5,7 @@ import { LaravelService } from './laravel.service'
 
 @Component({
   selector: 'app-root',
+  styleUrls: ['./app.css'],  
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
@@ -18,8 +19,8 @@ export class AppComponent implements OnInit {
     private lara: LaravelService,
     private cdRef: ChangeDetectorRef
   ) {
-    console.log('Cookies', cookie.get('userSession'))
-
+    console.log('Cookie:', cookie.get('userSession') || 'No Cookie')
+ 
     if (cookie.check('userSession')) {
       this.logged = true
       this.User = this.lara.User
