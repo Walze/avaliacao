@@ -13,7 +13,6 @@ Route::get('/tak', function () {
 });
 Route::get('/', function () {
 	$estag = Estagiario::select(
-		'*',
 		'estagiarios.id',
 		'estagiarios.nome',
 		'setores.nome as setor',
@@ -28,12 +27,14 @@ Route::get('/', function () {
 		->join('cargos', 'estagiarios.cargo_id', '=', 'cargos.id')
 		->join('niveis', 'estagiarios.nivel_id', '=', 'niveis.id')
 		->groupBy('estagiarios.id')
-		->join('avaliacoes', 'avaliacoes.estagiario_id', '=', 'estagiarios.id')
 		->get();
 
 	//$estag->total_avals = Avaliacao::where('estagiario_id', $estag->id)->count();
 
-	return $estag;
+	return [
+		"usuarios" => $estag,
+		"avaliacoes" => Avaliacao::all()
+	];
 });
 
 Route::get('/form', function () {
