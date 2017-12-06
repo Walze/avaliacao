@@ -1,11 +1,11 @@
 <div class="container">
+  
   <br />
-
   <h2>Editar Estagiário</h2>
-
-  <div class='row justify-content-center'>
+  <br />
+  
+  <div *ngIf='estag_carregado' class='row justify-content-center'>
     <div class="col-md-8 col-sm-12">
-
       <div class="row">
         <div class="form-group col">
           <label>Nome</label>
@@ -78,7 +78,6 @@
         </div>
       </div>
 
-
       <br />
 
       <div class="row">
@@ -107,29 +106,45 @@
 
   <br />
 
-  <h2>Avaliações</h2>
+  <div *ngIf="avaliacoes; else notAval">
+    <h2>Avaliações</h2>
+
+    <br />
+
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Média</th>
+          <th scope="col">Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr (click)='handleClick($event.currentTarget)' data-id="{{avaliacao.id}}" *ngFor="let avaliacao of avaliacoes">
+          <td>{{avaliacao.id}}</td>
+          <td>{{avaliacao.media}}</td>
+          <td>25/03/2015</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <ng-template #notAval>
+    <h2>{{tabela_texto}}</h2>
+  </ng-template>
+
 
   <br />
-
-  <table class="table table-hover table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Média</th>
-        <th scope="col">Data</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr 
-      (click)='handleClick($event.currentTarget)' 
-      data-id="{{avaliacao.id}}" 
-      *ngFor="let avaliacao of avaliacoes"
-      >
-        <td>{{avaliacao.id}}</td>
-        <td>{{avaliacao.media}}</td>
-        <td>25/03/2015</td>
-      </tr>
-    </tbody>
-  </table>
-
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
 </div>

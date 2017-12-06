@@ -20,7 +20,10 @@ export class EstagiarioComponent implements OnInit {
     localidade_id: 0,
     setor_id: 0
   }
+  estag_carregado = false
+
   public avaliacoes
+  tabela_texto = 'Carregando...'
 
   public localidades
   public setores
@@ -45,7 +48,12 @@ export class EstagiarioComponent implements OnInit {
 
         console.log(data)
         this.estagiario = data.estagiario
-        this.avaliacoes = data.avaliacoes
+        this.estag_carregado = true
+
+        if (data.avaliacoes.length)
+          this.avaliacoes = data.avaliacoes
+        else
+          this.tabela_texto = 'Ainda não avaliado'
       })
     })
   }
