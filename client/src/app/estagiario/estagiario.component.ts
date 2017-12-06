@@ -20,16 +20,16 @@ export class EstagiarioComponent implements OnInit {
     localidade_id: 0,
     setor_id: 0
   }
-  estag_carregado = false
+  private estag_carregado = false
 
   public avaliacoes
-  tabela_texto = 'Carregando...'
+  public tabela_texto = 'Carregando...'
 
   public localidades
   public setores
   public cargos
 
-  id
+  private id
 
   constructor(private lara: LaravelService, private route: ActivatedRoute) {
     this.lara.getFormData(res => {

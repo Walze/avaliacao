@@ -1,7 +1,7 @@
 <div class="container">
   
   <br />
-  <h2>Editar Estagiário</h2>
+  <h3 class="center">Editar Estagiário</h3>
   <br />
   
   <div *ngIf='estag_carregado' class='row justify-content-center'>
@@ -107,7 +107,7 @@
   <br />
 
   <div *ngIf="avaliacoes; else notAval">
-    <h2>Avaliações</h2>
+    <h3>Avaliações</h3>
 
     <br />
 
@@ -131,7 +131,7 @@
   </div>
 
   <ng-template #notAval>
-    <h2>{{tabela_texto}}</h2>
+    <h3>{{tabela_texto}}</h3>
   </ng-template>
 
 

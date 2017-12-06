@@ -2,12 +2,12 @@ import { Injectable, Output, EventEmitter } from '@angular/core'
 import { CookieService } from 'ngx-cookie-service'
 import { Http, Headers } from '@angular/http'
 import { Router } from '@angular/router'
-
+import { Gestor } from './gestor/gestor'
 @Injectable()
 export class LaravelService {
   @Output() logged: EventEmitter<boolean> = new EventEmitter();
 
-  private _User
+  private _User: Gestor
   private _API = 'http://localhost:8000/';
   private headers = { headers: new Headers({ 'Content-Type': 'application/json' }) }
 
@@ -25,7 +25,12 @@ export class LaravelService {
       this.router.navigate(['/login'])
     } else {
       this.logged.next(true)
-      this.User = JSON.parse(this.cookie.get('userSession'))
+      try {
+        this.User = JSON.parse(this.cookie.get('userSession'))
+      } catch (err) {
+        console.error("Deleted All Cookies", err)
+        this.cookie.deleteAll()
+      }
     }
   }
 
@@ -84,8 +89,16 @@ export class LaravelService {
     this.http
       .post('http://localhost:8000/login', user, this.headers)
       .subscribe(res => {
-        this.User = res.json()
+        const resp = res.json()
+
+        //this.User = resp.gestor
+        let rest
+        this.User = resp.gestor
+        this.User.avaliacoes = resp.avaliacoes
         this.User.nome = this.User.nome.charAt(0).toUpperCase() + this.User.nome.slice(1)
+
+        console.log(this.User)
+
         this.cookie.set('userSession', JSON.stringify(this.User))
         this.router.navigate(['/home'])
         this.logged.next(true)

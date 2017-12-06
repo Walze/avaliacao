@@ -16,9 +16,11 @@ import { EstagiarioComponent } from './estagiario/estagiario.component';
 import { CadEstagiarioComponent } from './cad-estagiario/cad-estagiario.component';
 import { AvaliarComponent } from './estagiario/avaliar/avaliar.component';
 import { AvaliacaoComponent } from './estagiario/avaliacao/avaliacao.component';
+import { GestorComponent } from './gestor/gestor.component';
 
 const appRoutes: Routes = [
   { path: 'cadastro', component: CadUsuarioComponent },
+  { path: 'gestor', component: GestorComponent },
   { path: 'cad-estagiario', component: CadEstagiarioComponent },
   { path: 'login', component: LoginUsuarioComponent },
   { path: 'home', component: HomeComponent },
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
     EstagiarioComponent,
     CadEstagiarioComponent,
     AvaliarComponent,
-    AvaliacaoComponent
+    AvaliacaoComponent,
+    GestorComponent
   ],
   imports: [
     NgbModule.forRoot(),

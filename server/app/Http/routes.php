@@ -87,7 +87,10 @@ Route::post('/login', function (Request $req) {
 			unset($user->senha);
 			unset($user->remember_token);
 
-			return $user;
+			return [
+				'gestor' => $user,
+				'avaliacoes' => Avaliacao::where('gestor_id', $user->id)->get()
+			];
 		} else {
 			return response("Senha Errada", 500);
 		}

@@ -1,0 +1,46 @@
+<div class="container">
+  <h3 class="center">Perfil</h3>
+
+  <br />
+  <div class='row justify-content-center'>
+    <div class="col-6">
+      <div class="form-group col-12">
+        <label>Nome</label>
+        <input [(ngModel)]='gestor.nome' type="text" class="form-control" placeholder="Digite um nome" />
+      </div>
+
+      <div class="form-group col-12">
+        <label>E-mail</label>
+        <input [(ngModel)]='gestor.email' type="email" class="form-control" placeholder="Exemplo@telelistas.net" />
+      </div>
+
+      <br>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <select [(ngModel)]='gestor.localidade_id' class="custom-select col-12">
+              <option selected disabled value="0">Selecione uma Localidade</option>
+              <option *ngFor="let local of localidades; let i = index" value={{local.id}}>{{local.nome}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="form-group">
+            <select [(ngModel)]='gestor.setor_id' class="custom-select col-12">
+              <option selected disabled value="0">Selecione uma setor</option>
+              <option *ngFor="let setor of setores; let i = index" value={{setor.id}}>{{setor.nome}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="col-12 form-group">
+        <button class="col-12 btn btn-primary" (click)="alterar()">Alterar</button>
+      </div>
+    </div>
+  </div>
+
+</div>
