@@ -45,7 +45,6 @@ export class EstagiarioComponent implements OnInit {
         const data = res.json()
 
         if (!data.avaliado && typeof data.avaliado == 'number') data.avaliado = false
-
         console.log(data)
         this.estagiario = data.estagiario
         this.estag_carregado = true
