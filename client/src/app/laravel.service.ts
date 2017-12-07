@@ -14,9 +14,20 @@ export class LaravelService {
   constructor(private http: Http, private cookie: CookieService, private router: Router) {
     this.sessionChecker()
   }
+
   getFormData(then) {
     this.http.get('http://localhost:8000/form', this.headers)
       .subscribe(res => then(res.json()))
+  }
+
+  getComps() {
+    return new Promise((res, rej) => {
+      this.http.get(this._API + 'comp')
+        .subscribe(
+        comps => res(comps.json()),
+        error => rej(error)
+        )
+    })
   }
 
   sessionChecker() {

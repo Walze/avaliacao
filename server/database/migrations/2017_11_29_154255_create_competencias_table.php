@@ -14,8 +14,7 @@ class CreateCompetenciasTable extends Migration
         Schema::create('competencias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->integer('cargo_id')->unsigned();
-            $table->foreign('cargo_id')->references('id')->on('cargos');
+            $table->string('descricao');
         });
     }
 

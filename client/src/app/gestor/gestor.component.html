@@ -4,14 +4,17 @@
   <br />
   <div class='row justify-content-center'>
     <div class="col-6">
-      <div class="form-group col-12">
-        <label>Nome</label>
-        <input [(ngModel)]='gestor.nome' type="text" class="form-control" placeholder="Digite um nome" />
-      </div>
 
-      <div class="form-group col-12">
-        <label>E-mail</label>
-        <input [(ngModel)]='gestor.email' type="email" class="form-control" placeholder="Exemplo@telelistas.net" />
+      <div class="row">
+        <div class="form-group col-12">
+          <label>Nome</label>
+          <input [(ngModel)]='gestor.nome' type="text" class="form-control" placeholder="Digite um nome" />
+        </div>
+
+        <div class="form-group col-12">
+          <label>E-mail</label>
+          <input [(ngModel)]='gestor.email' type="email" class="form-control" placeholder="Exemplo@telelistas.net" />
+        </div>
       </div>
 
       <br>
@@ -36,11 +39,31 @@
       </div>
 
       <br />
-
-      <div class="col-12 form-group">
-        <button class="col-12 btn btn-primary" (click)="alterar()">Alterar</button>
+      <div class="row">
+        <div class="col-12 form-group">
+          <button class="col-12 btn btn-primary" (click)="alterar()">Alterar</button>
+        </div>
       </div>
     </div>
+  </div>
+
+  <br />
+  <br />
+
+  <div class="row" *ngIf="competencias">
+    <h2 class="center col-12">Competências</h2>
+    <p class="center col-12 blockquote-footer">Clique em uma competências para ver seus indicadores.</p>
+
+    <br />
+    <br />
+    <ul class="list-group col-6" *ngFor="let comp of competencias; let i = index">
+      <li class="list-group-item" [style.background]="cores[i]">
+        <b>
+          {{comp.nome}}
+        </b>
+      </li>
+      <li class="list-group-item">{{comp.descricao}}</li>
+    </ul>
   </div>
 
 </div>

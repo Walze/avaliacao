@@ -1,0 +1,17 @@
+.list-group {
+    margin: 7.5px 0;
+    cursor: pointer;
+}
+
+.list-group:hover li {
+    transition: all .1s ease-in-out;
+    background: rgba(0, 0, 0, .075);
+}
+
+.blockquote-footer::before {
+    content: ''
+}
+
+.list-group .list-group-item b {
+    color: white;
+}

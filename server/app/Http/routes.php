@@ -5,12 +5,11 @@ use App\Localidade;
 use App\Setor;
 use App\User;
 use \App\Avaliacao;
+use \App\Competencia;
+use \App\Ind_Comp;
 
 use Illuminate\Http\Request;
 
-Route::get('/tak', function () {
-	return User::where('localidade_id', 1)->count();
-});
 Route::get('/', function () {
 	$estag = Estagiario::select(
 		'estagiarios.id',
@@ -52,7 +51,6 @@ Route::post('/cadastrar', function (Request $req) {
 	$user->senha = $req->senha;
 
 	$user->save();
-
 
 	return 200;
 });
@@ -97,5 +95,11 @@ Route::post('/login', function (Request $req) {
 	} else {
 		return response("Usuário não encontrado", 404);
 	}
+});
 
+Route::get('/comp', function () {
+	return [
+		'competencias' => Competencia::all(),
+		'indicadores' => Ind_Comp::all()
+	];
 });

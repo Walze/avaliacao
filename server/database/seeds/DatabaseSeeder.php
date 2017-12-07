@@ -58,27 +58,27 @@ class DatabaseSeeder extends Seeder
     DB::table('competencias')->insert([
       [
         'nome' => 'Técnica',
-        'cargo_id' => 1
+        'descricao' => 'Capacidade de se manter atualizado com as informações necessárias ao bom desempenho de suas atividades.'
       ],
       [
         'nome' => 'Motivação',
-        'cargo_id' => 1
+        'descricao' => 'Capacidade de manter-se motivado e engajado com o negócio, superando dificuldades e apresentando soluções.'
       ],
       [
         'nome' => 'Orientação para Aprendizado',
-        'cargo_id' => 1
+        'descricao' => 'Predisposição para oferecer produtos ou serviços antecipando as necessidades dos clientes.'
       ],
       [
         'nome' => 'Foco no Cliente',
-        'cargo_id' => 1
+        'descricao' => 'Orienta suas atitudes visando a valorização de relações positivas que favoreçam a fidelização do cliente.'
       ],
       [
         'nome' => 'Compromisso com o Resultado',
-        'cargo_id' => 1
+        'descricao' => 'Capacidade de transmitir idéias e fatos de forma clara, objetiva e transparente, de maneira que sua abordagem favoreça o entendimento e a construção de bons relacionamentos.'
       ],
       [
         'nome' => 'Trabalho em Equipe',
-        'cargo_id' => 1
+        'descricao' => 'Trabalha cooperativamente, integrando-se ao grupo em que atua visando o alcance dos objetivos propostos.'
       ]
     ]);
 

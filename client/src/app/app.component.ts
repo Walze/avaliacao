@@ -9,13 +9,14 @@ import { LaravelService } from './laravel.service'
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
+  User
+
   logged = false
 
   constructor(
     private cookie: CookieService,
     private router: Router,
-    private lara: LaravelService,
-    private cdRef: ChangeDetectorRef
+    private lara: LaravelService
   ) {
     console.log('Cookie:' + cookie.get('userSession') || 'No Cookie')
 
