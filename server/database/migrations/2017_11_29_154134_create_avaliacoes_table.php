@@ -18,6 +18,7 @@ class CreateAvaliacoesTable extends Migration
             $table->integer('estagiario_id')->unsigned();
             $table->foreign('estagiario_id')->references('id')->on('estagiarios');
             $table->integer('media');
+            $table->date('data');
         });
     }
 

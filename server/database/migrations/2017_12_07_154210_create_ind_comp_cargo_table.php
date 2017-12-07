@@ -12,6 +12,7 @@ class CreateIndCompCargoTable extends Migration
     public function up()
     {
         Schema::create('ind_comp_cargo', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('ind_comp_id')->unsigned();
             $table->foreign('ind_comp_id')->references('id')->on('ind_comp');
             $table->integer('cargo_id')->unsigned();

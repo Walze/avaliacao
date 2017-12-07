@@ -13,7 +13,7 @@ class CreateCompetenciasTable extends Migration
     {
         Schema::create('competencias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
+            $table->string('nome')->unique();
             $table->string('descricao');
         });
     }
