@@ -17,6 +17,7 @@ import { CadEstagiarioComponent } from './cad-estagiario/cad-estagiario.componen
 import { AvaliarComponent } from './estagiario/avaliar/avaliar.component';
 import { AvaliacaoComponent } from './estagiario/avaliacao/avaliacao.component';
 import { GestorComponent } from './gestor/gestor.component';
+import { IndicadoresComponent } from './gestor/indicadores/indicadores.component';
 
 const appRoutes: Routes = [
   { path: 'cadastro', component: CadUsuarioComponent },
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     CadEstagiarioComponent,
     AvaliarComponent,
     AvaliacaoComponent,
-    GestorComponent
+    GestorComponent,
+    IndicadoresComponent
   ],
   imports: [
     NgbModule.forRoot(),

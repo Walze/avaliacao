@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LaravelService } from '../laravel.service';
 import { Gestor } from './gestor';
+import { Competencia } from './competencia';
 
 @Component({
   selector: 'app-gestor',
@@ -32,8 +33,13 @@ export class GestorComponent implements OnInit {
   public localidades
   public setores
 
-  public competencias
+  public competencias: Competencia[]
   public indicadores
+
+  public novaComp: Competencia = {
+    nome: '',
+    descricao: ''
+  }
 
   constructor(private lara: LaravelService) {
 
@@ -45,12 +51,19 @@ export class GestorComponent implements OnInit {
     this.lara.getComps()
       .then(res => {
         this.competencias = res.competencias
+        console.log(this.competencias)
         this.indicadores = res.indicadores
       })
   }
 
   alterar() {
     console.log(this.gestor)
+  }
+
+  criarComp() {
+    this.competencias.push(this.novaComp)
+    this.novaComp.nome = ''
+    this.novaComp.descricao = ''
   }
 
 

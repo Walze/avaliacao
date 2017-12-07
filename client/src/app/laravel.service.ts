@@ -11,7 +11,11 @@ export class LaravelService {
   private _API = 'http://localhost:8000/';
   private headers = { headers: new Headers({ 'Content-Type': 'application/json' }) }
 
-  constructor(private http: Http, private cookie: CookieService, private router: Router) {
+  constructor(
+    private http: Http,
+    private cookie: CookieService,
+    private router: Router
+  ) {
     this.sessionChecker()
   }
 
