@@ -57,7 +57,7 @@
     <p class="center col-12 blockquote-footer">Clique em uma competências para ver seus indicadores.</p>
 
 
-    <ul class="list-group col-6" *ngFor="let comp of competencias; let i = index">
+    <ul routerLink='indicador/{{comp.id}}' class="list-group col-6" *ngFor="let comp of competencias; let i = index">
       <li class="list-group-item" [style.background]="cores[i]">
         <b>
           {{comp.nome}}

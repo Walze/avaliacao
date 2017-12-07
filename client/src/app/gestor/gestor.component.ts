@@ -61,9 +61,16 @@ export class GestorComponent implements OnInit {
   }
 
   criarComp() {
-    this.competencias.push(this.novaComp)
-    this.novaComp.nome = ''
-    this.novaComp.descricao = ''
+
+    new Promise(() => {
+      this.competencias.push(this.novaComp)
+      this.lara.post(this.novaComp, 'comp', '/gestor')
+    }).then(() => {
+      this.novaComp.nome = ''
+      this.novaComp.descricao = ''
+    })
+
+
   }
 
 

@@ -10,6 +10,7 @@ use \App\Ind_Comp;
 
 use Illuminate\Http\Request;
 
+// Home data
 Route::get('/', function () {
 	$estag = Estagiario::select(
 		'estagiarios.id',
@@ -31,6 +32,7 @@ Route::get('/', function () {
 	return $estag;
 });
 
+// Form Data
 Route::get('/form', function () {
 	$data = [
 		'setores' => Setor::all(),
@@ -40,6 +42,7 @@ Route::get('/form', function () {
 	return $data;
 });
 
+// User Related
 Route::post('/cadastrar', function (Request $req) {
 
 	$user = new User;
@@ -53,28 +56,6 @@ Route::post('/cadastrar', function (Request $req) {
 	$user->save();
 
 	return 200;
-});
-
-Route::get('/estagiario/{id}', function ($id) {
-	return [
-		'estagiario' => Estagiario::where('id', $id)->first(),
-		'avaliacoes' => Avaliacao::where('estagiario_id', $id)->get()
-	];
-});
-
-Route::post('/editEstagiario/{id}', function (Request $req, $id) {
-	return Estagiario::where('id', $id)->update($req->all());
-});
-
-Route::post('/estagiario', function (Request $req) {
-	Estagiario::create($req->all());
-	return 200;
-});
-
-Route::delete('/estagiario/{id}', function ($id) {
-	Estagiario::find($id)->delete();
-
-	return ':ok_hand:';
 });
 
 Route::post('/login', function (Request $req) {
@@ -97,9 +78,63 @@ Route::post('/login', function (Request $req) {
 	}
 });
 
+
+
+
+//Indicadores
+Route::get('/indicadores/{id}', function (Request $req, $id) {
+	return [
+		'indicadores' => Ind_Comp::where('comp_id', $id)->get(),
+		'cargos' => Cargo::all()
+	];
+});
+
+
+
+
+
+
+// Competencias
 Route::get('/comp', function () {
 	return [
 		'competencias' => Competencia::all(),
 		'indicadores' => Ind_Comp::all()
 	];
 });
+
+Route::post('/comp', function (Request $req) {
+	Competencia::create($req->all());
+});
+
+
+
+
+
+// Estagiario Related
+Route::get('/estagiario/{id}', function ($id) {
+	return [
+		'estagiario' => Estagiario::where('id', $id)->first(),
+		'avaliacoes' => Avaliacao::where('estagiario_id', $id)->get()
+	];
+});
+
+Route::post('/editEstagiario/{id}', function (Request $req, $id) {
+	return Estagiario::where('id', $id)->update($req->all());
+});
+
+Route::post('/estagiario', function (Request $req) {
+	Estagiario::create($req->all());
+	return 200;
+});
+
+Route::delete('/estagiario/{id}', function ($id) {
+	Estagiario::find($id)->delete();
+
+	return ':ok_hand:';
+});
+
+
+
+
+
+

@@ -20,12 +20,13 @@ import { GestorComponent } from './gestor/gestor.component';
 import { IndicadoresComponent } from './gestor/indicadores/indicadores.component';
 
 const appRoutes: Routes = [
-  { path: 'cadastro', component: CadUsuarioComponent },
-  { path: 'gestor', component: GestorComponent },
-  { path: 'cad-estagiario', component: CadEstagiarioComponent },
-  { path: 'login', component: LoginUsuarioComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'gestor/indicador/:id', component: IndicadoresComponent },
+  { path: 'gestor', component: GestorComponent },
+  { path: 'login', component: LoginUsuarioComponent },
+  { path: 'cadastro', component: CadUsuarioComponent },
   { path: 'estagiario/:id', component: EstagiarioComponent },
+  { path: 'cad-estagiario', component: CadEstagiarioComponent },
   {
     path: '',
     redirectTo: '/login',
