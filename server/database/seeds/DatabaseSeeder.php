@@ -96,5 +96,106 @@ class DatabaseSeeder extends Seeder
         'bolsa' => 1200
       ]
     ]);
+
+
+    DB::table('ind_comp')->insert([
+      [
+        'nome' => 'Realiza suas atividades demonstrando conhecimento das soluções de comunicação digital oferecidas pela empresa.',
+        'comp_id' => 1
+      ],
+      [
+        'nome' => 'Executa seu trabalho evidenciando conhecimento do  sistema corporativo.',
+        'comp_id' => 1
+      ],
+      [
+        'nome' => 'Realiza atividades demonstrando conhecimento das rotinas e procedimentos relacionados às suas funções.',
+        'comp_id' => 1
+      ],
+      [
+        'nome' => 'Busca manter-se atualizado através de matérias disponíveis na intranet e cursos oferecidos pela empresa.',
+        'comp_id' => 1
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 2
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 2
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 2
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 2
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 3
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 3
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 3
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 3
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 4
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 4
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 4
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 4
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 5
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 5
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 5
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 5
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 6
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 6
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 6
+      ],
+      [
+        'nome' => '',
+        'comp_id' => 6
+      ],
+
+    ]);
   }
 }

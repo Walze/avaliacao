@@ -1,3 +1,42 @@
-<p>
-  indicadores works!
-</p>
+<div class="container">
+
+  <br />
+
+  <h3 class="center">
+    Competência
+  </h3>
+  <br />
+
+  <div class="d-flex justify-content-center">
+    <div class="col-md-8 col-sm-12">
+      <div class="col-12 form-group">
+        <label>Nome</label>
+        <input [(ngModel)]="comp.nome" class="form-control" type="text" placeholder="Digite o nome da Competencia">
+      </div>
+
+      <div class="col-12">
+        <label>Descrição</label>
+        <textarea [(ngModel)]="comp.descricao" class="form-control" placeholder="Digite uma Descrição"></textarea>
+      </div>
+
+      <br />
+
+      <div class="col-12 form-group">
+        <button (click)='alterarComp()' class="btn btn-success col-12">Alterar</button>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <br />
+
+  <h3 class="center">
+    Indicadores
+  </h3>
+
+  <div *ngIf='indicadores'>
+    <ul class="list-group" *ngFor='let ind of indicadores'>
+      <li class="list-group-item">{{ind.nome}}</li>
+    </ul>
+  </div>
+
+</div>

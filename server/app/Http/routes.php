@@ -84,7 +84,7 @@ Route::post('/login', function (Request $req) {
 //Indicadores
 Route::get('/indicadores/{id}', function (Request $req, $id) {
 	return [
-		'competencia' => Competencia::where('id', $id)->get(),
+		'competencia' => Competencia::where('id', $id)->first(),
 		'indicadores' => Ind_Comp::where('comp_id', $id)->get(),
 		'cargos' => Cargo::all()
 	];

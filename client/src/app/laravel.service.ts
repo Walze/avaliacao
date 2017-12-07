@@ -34,6 +34,16 @@ export class LaravelService {
     })
   }
 
+  getIndsComp(id) {
+    return new Promise((res, rej) => {
+      this.http.get(this._API + 'indicadores/' + id)
+        .subscribe(
+        data => res(data.json()),
+        error => rej(error)
+        )
+    })
+  }
+
   sessionChecker() {
     if (!this.cookie.check('userSession')) {
       this.logged.next(false)
