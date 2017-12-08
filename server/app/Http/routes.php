@@ -6,7 +6,7 @@ use App\Setor;
 use App\User;
 use \App\Avaliacao;
 use \App\Competencia;
-use \App\Ind_Comp;
+use \App\Indicador;
 
 use Illuminate\Http\Request;
 
@@ -85,8 +85,16 @@ Route::post('/login', function (Request $req) {
 Route::get('/indicadores/{id}', function (Request $req, $id) {
 	return [
 		'competencia' => Competencia::where('id', $id)->first(),
-		'indicadores' => Ind_Comp::where('comp_id', $id)->get(),
+		'comps' => Competencia::all(),
+		'indicadores' => Indicador::all(),
 		'cargos' => Cargo::all()
+	];
+});
+
+Route::get('/ind', function() {
+	return [
+		'inds' => Indicador::all(),
+		'comps' => Competencia::all()
 	];
 });
 
@@ -99,7 +107,7 @@ Route::get('/indicadores/{id}', function (Request $req, $id) {
 Route::get('/comp', function () {
 	return [
 		'competencias' => Competencia::all(),
-		'indicadores' => Ind_Comp::all()
+		'indicadores' => Indicador::all()
 	];
 });
 

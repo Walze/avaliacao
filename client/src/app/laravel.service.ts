@@ -28,7 +28,7 @@ export class LaravelService {
     return new Promise((res, rej) => {
       this.http.get(this._API + 'comp')
         .subscribe(
-        comps => res(comps.json()),
+        comps => res((comps)),
         error => rej(error)
         )
     })
@@ -38,7 +38,7 @@ export class LaravelService {
     return new Promise((res, rej) => {
       this.http.get(this._API + 'indicadores/' + id)
         .subscribe(
-        data => res(data.json()),
+        data => res((data)),
         error => rej(error)
         )
     })

@@ -28,14 +28,27 @@
   </div>
   <hr />
   <br />
-
+  
   <h3 class="center">
     Indicadores
   </h3>
+  <br />
 
   <div *ngIf='indicadores'>
-    <ul class="list-group" *ngFor='let ind of indicadores'>
-      <li class="list-group-item">{{ind.nome}}</li>
+    <ul class="list-group" *ngFor='let ind of indicadores; let indi = index'>
+      <li class="list-group-item">
+        <h5>
+          {{indi + 1}}. {{ind.nome}}
+        </h5>
+        <br />
+        <div *ngFor='let comp of comps'>
+          <label class="custom-control custom-checkbox">
+            <input (click)='handleCheck(ind.id, $event)' type="checkbox" class="custom-control-input" value='{{comp.id}}'>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">{{comp.id}}. {{comp.nome}}</span>
+          </label>
+        </div>
+      </li>
     </ul>
   </div>
 

@@ -49,10 +49,10 @@ export class GestorComponent implements OnInit {
     })
 
     this.lara.getComps()
-      .then(res => {
-        this.competencias = res.competencias
-        console.log(this.competencias)
-        this.indicadores = res.indicadores
+      .then((res: Response) => {
+        let data: any = res.json()
+        this.competencias = data.competencias
+        this.indicadores = data.indicadores
       })
   }
 

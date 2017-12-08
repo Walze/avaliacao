@@ -11,10 +11,10 @@ class CreateIndCompCargoTable extends Migration
      */
     public function up()
     {
-        Schema::create('ind_comp_cargo', function (Blueprint $table) {
+        Schema::create('ind_cargo', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('ind_comp_id')->unsigned();
-            $table->foreign('ind_comp_id')->references('id')->on('ind_comp');
+            $table->integer('indicador_id')->unsigned();
+            $table->foreign('indicador_id')->references('id')->on('indicadores');
             $table->integer('cargo_id')->unsigned();
             $table->foreign('cargo_id')->references('id')->on('cargos');
         });
@@ -27,6 +27,6 @@ class CreateIndCompCargoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ind_comp_cargo');
+        Schema::drop('ind_cargo');
     }
 }
