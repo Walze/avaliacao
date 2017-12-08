@@ -42,8 +42,12 @@
         </h5>
         <br />
         <div *ngFor='let comp of comps'>
-          <label class="custom-control custom-checkbox">
-            <input (click)='handleCheck(ind.id, $event)' type="checkbox" class="custom-control-input" value='{{comp.id}}'>
+          <label class="custom-control custom-radio">
+            <input 
+            [(ngModel)]='ind_comps[indi]' 
+            type="radio" 
+            name={{indi}} 
+            class="custom-control-input" value='{{comp.id}}'>
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">{{comp.id}}. {{comp.nome}}</span>
           </label>

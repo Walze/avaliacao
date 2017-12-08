@@ -52,7 +52,7 @@ export class IndicadoresComponent implements OnInit {
   handleCheck(ind, e) {
     if (e.target.checked) {
       this.ind_comps.push({
-        ind_id: ind,
+        ind_id: Number(ind),
         comp_id: Number(e.target.value),
       })
     }

@@ -7,6 +7,7 @@ use App\User;
 use \App\Avaliacao;
 use \App\Competencia;
 use \App\Indicador;
+use \App\IndComp;
 
 use Illuminate\Http\Request;
 
@@ -78,7 +79,20 @@ Route::post('/login', function (Request $req) {
 	}
 });
 
+//test
+Route::get('/teste', function () {
+	$data = IndComp::select(
+		'ind_comp.id',
+		'comp_id',
+		'indicador_id',
+		'indicadores.nome as indicador',
+		'competencias.nome as competencia'
+	)
+		->join('indicadores', 'ind_comp.indicador_id', '=', 'indicadores.id')
+		->join('competencias', 'ind_comp.comp_id', '=', 'competencias.id')->get();
 
+		return $data;
+});
 
 
 //Indicadores
@@ -91,7 +105,7 @@ Route::get('/indicadores/{id}', function (Request $req, $id) {
 	];
 });
 
-Route::get('/ind', function() {
+Route::get('/ind', function () {
 	return [
 		'inds' => Indicador::all(),
 		'comps' => Competencia::all()
