@@ -28,31 +28,43 @@
   </div>
   <hr />
   <br />
-  
-  <h3 class="center">
-    Indicadores
-  </h3>
-  <br />
 
-  <div *ngIf='indicadores'>
-    <ul class="list-group" *ngFor='let ind of indicadores; let indi = index'>
+
+
+  <div *ngIf='indicadores' class="row">
+
+    <h3 class="center col-12">
+      Indicadores
+    </h3>
+    <br />
+
+    <label class="custom-control custom-checkbox">
+      <input (click)='showThis($event)' [(ngModel)]='show_this' type="checkbox" class="custom-control-input">
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">Mostrar somente os indicadores desta competência</span>
+    </label>
+
+    <ul class="list-group col-12" *ngFor='let ind of indicadores; let indi = index'>
       <li class="list-group-item">
         <h5>
-          {{indi + 1}}. {{ind.nome}}
+          {{ind.id}}. {{ind.nome}}
         </h5>
+
         <br />
-        <div *ngFor='let comp of comps'>
-          <label class="custom-control custom-radio">
-            <input 
-            [(ngModel)]='ind_comps[indi]' 
-            type="radio" 
-            name={{indi}} 
-            class="custom-control-input" value='{{comp.id}}'>
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">{{comp.id}}. {{comp.nome}}</span>
-          </label>
+        <div class="row">
+
+          <div *ngFor='let comp of comps' class="col-md-6 col-sm-12">
+            <label class="custom-control custom-radio">
+              <input [checked]='ind.comp_id == comp.id' (click)='handleCheck(ind.id, comp.id)' type="radio" name={{indi}} class="custom-control-input"
+                value='{{comp.id}}'>
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">{{comp.nome}}</span>
+            </label>
+          </div>
+
         </div>
       </li>
+
     </ul>
   </div>
 

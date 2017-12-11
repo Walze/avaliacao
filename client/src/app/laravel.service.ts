@@ -34,6 +34,16 @@ export class LaravelService {
     })
   }
 
+  all(where) {
+    return new Promise((res, rej) => {
+      this.http.get(this._API + where)
+        .subscribe(
+        all => res(all),
+        error => rej(error)
+        )
+    })
+  }
+
   getIndsComp(id) {
     return new Promise((res, rej) => {
       this.http.get(this._API + 'indicadores/' + id)
@@ -92,7 +102,10 @@ export class LaravelService {
           .post(this._API + where, what, this.headers)
           .subscribe(
           () => { if (redirectTo) this.router.navigate([redirectTo]) },
-          error => document.querySelector('html').innerHTML = error.text())
+          error => {
+            document.querySelector('html').innerHTML = error.text()
+            alert(JSON.stringify(error.text()))
+          })
       })
   }
 
@@ -103,7 +116,10 @@ export class LaravelService {
       res => {
         if (redirectTo) this.router.navigate([redirectTo])
       },
-      error => document.querySelector('html').innerHTML = error.text())
+      error => {
+        document.querySelector('html').innerHTML = error.text()
+        alert(JSON.stringify(error.text()))
+      })
   }
 
   show(where, id) {
@@ -130,7 +146,9 @@ export class LaravelService {
       },
       error => {
         this.logged.next(false)
-        document.querySelector('html').innerHTML = error.text()
+        // document.querySelector('html').innerHTML = error.text()
+        alert(JSON.stringify(error.text()))
+
       })
   }
 

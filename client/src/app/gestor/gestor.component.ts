@@ -42,7 +42,6 @@ export class GestorComponent implements OnInit {
   }
 
   constructor(private lara: LaravelService) {
-
     this.lara.getFormData(res => {
       this.localidades = res.localidades
       this.setores = res.setores.filter(setor => { return setor.nome != 'Ademir' })
@@ -61,7 +60,6 @@ export class GestorComponent implements OnInit {
   }
 
   criarComp() {
-
     new Promise(() => {
       this.competencias.push(this.novaComp)
       this.lara.post(this.novaComp, 'comp', '/gestor')
@@ -69,8 +67,6 @@ export class GestorComponent implements OnInit {
       this.novaComp.nome = ''
       this.novaComp.descricao = ''
     })
-
-
   }
 
 

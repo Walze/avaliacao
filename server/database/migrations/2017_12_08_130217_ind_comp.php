@@ -10,7 +10,7 @@ class IndComp extends Migration
             $table->increments('id');
             $table->integer('comp_id')->unsigned();
             $table->foreign('comp_id')->references('id')->on('competencias');
-            $table->integer('indicador_id')->unsigned();
+            $table->integer('indicador_id')->unsigned()->unique();
             $table->foreign('indicador_id')->references('id')->on('indicadores');
         });
     }

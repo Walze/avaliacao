@@ -91,7 +91,7 @@ Route::get('/teste', function () {
 		->join('indicadores', 'ind_comp.indicador_id', '=', 'indicadores.id')
 		->join('competencias', 'ind_comp.comp_id', '=', 'competencias.id')->get();
 
-		return $data;
+	return $data;
 });
 
 
@@ -130,6 +130,19 @@ Route::post('/comp', function (Request $req) {
 });
 
 
+// Ind_comp
+Route::get('/ind_comp', function () {
+	return IndComp::all();
+});
+
+Route::post('/ind_comp', function (Request $req) {
+	$data = $req->all();
+	IndComp::updateOrCreate([
+		'indicador_id' => $data['indicador_id']
+	], $data);
+
+	return $data;
+});
 
 
 
