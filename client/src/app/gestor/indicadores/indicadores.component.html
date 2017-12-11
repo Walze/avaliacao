@@ -39,27 +39,46 @@
     <br />
 
     <label class="custom-control custom-checkbox">
-      <input (click)='showThis($event)' [(ngModel)]='show_this' type="checkbox" class="custom-control-input">
+      <input (click)='showHereOnly($event)' [(ngModel)]='showCurrent' type="checkbox" class="custom-control-input">
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description">Mostrar somente os indicadores desta competência</span>
     </label>
 
     <ul class="list-group col-12" *ngFor='let ind of indicadores; let indi = index'>
       <li class="list-group-item">
-        <h5>
-          {{ind.id}}. {{ind.nome}}
-        </h5>
+        <div class="heading">
+          <b>
+            {{ind.id}}. {{ind.nome}}
+          </b>
+        </div>
 
-        <br />
-        <div class="row">
+        <div class="edits">
+          <br>
+          <div class="row">
+            <h6 class="col-12">Competência</h6>
+            <br>
 
-          <div *ngFor='let comp of comps' class="col-md-6 col-sm-12">
-            <label class="custom-control custom-radio">
-              <input [checked]='ind.comp_id == comp.id' (click)='handleCheck(ind.id, comp.id)' type="radio" name={{indi}} class="custom-control-input"
-                value='{{comp.id}}'>
-              <span class="custom-control-indicator"></span>
-              <span class="custom-control-description">{{comp.nome}}</span>
-            </label>
+            <div *ngFor='let comp of comps' class="col-md-6 col-sm-12">
+              <label class="custom-control custom-radio">
+                <input [checked]='ind.comp_id == comp.id' (click)='handleCheck(ind.id, comp.id)' type="radio" name={{indi}} class="custom-control-input"
+                  value='{{comp.id}}'>
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">{{comp.nome}}</span>
+              </label>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <h6 class="col-12">Cargo</h6>
+            <br>
+
+            <div *ngFor='let comp of comps' class="col-md-6 col-sm-12">
+              <label class="custom-control custom-checkbox">
+                <input type="checkbox" name={{indi}} class="custom-control-input" value='{{comp.id}}'>
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">{{comp.nome}}</span>
+              </label>
+            </div>
           </div>
 
         </div>

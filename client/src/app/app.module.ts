@@ -46,7 +46,7 @@ const appRoutes: Routes = [
     AvaliarComponent,
     AvaliacaoComponent,
     GestorComponent,
-    IndicadoresComponent
+    IndicadoresComponent,
   ],
   imports: [
     NgbModule.forRoot(),

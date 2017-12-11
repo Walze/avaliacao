@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { LaravelService } from '../../laravel.service';
-import { ActivatedRoute } from '@angular/router';
-import { Competencia } from '../competencia';
-import { Indicador } from './indicador';
+import { Component, OnInit } from '@angular/core'
+import { LaravelService } from '../../laravel.service'
+import { ActivatedRoute } from '@angular/router'
+import { Competencia } from '../competencia'
+import { Indicador } from './indicador'
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-indicadores',
@@ -10,56 +11,39 @@ import { Indicador } from './indicador';
   styleUrls: ['./indicadores.component.css']
 })
 export class IndicadoresComponent implements OnInit {
+  @HostListener('document:click', ['$event']) indClick(e) {
+    console.log(e.target.nodeName)
+  }
 
-  id: Number
-  comp: Competencia = {
+
+  public id: number
+  public comp: Competencia = {
     nome: '',
     descricao: ''
   }
-  comps: Competencia[]
-  indicadores: Indicador[]
-  indicadoresOrig: Indicador[]
-  ind_comps: any
+  public comps: Competencia[]
+  public indicadores: Indicador[]
+  private indicadoresOrig: Indicador[]
+  private ind_comps
 
-  show_this: boolean = true
+  showCurrent: boolean = true
+  editMode: boolean = false
+
 
   constructor(private lara: LaravelService, private route: ActivatedRoute) {
     this.lara.all('ind_comp').then((res: Response) => {
       this.ind_comps = res.json()
     })
 
-    this.route.params
-      .subscribe(params => {
-        this.id = params.id
-
-        this.lara
-          .getIndsComp(this.id)
-          .then((res: Response) => {
-            let data: any = res.json()
-            this.comp = data.competencia
-            this.comps = data.comps
-            // Ordem Alfabetica
-            this.indicadoresOrig = data.indicadores
-              .sort((a, b) => {
-                if (a.nome < b.nome)
-                  return -1;
-                if (a.nome > b.nome)
-                  return 1;
-                return 0;
-              })
-
-            this.addComp()
-            this.showThis()
-          })
-      })
-
+    this.getDataFromParams();
   }
 
-  showThis(e = null) {
-    if (e !== null)
-      this.show_this = e.target.checked;
 
-    if (this.show_this) {
+
+  showHereOnly(e = null) {
+    if (e !== null) this.showCurrent = e.target.checked
+
+    if (this.showCurrent) {
       const whiteList = []
 
       this.ind_comps
@@ -97,7 +81,7 @@ export class IndicadoresComponent implements OnInit {
     const indi = this.ind_comps.find(i => i.indicador_id == ind)
     indi.comp_id = comp
 
-    this.showThis()
+    this.showHereOnly()
     this.lara
       .post({
         indicador_id: Number(ind),
@@ -106,6 +90,29 @@ export class IndicadoresComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  private getDataFromParams() {
+    this.route.params
+      .subscribe(params => {
+        this.id = params.id;
+        this.lara
+          .getIndsComp(this.id)
+          .then((res: Response) => {
+            let data: any = res.json();
+            this.comp = data.competencia;
+            this.comps = data.comps;
+            // Ordem Alfabetica
+            this.indicadoresOrig = data.indicadores
+              .sort((a, b) => {
+                if (a.nome < b.nome) return -1;
+                if (a.nome > b.nome) return 1;
+                return 0;
+              });
+            this.addComp();
+            this.showHereOnly();
+          });
+      });
   }
 
 }
