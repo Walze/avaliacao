@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { LaravelService } from '../laravel.service';
-import { Gestor } from './gestor';
-import { Competencia } from './competencia';
+import { Component, OnInit } from '@angular/core'
+import { LaravelService } from '../laravel.service'
+import { Gestor } from './gestor'
+import { Competencia } from './competencia'
 
 @Component({
   selector: 'app-gestor',
@@ -18,6 +18,16 @@ export class GestorComponent implements OnInit {
   }
 
   public cores = [
+    '#BF4A67',
+    '#3B3C3D',
+    '#5991B1',
+    '#48569E',
+    '#44B39D',
+    '#8B4D93',
+    '#54ACD2',
+    '#E6567A',
+    '#47C9AF',
+    '#5F7187',
     '#BF4A67',
     '#3B3C3D',
     '#5991B1',
@@ -66,6 +76,7 @@ export class GestorComponent implements OnInit {
     }).then(() => {
       this.novaComp.nome = ''
       this.novaComp.descricao = ''
+      window.location.reload()
     })
   }
 

@@ -39,7 +39,7 @@ export class IndicadoresComponent implements OnInit {
 
     window.dis = this
 
-    this.getDataFromParams();
+    this.getDataFromParams()
   }
 
   showHereOnly(e = null) {
@@ -138,25 +138,25 @@ export class IndicadoresComponent implements OnInit {
   private getDataFromParams() {
     this.route.params
       .subscribe(params => {
-        this.id = params.id;
+        this.id = params.id
         this.lara
           .getIndsComp(this.id)
           .then((res: Response) => {
-            let data: any = res.json();
-            this.comp = data.competencia;
-            this.comps = data.comps;
+            let data: any = res.json()
+            this.comp = data.competencia
+            this.comps = data.comps
             // Ordem Alfabetica
             this.indicadoresOrig = data.indicadores
               .sort((a, b) => {
-                if (a.nome < b.nome) return -1;
-                else if (a.nome > b.nome) return 1;
-                return 0;
-              });
-            this.addComp();
-            this.addCargos();
-            this.showHereOnly();
-          });
-      });
+                if (a.nome < b.nome) return -1
+                else if (a.nome > b.nome) return 1
+                return 0
+              })
+            this.addComp()
+            this.addCargos()
+            this.showHereOnly()
+          })
+      })
   }
 
 }
