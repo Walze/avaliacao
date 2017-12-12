@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ind_Comp_Cargo extends Model
 {
-    protected $table = 'ind_comp_cargo';
+    protected $table = 'ind_cargo';
     public $timestamps = false;
 
-    protected $fillable = ['ind_comp_id', 'cargo_id'];
+    protected $fillable = ['indicador_id', 'cargo_id'];
 }

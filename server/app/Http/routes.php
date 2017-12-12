@@ -8,7 +8,7 @@ use \App\Avaliacao;
 use \App\Competencia;
 use \App\Indicador;
 use \App\IndComp;
-
+use App\Ind_Comp_Cargo;
 use Illuminate\Http\Request;
 
 // Home data
@@ -130,9 +130,12 @@ Route::post('/comp', function (Request $req) {
 });
 
 
-// Ind_comp
-Route::get('/ind_comp', function () {
-	return IndComp::all();
+// Indicador relationship tables
+Route::get('/ind_rels', function () {
+	return [
+		'ind_comps' => IndComp::all(),
+		'ind_cargos' => Ind_Comp_Cargo::all()
+	];
 });
 
 Route::post('/ind_comp', function (Request $req) {
@@ -140,6 +143,28 @@ Route::post('/ind_comp', function (Request $req) {
 	IndComp::updateOrCreate([
 		'indicador_id' => $data['indicador_id']
 	], $data);
+
+	return $data;
+});
+
+Route::post('/ind_cargo', function (Request $req) {
+	$data = $req->all();
+
+	if ($data['checked']) {
+
+		Ind_Comp_Cargo::updateOrCreate([
+			'indicador_id' => $data['indicador_id'],
+			'cargo_id' => $data['cargo_id']
+		], [
+			'indicador_id' => $data['indicador_id'],
+			'cargo_id' => $data['cargo_id']
+		]);
+
+	} else {
+		Ind_Comp_Cargo::where('indicador_id', $data['indicador_id'])
+			->where('cargo_id', $data['cargo_id'])
+			->delete();
+	}
 
 	return $data;
 });

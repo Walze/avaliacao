@@ -45,7 +45,7 @@
     </label>
 
     <ul class="list-group col-12" *ngFor='let ind of indicadores; let indi = index'>
-      <li class="list-group-item">
+      <li class="list-group-item" (click)='toggleInds($event.target)'>
         <div class="heading">
           <b>
             {{ind.id}}. {{ind.nome}}
@@ -60,7 +60,7 @@
 
             <div *ngFor='let comp of comps' class="col-md-6 col-sm-12">
               <label class="custom-control custom-radio">
-                <input [checked]='ind.comp_id == comp.id' (click)='handleCheck(ind.id, comp.id)' type="radio" name={{indi}} class="custom-control-input"
+                <input [checked]='ind.comp_id == comp.id' (click)='handleRadio(ind.id, comp.id)' type="radio" name={{indi}} class="custom-control-input"
                   value='{{comp.id}}'>
                 <span class="custom-control-indicator"></span>
                 <span class="custom-control-description">{{comp.nome}}</span>
@@ -69,14 +69,14 @@
           </div>
           <br>
           <div class="row">
-            <h6 class="col-12">Cargo</h6>
+            <h6 class="col-12">Cargos</h6>
             <br>
 
-            <div *ngFor='let comp of comps' class="col-md-6 col-sm-12">
+            <div *ngFor='let cargo of cargos' class="col-md-6 col-sm-12">
               <label class="custom-control custom-checkbox">
-                <input type="checkbox" name={{indi}} class="custom-control-input" value='{{comp.id}}'>
+                <input [checked]='ind.cargo_id.includes(cargo.id)' (click)='handleCheck(ind.id, cargo.id, $event.target.checked)' type="checkbox" name={{indi}} class="custom-control-input" value='{{cargo.id}}'>
                 <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">{{comp.nome}}</span>
+                <span class="custom-control-description">{{cargo.nome}}</span>
               </label>
             </div>
           </div>
