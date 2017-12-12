@@ -26,7 +26,6 @@ export class IndicadoresComponent implements OnInit {
 
   showCurrent: boolean = true
 
-
   constructor(private lara: LaravelService, private route: ActivatedRoute) {
     this.lara.all('ind_rels').then((res: any) => {
       this.ind_comps = res.json().ind_comps
@@ -71,7 +70,6 @@ export class IndicadoresComponent implements OnInit {
 
     if (!Boolean(el.style.height)) el.style.height = '0'
 
-
     if (el.style.height == '0px' || el.style.height == '')
       el.style.height = '100%'
     else el.style.height = '0px'
@@ -81,10 +79,9 @@ export class IndicadoresComponent implements OnInit {
   addComp() {
     this.indicadores = this.indicadoresOrig.map(i => {
       let comp = this.ind_comps.filter(ic => ic.indicador_id == i.id)[0]
-      if (comp)
-        i.comp_id = comp.comp_id
-      else
-        i.comp_id = 0
+
+      if (comp) i.comp_id = comp.comp_id
+      else i.comp_id = 0
 
       return i
     })
@@ -93,8 +90,9 @@ export class IndicadoresComponent implements OnInit {
 
   addCargos() {
     this.indicadores = this.indicadoresOrig.map(i => {
-      let cargo = this.ind_cargos.filter(ic => ic.indicador_id == i.id)
-      i.cargo_id = cargo.map(i => i.cargo_id)
+      i.cargo_id = this.ind_cargos
+        .filter(ic => ic.indicador_id == i.id)
+        .map(i => i.cargo_id)
 
       return i
     })
