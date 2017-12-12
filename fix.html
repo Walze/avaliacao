@@ -63,7 +63,7 @@
           i[prop].indexOf('.') > -1
         ) {
           novo.push({
-            cargo: comps2.indexOf(prop.slice(0, -1)),
+            cargo: i.cargo,
             text: i[prop]
           })
 
@@ -94,14 +94,60 @@
     texts = res.map(el => el.text)
 
 
-    returns = res.map(el => {
-      return {
-        comp_id: el.cargo + 1,
-        indicador_id: texts.indexOf(el.text) + 1
-      }
+    // returns = res.map(el => {
+    //   return {
+    //     comp_id: el.cargo + 1,
+    //     indicador_id: texts.indexOf(el.text) + 1
+    //   }
+    // })
+
+    // res.map((el, i) => {
+    //   document.querySelector('#tap').innerHTML += `${i + 1}. ${el.cargo}.............................${el.text}<br/> `;
+    // })
+
+    newr = []
+    newrRel = []
+
+    res.map((i, pos, self) => {
+
+      if (!newr.length) newr.push({
+        id: pos,
+        text: i.text,
+        cargo: i.cargo
+      })
+
+      self.map(ia => {
+
+        if (ia.text == i.text)
+          newr[pos] = {
+            id: pos,
+            text: i.text,
+            cargo: i.cargo
+          }
+      })
+
     })
 
-    res.map((el, i) => {
+    new2 = newr.reduce((prev, curr, i) => {
+      //console.log(i, prev, curr)
+
+      if (prev.text == curr.text) {
+        return [
+          prev,
+          {
+            id: curr.id,
+            cargo: [...prev.cargo, curr.cargo],
+            text: curr.text
+          }
+        ]
+      }
+
+      return curr
+    })
+
+    console.log(new2)
+
+    newr.map((el, i) => {
       document.querySelector('#tap').innerHTML += `${i + 1}. ${el.cargo}.............................${el.text}<br/> `;
     })
   </script>
