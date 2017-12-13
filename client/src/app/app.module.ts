@@ -26,6 +26,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginUsuarioComponent },
   { path: 'cadastro', component: CadUsuarioComponent },
   { path: 'estagiario/:id', component: EstagiarioComponent },
+  { path: 'estagiario/:id/avaliar', component: AvaliarComponent },
   { path: 'cad-estagiario', component: CadEstagiarioComponent },
   {
     path: '',

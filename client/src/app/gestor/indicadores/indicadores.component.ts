@@ -39,7 +39,7 @@ export class IndicadoresComponent implements OnInit {
 
     window.dis = this
 
-    this.getDataFromParams()
+    this._getDataFromParams()
   }
 
   showHereOnly(e = null) {
@@ -113,7 +113,6 @@ export class IndicadoresComponent implements OnInit {
     }
 
     this.lara.post(postData, 'ind_comp')
-    this.showHereOnly()
   }
 
   handleCheck(ind, cargo, checked) {
@@ -128,14 +127,13 @@ export class IndicadoresComponent implements OnInit {
 
     if (!indi) this.ind_cargos.push(postData)
 
-    console.log(postData, indi)
     this.lara.post(postData, 'ind_cargo')
   }
 
   ngOnInit() {
   }
 
-  private getDataFromParams() {
+  private _getDataFromParams() {
     this.route.params
       .subscribe(params => {
         this.id = params.id
