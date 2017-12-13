@@ -49,6 +49,16 @@
       'com----------'
     ];
 
+    cargos = [
+      "Relacionamento",
+      "Novos Negócios",
+      "Recursos Humanos",
+      "Designer EAD",
+      "Marketing",
+      "Qualidade",
+      "SAC"
+    ]
+
     var novo = []
 
 
@@ -93,6 +103,9 @@
 
     texts = res.map(el => el.text)
 
+    uniqres = texts.filter(function (item, pos) {
+      return texts.indexOf(item) == pos;
+    })
 
     // returns = res.map(el => {
     //   return {
@@ -128,24 +141,21 @@
 
     })
 
-    new2 = newr.reduce((prev, curr, i) => {
-      //console.log(i, prev, curr)
+    new2 = []
+    newr.reduce((prev, curr, i) => {
+      //debugger
 
-      if (prev.text == curr.text) {
-        return [
-          prev,
-          {
-            id: curr.id,
-            cargo: [...prev.cargo, curr.cargo],
-            text: curr.text
-          }
-        ]
-      }
+      new2.push({
+        indicador_id: (() => uniqres.indexOf(curr.text))(),
+        cargo_id: cargos.indexOf(curr.cargo) + 1,
+        //text: curr.text
+      })
 
       return curr
     })
 
-    console.log(new2)
+    console.log(JSON.stringify(new2))
+    // console.log((new2))
 
     newr.map((el, i) => {
       document.querySelector('#tap').innerHTML += `${i + 1}. ${el.cargo}.............................${el.text}<br/> `;

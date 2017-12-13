@@ -366,7 +366,6 @@ class DatabaseSeeder extends Seeder
       ]
     ]);
 
-
     DB::table('ind_comp')->insert(array(
       0 => array('comp_id' => 5, 'indicador_id' => 1, ),
       1 => array('comp_id' => 5, 'indicador_id' => 2, ),
@@ -452,5 +451,842 @@ class DatabaseSeeder extends Seeder
       81 => array('comp_id' => 7, 'indicador_id' => 82, ),
       82 => array('comp_id' => 7, 'indicador_id' => 83, ),
     ));
+
+
+    DB::table('ind_cargo')->insert(
+      array(
+        0 =>
+          array(
+          'indicador_id' => 1,
+          'cargo_id' => 6,
+        ),
+        1 =>
+          array(
+          'indicador_id' => 1,
+          'cargo_id' => 1,
+        ),
+        2 =>
+          array(
+          'indicador_id' => 2,
+          'cargo_id' => 2,
+        ),
+        3 =>
+          array(
+          'indicador_id' => 3,
+          'cargo_id' => 6,
+        ),
+        4 =>
+          array(
+          'indicador_id' => 3,
+          'cargo_id' => 1,
+        ),
+        5 =>
+          array(
+          'indicador_id' => 4,
+          'cargo_id' => 7,
+        ),
+        6 =>
+          array(
+          'indicador_id' => 5,
+          'cargo_id' => 1,
+        ),
+        7 =>
+          array(
+          'indicador_id' => 5,
+          'cargo_id' => 6,
+        ),
+        8 =>
+          array(
+          'indicador_id' => 6,
+          'cargo_id' => 6,
+        ),
+        9 =>
+          array(
+          'indicador_id' => 6,
+          'cargo_id' => 1,
+        ),
+        10 =>
+          array(
+          'indicador_id' => 7,
+          'cargo_id' => 6,
+        ),
+        11 =>
+          array(
+          'indicador_id' => 7,
+          'cargo_id' => 1,
+        ),
+        12 =>
+          array(
+          'indicador_id' => 8,
+          'cargo_id' => 5,
+        ),
+        13 =>
+          array(
+          'indicador_id' => 9,
+          'cargo_id' => 7,
+        ),
+        14 =>
+          array(
+          'indicador_id' => 10,
+          'cargo_id' => 4,
+        ),
+        15 =>
+          array(
+          'indicador_id' => 11,
+          'cargo_id' => 2,
+        ),
+        16 =>
+          array(
+          'indicador_id' => 11,
+          'cargo_id' => 5,
+        ),
+        17 =>
+          array(
+          'indicador_id' => 11,
+          'cargo_id' => 3,
+        ),
+        18 =>
+          array(
+          'indicador_id' => 12,
+          'cargo_id' => 3,
+        ),
+        19 =>
+          array(
+          'indicador_id' => 13,
+          'cargo_id' => 4,
+        ),
+        20 =>
+          array(
+          'indicador_id' => 13,
+          'cargo_id' => 2,
+        ),
+        21 =>
+          array(
+          'indicador_id' => 13,
+          'cargo_id' => 3,
+        ),
+        22 =>
+          array(
+          'indicador_id' => 13,
+          'cargo_id' => 5,
+        ),
+        23 =>
+          array(
+          'indicador_id' => 13,
+          'cargo_id' => 6,
+        ),
+        24 =>
+          array(
+          'indicador_id' => 13,
+          'cargo_id' => 7,
+        ),
+        25 =>
+          array(
+          'indicador_id' => 13,
+          'cargo_id' => 1,
+        ),
+        26 =>
+          array(
+          'indicador_id' => 14,
+          'cargo_id' => 1,
+        ),
+        27 =>
+          array(
+          'indicador_id' => 14,
+          'cargo_id' => 3,
+        ),
+        28 =>
+          array(
+          'indicador_id' => 14,
+          'cargo_id' => 7,
+        ),
+        29 =>
+          array(
+          'indicador_id' => 14,
+          'cargo_id' => 6,
+        ),
+        30 =>
+          array(
+          'indicador_id' => 14,
+          'cargo_id' => 5,
+        ),
+        31 =>
+          array(
+          'indicador_id' => 15,
+          'cargo_id' => 6,
+        ),
+        32 =>
+          array(
+          'indicador_id' => 15,
+          'cargo_id' => 3,
+        ),
+        33 =>
+          array(
+          'indicador_id' => 15,
+          'cargo_id' => 4,
+        ),
+        34 =>
+          array(
+          'indicador_id' => 15,
+          'cargo_id' => 5,
+        ),
+        35 =>
+          array(
+          'indicador_id' => 15,
+          'cargo_id' => 2,
+        ),
+        36 =>
+          array(
+          'indicador_id' => 15,
+          'cargo_id' => 1,
+        ),
+        37 =>
+          array(
+          'indicador_id' => 16,
+          'cargo_id' => 4,
+        ),
+        38 =>
+          array(
+          'indicador_id' => 17,
+          'cargo_id' => 4,
+        ),
+        39 =>
+          array(
+          'indicador_id' => 18,
+          'cargo_id' => 3,
+        ),
+        40 =>
+          array(
+          'indicador_id' => 19,
+          'cargo_id' => 5,
+        ),
+        41 =>
+          array(
+          'indicador_id' => 19,
+          'cargo_id' => 4,
+        ),
+        42 =>
+          array(
+          'indicador_id' => 19,
+          'cargo_id' => 7,
+        ),
+        43 =>
+          array(
+          'indicador_id' => 19,
+          'cargo_id' => 1,
+        ),
+        44 =>
+          array(
+          'indicador_id' => 19,
+          'cargo_id' => 2,
+        ),
+        45 =>
+          array(
+          'indicador_id' => 19,
+          'cargo_id' => 6,
+        ),
+        46 =>
+          array(
+          'indicador_id' => 19,
+          'cargo_id' => 3,
+        ),
+        47 =>
+          array(
+          'indicador_id' => 20,
+          'cargo_id' => 4,
+        ),
+        48 =>
+          array(
+          'indicador_id' => 21,
+          'cargo_id' => 2,
+        ),
+        49 =>
+          array(
+          'indicador_id' => 22,
+          'cargo_id' => 3,
+        ),
+        50 =>
+          array(
+          'indicador_id' => 23,
+          'cargo_id' => 7,
+        ),
+        51 =>
+          array(
+          'indicador_id' => 24,
+          'cargo_id' => 3,
+        ),
+        52 =>
+          array(
+          'indicador_id' => 25,
+          'cargo_id' => 1,
+        ),
+        53 =>
+          array(
+          'indicador_id' => 25,
+          'cargo_id' => 5,
+        ),
+        54 =>
+          array(
+          'indicador_id' => 25,
+          'cargo_id' => 2,
+        ),
+        55 =>
+          array(
+          'indicador_id' => 25,
+          'cargo_id' => 6,
+        ),
+        56 =>
+          array(
+          'indicador_id' => 26,
+          'cargo_id' => 7,
+        ),
+        57 =>
+          array(
+          'indicador_id' => 27,
+          'cargo_id' => 3,
+        ),
+        58 =>
+          array(
+          'indicador_id' => 27,
+          'cargo_id' => 4,
+        ),
+        59 =>
+          array(
+          'indicador_id' => 27,
+          'cargo_id' => 2,
+        ),
+        60 =>
+          array(
+          'indicador_id' => 27,
+          'cargo_id' => 5,
+        ),
+        61 =>
+          array(
+          'indicador_id' => 28,
+          'cargo_id' => 4,
+        ),
+        62 =>
+          array(
+          'indicador_id' => 29,
+          'cargo_id' => 5,
+        ),
+        63 =>
+          array(
+          'indicador_id' => 30,
+          'cargo_id' => 1,
+        ),
+        64 =>
+          array(
+          'indicador_id' => 30,
+          'cargo_id' => 6,
+        ),
+        65 =>
+          array(
+          'indicador_id' => 31,
+          'cargo_id' => 1,
+        ),
+        66 =>
+          array(
+          'indicador_id' => 31,
+          'cargo_id' => 2,
+        ),
+        67 =>
+          array(
+          'indicador_id' => 31,
+          'cargo_id' => 4,
+        ),
+        68 =>
+          array(
+          'indicador_id' => 31,
+          'cargo_id' => 6,
+        ),
+        69 =>
+          array(
+          'indicador_id' => 32,
+          'cargo_id' => 7,
+        ),
+        70 =>
+          array(
+          'indicador_id' => 33,
+          'cargo_id' => 4,
+        ),
+        71 =>
+          array(
+          'indicador_id' => 33,
+          'cargo_id' => 5,
+        ),
+        72 =>
+          array(
+          'indicador_id' => 33,
+          'cargo_id' => 3,
+        ),
+        73 =>
+          array(
+          'indicador_id' => 33,
+          'cargo_id' => 6,
+        ),
+        74 =>
+          array(
+          'indicador_id' => 33,
+          'cargo_id' => 1,
+        ),
+        75 =>
+          array(
+          'indicador_id' => 33,
+          'cargo_id' => 2,
+        ),
+        76 =>
+          array(
+          'indicador_id' => 34,
+          'cargo_id' => 7,
+        ),
+        77 =>
+          array(
+          'indicador_id' => 35,
+          'cargo_id' => 3,
+        ),
+        78 =>
+          array(
+          'indicador_id' => 36,
+          'cargo_id' => 4,
+        ),
+        79 =>
+          array(
+          'indicador_id' => 36,
+          'cargo_id' => 1,
+        ),
+        80 =>
+          array(
+          'indicador_id' => 36,
+          'cargo_id' => 6,
+        ),
+        81 =>
+          array(
+          'indicador_id' => 36,
+          'cargo_id' => 5,
+        ),
+        82 =>
+          array(
+          'indicador_id' => 36,
+          'cargo_id' => 2,
+        ),
+        83 =>
+          array(
+          'indicador_id' => 36,
+          'cargo_id' => 7,
+        ),
+        84 =>
+          array(
+          'indicador_id' => 36,
+          'cargo_id' => 3,
+        ),
+        85 =>
+          array(
+          'indicador_id' => 37,
+          'cargo_id' => 7,
+        ),
+        86 =>
+          array(
+          'indicador_id' => 38,
+          'cargo_id' => 4,
+        ),
+        87 =>
+          array(
+          'indicador_id' => 39,
+          'cargo_id' => 3,
+        ),
+        88 =>
+          array(
+          'indicador_id' => 40,
+          'cargo_id' => 4,
+        ),
+        89 =>
+          array(
+          'indicador_id' => 41,
+          'cargo_id' => 3,
+        ),
+        90 =>
+          array(
+          'indicador_id' => 42,
+          'cargo_id' => 7,
+        ),
+        91 =>
+          array(
+          'indicador_id' => 43,
+          'cargo_id' => 1,
+        ),
+        92 =>
+          array(
+          'indicador_id' => 44,
+          'cargo_id' => 2,
+        ),
+        93 =>
+          array(
+          'indicador_id' => 45,
+          'cargo_id' => 4,
+        ),
+        94 =>
+          array(
+          'indicador_id' => 46,
+          'cargo_id' => 6,
+        ),
+        95 =>
+          array(
+          'indicador_id' => 47,
+          'cargo_id' => 5,
+        ),
+        96 =>
+          array(
+          'indicador_id' => 48,
+          'cargo_id' => 7,
+        ),
+        97 =>
+          array(
+          'indicador_id' => 49,
+          'cargo_id' => 7,
+        ),
+        98 =>
+          array(
+          'indicador_id' => 50,
+          'cargo_id' => 3,
+        ),
+        99 =>
+          array(
+          'indicador_id' => 51,
+          'cargo_id' => 5,
+        ),
+        100 =>
+          array(
+          'indicador_id' => 52,
+          'cargo_id' => 7,
+        ),
+        101 =>
+          array(
+          'indicador_id' => 53,
+          'cargo_id' => 5,
+        ),
+        102 =>
+          array(
+          'indicador_id' => 53,
+          'cargo_id' => 3,
+        ),
+        103 =>
+          array(
+          'indicador_id' => 53,
+          'cargo_id' => 4,
+        ),
+        104 =>
+          array(
+          'indicador_id' => 53,
+          'cargo_id' => 2,
+        ),
+        105 =>
+          array(
+          'indicador_id' => 54,
+          'cargo_id' => 7,
+        ),
+        106 =>
+          array(
+          'indicador_id' => 55,
+          'cargo_id' => 5,
+        ),
+        107 =>
+          array(
+          'indicador_id' => 56,
+          'cargo_id' => 5,
+        ),
+        108 =>
+          array(
+          'indicador_id' => 57,
+          'cargo_id' => 7,
+        ),
+        109 =>
+          array(
+          'indicador_id' => 58,
+          'cargo_id' => 5,
+        ),
+        110 =>
+          array(
+          'indicador_id' => 58,
+          'cargo_id' => 4,
+        ),
+        111 =>
+          array(
+          'indicador_id' => 58,
+          'cargo_id' => 3,
+        ),
+        112 =>
+          array(
+          'indicador_id' => 58,
+          'cargo_id' => 6,
+        ),
+        113 =>
+          array(
+          'indicador_id' => 58,
+          'cargo_id' => 2,
+        ),
+        114 =>
+          array(
+          'indicador_id' => 59,
+          'cargo_id' => 1,
+        ),
+        115 =>
+          array(
+          'indicador_id' => 60,
+          'cargo_id' => 7,
+        ),
+        116 =>
+          array(
+          'indicador_id' => 61,
+          'cargo_id' => 4,
+        ),
+        117 =>
+          array(
+          'indicador_id' => 61,
+          'cargo_id' => 2,
+        ),
+        118 =>
+          array(
+          'indicador_id' => 61,
+          'cargo_id' => 5,
+        ),
+        119 =>
+          array(
+          'indicador_id' => 61,
+          'cargo_id' => 3,
+        ),
+        120 =>
+          array(
+          'indicador_id' => 62,
+          'cargo_id' => 7,
+        ),
+        121 =>
+          array(
+          'indicador_id' => 63,
+          'cargo_id' => 6,
+        ),
+        122 =>
+          array(
+          'indicador_id' => 63,
+          'cargo_id' => 1,
+        ),
+        123 =>
+          array(
+          'indicador_id' => 64,
+          'cargo_id' => 2,
+        ),
+        124 =>
+          array(
+          'indicador_id' => 65,
+          'cargo_id' => 4,
+        ),
+        125 =>
+          array(
+          'indicador_id' => 66,
+          'cargo_id' => 4,
+        ),
+        126 =>
+          array(
+          'indicador_id' => 67,
+          'cargo_id' => 2,
+        ),
+        127 =>
+          array(
+          'indicador_id' => 68,
+          'cargo_id' => 7,
+        ),
+        128 =>
+          array(
+          'indicador_id' => 68,
+          'cargo_id' => 1,
+        ),
+        129 =>
+          array(
+          'indicador_id' => 68,
+          'cargo_id' => 6,
+        ),
+        130 =>
+          array(
+          'indicador_id' => 69,
+          'cargo_id' => 5,
+        ),
+        131 =>
+          array(
+          'indicador_id' => 70,
+          'cargo_id' => 3,
+        ),
+        132 =>
+          array(
+          'indicador_id' => 70,
+          'cargo_id' => 6,
+        ),
+        133 =>
+          array(
+          'indicador_id' => 70,
+          'cargo_id' => 2,
+        ),
+        134 =>
+          array(
+          'indicador_id' => 70,
+          'cargo_id' => 1,
+        ),
+        135 =>
+          array(
+          'indicador_id' => 71,
+          'cargo_id' => 7,
+        ),
+        136 =>
+          array(
+          'indicador_id' => 72,
+          'cargo_id' => 2,
+        ),
+        137 =>
+          array(
+          'indicador_id' => 72,
+          'cargo_id' => 5,
+        ),
+        138 =>
+          array(
+          'indicador_id' => 72,
+          'cargo_id' => 4,
+        ),
+        139 =>
+          array(
+          'indicador_id' => 72,
+          'cargo_id' => 6,
+        ),
+        140 =>
+          array(
+          'indicador_id' => 72,
+          'cargo_id' => 3,
+        ),
+        141 =>
+          array(
+          'indicador_id' => 73,
+          'cargo_id' => 7,
+        ),
+        142 =>
+          array(
+          'indicador_id' => 74,
+          'cargo_id' => 1,
+        ),
+        143 =>
+          array(
+          'indicador_id' => 74,
+          'cargo_id' => 6,
+        ),
+        144 =>
+          array(
+          'indicador_id' => 74,
+          'cargo_id' => 4,
+        ),
+        145 =>
+          array(
+          'indicador_id' => 74,
+          'cargo_id' => 3,
+        ),
+        146 =>
+          array(
+          'indicador_id' => 74,
+          'cargo_id' => 2,
+        ),
+        147 =>
+          array(
+          'indicador_id' => 74,
+          'cargo_id' => 7,
+        ),
+        148 =>
+          array(
+          'indicador_id' => 74,
+          'cargo_id' => 5,
+        ),
+        149 =>
+          array(
+          'indicador_id' => 75,
+          'cargo_id' => 3,
+        ),
+        150 =>
+          array(
+          'indicador_id' => 76,
+          'cargo_id' => 2,
+        ),
+        151 =>
+          array(
+          'indicador_id' => 77,
+          'cargo_id' => 2,
+        ),
+        152 =>
+          array(
+          'indicador_id' => 77,
+          'cargo_id' => 3,
+        ),
+        153 =>
+          array(
+          'indicador_id' => 77,
+          'cargo_id' => 4,
+        ),
+        154 =>
+          array(
+          'indicador_id' => 77,
+          'cargo_id' => 6,
+        ),
+        155 =>
+          array(
+          'indicador_id' => 77,
+          'cargo_id' => 5,
+        ),
+        156 =>
+          array(
+          'indicador_id' => 77,
+          'cargo_id' => 1,
+        ),
+        157 =>
+          array(
+          'indicador_id' => 78,
+          'cargo_id' => 6,
+        ),
+        158 =>
+          array(
+          'indicador_id' => 78,
+          'cargo_id' => 1,
+        ),
+        159 =>
+          array(
+          'indicador_id' => 79,
+          'cargo_id' => 1,
+        ),
+        160 =>
+          array(
+          'indicador_id' => 79,
+          'cargo_id' => 6,
+        ),
+        161 =>
+          array(
+          'indicador_id' => 80,
+          'cargo_id' => 7,
+        ),
+        162 =>
+          array(
+          'indicador_id' => 81,
+          'cargo_id' => 5,
+        ),
+        163 =>
+          array(
+          'indicador_id' => 81,
+          'cargo_id' => 2,
+        ),
+        164 =>
+          array(
+          'indicador_id' => 81,
+          'cargo_id' => 4,
+        ),
+        165 =>
+          array(
+          'indicador_id' => 82,
+          'cargo_id' => 5,
+        ),
+      )
+    );
+
   }
 }
