@@ -198,4 +198,49 @@ Route::delete('/estagiario/{id}', function ($id) {
 
 
 
+// avaliacoes
+
+Route::get('/avaliacao', function () {
+	// $data = Cargo::select(
+	// 	'indicadores.id as id',
+	// 	'competencias.nome as comp_nome',
+	// 	'indicadores.nome as ind_nome',
+	// 	'cargos.nome as cargo_nome',
+	// 	'peso'
+	// )
+	// 	->where('cargos.id', 2)
+	// 	->join('ind_cargo', 'ind_cargo.cargo_id', '=', 'cargos.id')
+	// 	->join('ind_comp', 'ind_comp.indicador_id', '=', 'ind_cargo.indicador_id')
+	// 	->join('indicadores', 'indicadores.id', '=', 'ind_cargo.indicador_id')
+	// 	->join('competencias', 'competencias.id', '=', 'ind_comp.comp_id')
+	// 	->get();
+
+	// $competancia = [
+	// 	'id' => '',
+	// 	'nome' => '',
+	// 	'desc' => '',
+	// 	'peso' => '',
+	// 	'indicadores' => $indicadores
+	// ];
+
+	$indicadores = Cargo::select(
+		'indicadores.id as id',
+		'indicadores.nome as ind_nome',
+		'ind_comp.comp_id as comp_id',
+		'ind_cargo.indicador_id as indicador_id',
+		'competencias.nome as comp_nome'
+	)
+		->where('cargos.id', 2)
+		->join('ind_cargo', 'ind_cargo.cargo_id', '=', 'cargos.id')
+		->join('indicadores', 'indicadores.id', '=', 'ind_cargo.indicador_id')
+		->join('ind_comp', 'ind_comp.indicador_id', '=', 'ind_cargo.indicador_id')
+		->join('competencias', 'competencias.id', '=', 'ind_comp.comp_id')
+
+		->get();
+
+
+
+	return $indicadores;
+});
+
 
