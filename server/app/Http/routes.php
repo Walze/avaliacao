@@ -201,8 +201,7 @@ Route::delete('/estagiario/{id}', function ($id) {
 
 // avaliacoes
 
-Route::get('/avaliacao', function () {
-	$id = 2;
+Route::get('/avaliacao/{id}', function ($id) {
 
 	$indicadores = Cargo::select(
 		'*'
@@ -234,6 +233,8 @@ Route::get('/avaliacao', function () {
 
 				foreach ($indicadores as $i3 => $ind) {
 					if ($ind->comp_id == $comp->id) {
+						unset($ind->cargo_id,
+							$ind->duracao_meses);
 						array_push($avaliacao[$i1]->indicadores, $ind);
 					}
 				}

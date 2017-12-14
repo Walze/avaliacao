@@ -1,3 +1,53 @@
-<p>
-  avaliar works!
-</p>
+<br />
+
+<h1 *ngIf="carregando" class="display-3 center">
+  Carregando...
+</h1>
+
+<br />
+<br />
+
+
+<div *ngIf='!carregando' class="container">
+
+  <h4 class="display-4 center">
+    Avaliando Estagiário {{estagiario.nome}}
+  </h4>
+
+  <br />
+
+  <div class="avaliacao" *ngFor='let comp of avaliacao'>
+
+    <div class="list-group">
+      <a class="bg-primary text-white list-group-item list-group-item-action flex-column align-items-center">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{comp.id + 1}}# {{comp.nome}}</h5>
+        </div>
+        <p class="mb-1">{{comp.descricao}}</p>
+      </a>
+      <a *ngFor='let ind of comp.indicadores' class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex align-items-center justify-content-between">
+
+          <div>
+            <h6 class="mb-1">{{ind.nome}}</h6>
+          </div>
+
+          <div>
+            <select class="custom-select">
+              <option selected disabled value='0'>Peso</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="3">4</option>
+            </select>
+          </div>
+        </div>
+        <!-- <p class="mb-1">{{ind.nome}}</p> -->
+      </a>
+
+    </div>
+    <br>
+    <br>
+  </div>
+
+</div>

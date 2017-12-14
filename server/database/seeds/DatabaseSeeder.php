@@ -58,10 +58,6 @@ class DatabaseSeeder extends Seeder
         'descricao' => 'Orienta suas atitudes visando a valorização de relações positivas que favoreçam a fidelização do cliente.'
       ],
       [
-        'nome' => 'Foco no Cliente Interno',
-        'descricao' => 'Predisposição para atender as demandas dos clientes internos, proporcionado um serviço de qualidade.'
-      ],
-      [
         'nome' => 'Foco em Resultado',
         'descricao' => 'Predisposição para oferecer produtos ou serviços antecipando as necessidades dos clientes.'
       ],
@@ -84,6 +80,10 @@ class DatabaseSeeder extends Seeder
       [
         'nome' => 'Criatividade',
         'descricao' => 'Predisposição para estimular a criatividade no desenvolvimento das suas atividades.'
+      ],
+      [
+        'nome' => 'Orientação ao Cliente',
+        'descricao' => 'Predisposição para atender as demandas dos clientes internos, proporcionando um serviço de qualidade.'
       ],
     ]);
 
