@@ -65,7 +65,7 @@ export class IndicadoresComponent implements OnInit {
 
   toggleInds(e: HTMLElement) {
     let edits: HTMLElement = e.closest('.list-group-item').querySelector('.edits')
-    let toggle: NodeList = e.closest('.list-group-item').querySelectorAll('.toggle')
+    let toggle: NodeListOf<HTMLElement> = e.closest('.list-group-item').querySelectorAll('.toggle')
     let toggleTarget: HTMLElement = e
     console.log(toggleTarget.id)
     if (toggleTarget.id != 'indID') {
