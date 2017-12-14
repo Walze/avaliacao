@@ -16,7 +16,7 @@ export class IndicadoresComponent implements OnInit {
   public comps: Competencia[]
   public comp: Competencia = { nome: '', descricao: '' }
 
-  private indicadoresOrig: Indicador[]
+  private _indicadoresOrig: Indicador[]
   public indicadores: Indicador[]
 
   public cargos
@@ -27,15 +27,17 @@ export class IndicadoresComponent implements OnInit {
   showCurrent: boolean = true
 
   constructor(private lara: LaravelService, private route: ActivatedRoute) {
-    this.lara.all('ind_rels').then((res: any) => {
-      this.ind_comps = res.json().ind_comps
-      this.ind_cargos = res.json().ind_cargos
-    })
+    this.lara.all('ind_rels')
+      .then((res: any) => {
+        this.ind_comps = res.json().ind_comps
+        this.ind_cargos = res.json().ind_cargos
+      })
 
-    this.lara.all('form').then((res: any) => {
-      let data = res.json()
-      this.cargos = data.cargos
-    })
+    this.lara.all('form')
+      .then((res: any) => {
+        let data = res.json()
+        this.cargos = data.cargos
+      })
 
     window.dis = this
 
@@ -48,21 +50,15 @@ export class IndicadoresComponent implements OnInit {
     if (this.showCurrent) {
       const whiteList = []
 
-      this.ind_comps
-        .map(i => {
-          if (i.comp_id == this.id)
-            whiteList.push(i.indicador_id)
-        })
+      this.ind_comps.map(i => {
+        if (i.comp_id == this.id)
+          whiteList.push(i.indicador_id)
+      })
       this.indicadores = new Array
 
+      this.indicadores = this._indicadoresOrig.filter(i => whiteList.includes(i.id))
 
-      this.indicadores = this.indicadoresOrig
-        .filter(i => whiteList.includes(i.id))
-
-    } else {
-      this.indicadores = this.indicadoresOrig
-    }
-
+    } else this.indicadores = this._indicadoresOrig
   }
 
   toggleInds(e: HTMLElement) {
@@ -77,7 +73,7 @@ export class IndicadoresComponent implements OnInit {
   }
 
   addComp() {
-    this.indicadores = this.indicadoresOrig.map(i => {
+    this.indicadores = this._indicadoresOrig.map(i => {
       let comp = this.ind_comps.filter(ic => ic.indicador_id == i.id)[0]
 
       if (comp) i.comp_id = comp.comp_id
@@ -85,18 +81,18 @@ export class IndicadoresComponent implements OnInit {
 
       return i
     })
-    this.indicadoresOrig = this.indicadores
+    this._indicadoresOrig = this.indicadores
   }
 
   addCargos() {
-    this.indicadores = this.indicadoresOrig.map(i => {
+    this.indicadores = this._indicadoresOrig.map(i => {
       i.cargo_id = this.ind_cargos
         .filter(ic => ic.indicador_id == i.id)
         .map(i => i.cargo_id)
 
       return i
     })
-    this.indicadoresOrig = this.indicadores
+    this._indicadoresOrig = this.indicadores
   }
 
   alterarComp() {
@@ -144,7 +140,7 @@ export class IndicadoresComponent implements OnInit {
             this.comp = data.competencia
             this.comps = data.comps
             // Ordem Alfabetica
-            this.indicadoresOrig = data.indicadores
+            this._indicadoresOrig = data.indicadores
               .sort((a, b) => {
                 if (a.nome < b.nome) return -1
                 else if (a.nome > b.nome) return 1
