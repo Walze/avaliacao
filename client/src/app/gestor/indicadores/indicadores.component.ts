@@ -41,8 +41,6 @@ export class IndicadoresComponent implements OnInit {
         this.cargos = data.cargos
       })
 
-    window.dis = this
-
     this._getDataFromParams()
   }
 
