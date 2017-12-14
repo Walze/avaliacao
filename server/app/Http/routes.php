@@ -10,6 +10,7 @@ use \App\Indicador;
 use \App\IndComp;
 use App\Ind_Comp_Cargo;
 use Illuminate\Http\Request;
+use App\CargoCompPeso;
 
 // Home data
 Route::get('/', function () {
@@ -201,30 +202,53 @@ Route::delete('/estagiario/{id}', function ($id) {
 // avaliacoes
 
 Route::get('/avaliacao', function () {
+	$id = 2;
+
 	$indicadores = Cargo::select(
-		'indicadores.nome as ind_nome',
-		'ind_comp.comp_id as comp_id',
-		'ind_cargo.indicador_id as indicador_id'
+		'*'
 	)
-		->where('cargos.id', 2)
+		->where('cargos.id', $id)
 		->join('ind_cargo', 'ind_cargo.cargo_id', '=', 'cargos.id')
-		->join('indicadores', 'indicadores.id', '=', 'ind_cargo.indicador_id')
 		->join('ind_comp', 'ind_comp.indicador_id', '=', 'ind_cargo.indicador_id')
+		->join('indicadores', 'indicadores.id', '=', 'ind_cargo.indicador_id')
 		->get();
 
+	$relacoes = CargoCompPeso::select('*')
+		->where('cargo_id', $id)
+		->get();
 
+	$competencias = Competencia::all();
 
-	return [
-		'competencias' => Competencia::all(),
-		'indicadores' => $indicadores
-	];
+	$avaliacao = [];
+	foreach ($relacoes as $i1 => $relacao) {
+		foreach ($competencias as $i2 => $comp) {
+
+			if ($relacao->comp_id == $comp->id) {
+				$avaliacao[$i1] = new stdClass();
+
+				$avaliacao[$i1]->id = $i1;
+				$avaliacao[$i1]->comp_id = $relacao->comp_id;
+				$avaliacao[$i1]->nome = $comp->nome;
+				$avaliacao[$i1]->descricao = $comp->descricao;
+				$avaliacao[$i1]->indicadores = [];
+
+				foreach ($indicadores as $i3 => $ind) {
+					if ($ind->comp_id == $comp->id) {
+						array_push($avaliacao[$i1]->indicadores, $ind);
+					}
+				}
+			}
+		}
+	}
+
+	return $avaliacao;
 });
 
 
-Route::get('/asd', function () {
-	$data = [
-		'competencias' => Competencia::all(),
-		'cargos' => Cargo::all(),
-	];
-	return $data;
-});
+// Route::get('/asd', function () {
+// 	$data = [
+// 		'competencias' => Competencia::all(),
+// 		'cargos' => Cargo::all(),
+// 	];
+// 	return $data;
+// });
