@@ -7,7 +7,6 @@
 <br />
 <br />
 
-
 <div *ngIf='!carregando' class="container">
 
   <h4 class="display-4 center">
@@ -23,7 +22,7 @@
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">{{comp.id + 1}}# {{comp.nome}}</h5>
         </div>
-        <p class="mb-1">{{comp.descricao}}</p>
+        <small class="mb-1">{{comp.descricao}}</small>
       </a>
       <a *ngFor='let ind of comp.indicadores' class="list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex align-items-center justify-content-between">
@@ -34,7 +33,7 @@
 
           <div>
             <select class="custom-select">
-              <option selected disabled value='0'>Peso</option>
+              <option selected disabled value='0'>Nota</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>

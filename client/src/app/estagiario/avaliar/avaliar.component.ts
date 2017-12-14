@@ -38,12 +38,14 @@ export class AvaliarComponent implements OnInit {
 
       this.lara.show('estagiario', this.id).subscribe(res => {
         const data = res.json()
-        if (!data.avaliado && typeof data.avaliado == 'number') data.avaliado = false
+        if (!data.avaliado || typeof data.avaliado == 'number') data.avaliado = false
         this.estagiario = data.estagiario
 
         this.lara.show('avaliacao', this.estagiario.cargo_id).subscribe(res => {
           this.carregando = false
           this.avaliacao = res.json()
+
+          console.log([this.avaliacao, this.estagiario])
         })
 
 

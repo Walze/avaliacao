@@ -227,6 +227,7 @@ Route::get('/avaliacao/{id}', function ($id) {
 
 				$avaliacao[$i1]->id = $i1;
 				$avaliacao[$i1]->comp_id = $relacao->comp_id;
+				$avaliacao[$i1]->peso = $relacao->peso;
 				$avaliacao[$i1]->nome = $comp->nome;
 				$avaliacao[$i1]->descricao = $comp->descricao;
 				$avaliacao[$i1]->indicadores = [];

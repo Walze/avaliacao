@@ -47,7 +47,8 @@
     <ul class="list-group col-12" *ngFor='let ind of indicadores; let indi = index'>
       <li class="list-group-item" (click)='toggleInds($event.target)'>
         <div class="heading">
-          <b [style.font-size]='2'>
+          <input id="indID" [(ngModel)]='ind.nome' style="display:none" class="toggle form-control" value='{{ind.nome}}' type="text">
+          <b class='toggle'>
             {{ind.nome}}
           </b>
         </div>

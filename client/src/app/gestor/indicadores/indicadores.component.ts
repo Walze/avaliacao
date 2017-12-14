@@ -24,6 +24,8 @@ export class IndicadoresComponent implements OnInit {
   private ind_comps = []
   private ind_cargos = []
 
+  public toggle = false
+
   showCurrent: boolean = true
 
   constructor(private lara: LaravelService, private route: ActivatedRoute) {
@@ -62,13 +64,27 @@ export class IndicadoresComponent implements OnInit {
   }
 
   toggleInds(e: HTMLElement) {
-    let el: HTMLElement = e.closest('.list-group-item').querySelector('.edits')
+    let edits: HTMLElement = e.closest('.list-group-item').querySelector('.edits')
+    let toggle: NodeList = e.closest('.list-group-item').querySelectorAll('.toggle')
+    let toggleTarget: HTMLElement = e
+    console.log(toggleTarget.id)
+    if (toggleTarget.id != 'indID') {
+      this.toggle = !this.toggle
 
-    if (!Boolean(el.style.height)) el.style.height = '0'
+      if (!Boolean(edits.style.height)) edits.style.height = '0'
 
-    if (el.style.height == '0px' || el.style.height == '')
-      el.style.height = '100%'
-    else el.style.height = '0px'
+      if (edits.style.height == '0px' || edits.style.height == '')
+        edits.style.height = '100%'
+      else edits.style.height = '0px'
+
+      if (this.toggle) {
+        toggle[0].style.display = 'block'
+        toggle[1].style.display = 'none'
+      } else {
+        toggle[1].style.display = 'block'
+        toggle[0].style.display = 'none'
+      }
+    }
 
   }
 
