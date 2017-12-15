@@ -60,7 +60,7 @@
     </div>
 
     <ul class="list-group col-12" *ngFor='let ind of indicadores; let indi = index'>
-      <li class="list-group-item" (click)='toggleInds($event.target)'>
+      <li class="list-group-item" (click)='toggleInds($event.target, ind)'>
         <div class="heading">
           <input id="indID" [(ngModel)]='ind.nome' style="display:none" class="toggle form-control" value='{{ind.nome}}' type="text">
           <b class='toggle'>
@@ -99,8 +99,12 @@
             <br />
             <br />
 
-            <div class="col-12 d-flex justify-content-center">
-              <button (click)='toggleInds($event.target.parent)' class="btn btn-danger col-sm-12 col-md-5 ">Fechar</button>
+            <div class="col-12 row d-flex justify-content-around">
+
+              <button (click)='saveIndNome(ind)' (click)='toggleInds($event.target.parent, ind)' class="btn btn-warning col-sm-12 col-md-5">Fechar</button>
+
+              <button class="btn btn-danger col-sm-12 col-md-5">Deletar</button>
+
             </div>
             <br />
             <br />

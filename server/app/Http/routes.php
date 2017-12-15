@@ -125,6 +125,11 @@ Route::get('/ind', function () {
 	];
 });
 
+Route::post('/ind/{id}', function (Request $req, $id) {
+	Indicador::find($id)->update($req->all());
+});
+
+
 
 
 

@@ -72,7 +72,8 @@ export class IndicadoresComponent implements OnInit {
     } else this.indicadores = this._indicadoresOrig
   }
 
-  toggleInds(e) {
+  toggleInds(e, ind) {
+
     let edits: HTMLElement = e.closest('.list-group-item').querySelector('.edits')
     let toggle: Array<HTMLElement> = e.closest('.list-group-item').querySelectorAll('.toggle')
     let toggleTarget: HTMLElement = e
@@ -89,11 +90,16 @@ export class IndicadoresComponent implements OnInit {
         toggle[0].style.display = 'block'
         toggle[1].style.display = 'none'
       } else {
+        this.saveIndNome(ind)
         toggle[1].style.display = 'block'
         toggle[0].style.display = 'none'
       }
     }
 
+  }
+
+  saveIndNome(ind) {
+    this.lara.post(ind, `ind/${ind.id}`)
   }
 
   addComp() {
