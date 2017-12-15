@@ -12,6 +12,10 @@ use App\Ind_Comp_Cargo;
 use Illuminate\Http\Request;
 use App\CargoCompPeso;
 
+
+
+
+
 // Home data
 Route::get('/', function () {
 	$estag = Estagiario::select(
@@ -34,6 +38,10 @@ Route::get('/', function () {
 	return $estag;
 });
 
+
+
+
+
 // Form Data
 Route::get('/form', function () {
 	$data = [
@@ -43,6 +51,10 @@ Route::get('/form', function () {
 	];
 	return $data;
 });
+
+
+
+
 
 // User Related
 Route::post('/cadastrar', function (Request $req) {
@@ -58,6 +70,18 @@ Route::post('/cadastrar', function (Request $req) {
 	$user->save();
 
 	return 200;
+});
+
+Route::post('/editarGestor', function (Request $req) {
+	$user = User::find($req->id)->first();
+
+	$user->nome = $req->nome;
+	$user->email = $req->email;
+	$user->localidade_id = $req->localidade_id;
+	$user->setor_id = $req->setor_id;
+	$user->save();
+
+	return $user;
 });
 
 Route::post('/login', function (Request $req) {
@@ -80,20 +104,8 @@ Route::post('/login', function (Request $req) {
 	}
 });
 
-//test
-Route::get('/teste', function () {
-	$data = IndComp::select(
-		'ind_comp.id',
-		'comp_id',
-		'indicador_id',
-		'indicadores.nome as indicador',
-		'competencias.nome as competencia'
-	)
-		->join('indicadores', 'ind_comp.indicador_id', '=', 'indicadores.id')
-		->join('competencias', 'ind_comp.comp_id', '=', 'competencias.id')->get();
 
-	return $data;
-});
+
 
 
 //Indicadores
@@ -117,7 +129,6 @@ Route::get('/ind', function () {
 
 
 
-
 // Competencias
 Route::get('/comp', function () {
 	return [
@@ -129,6 +140,19 @@ Route::get('/comp', function () {
 Route::post('/comp', function (Request $req) {
 	Competencia::create($req->all());
 });
+
+Route::post('/comp/{id}', function (Request $req, $id) {
+	Competencia::find($id)->update($req->all());
+});
+
+Route::delete('/comp/{id}', function ($id) {
+	Competencia::destroy($id);
+
+	return $id;
+});
+
+
+
 
 
 // Indicador relationship tables
@@ -172,6 +196,8 @@ Route::post('/ind_cargo', function (Request $req) {
 
 
 
+
+
 // Estagiario Related
 Route::get('/estagiario/{id}', function ($id) {
 	return [
@@ -200,7 +226,6 @@ Route::delete('/estagiario/{id}', function ($id) {
 
 
 // avaliacoes
-
 Route::get('/avaliacao/{id}', function ($id) {
 
 	$indicadores = Cargo::select(
@@ -245,12 +270,3 @@ Route::get('/avaliacao/{id}', function ($id) {
 
 	return $avaliacao;
 });
-
-
-// Route::get('/asd', function () {
-// 	$data = [
-// 		'competencias' => Competencia::all(),
-// 		'cargos' => Cargo::all(),
-// 	];
-// 	return $data;
-// });

@@ -14,10 +14,10 @@ class CreateNotasTable extends Migration
         Schema::create('notas', function (Blueprint $table) {
             $table->increments('id');
             $table->smallInteger('nota');
-            $table->integer('id_aval')->unsigned();
-            $table->foreign('id_aval')->references('id')->on('avaliacoes');
-            $table->integer('id_comp')->unsigned();
-            $table->foreign('id_comp')->references('id')->on('competencias');
+            $table->integer('aval_id')->unsigned()->onDelete('cascade');
+            $table->foreign('aval_id')->references('id')->on('avaliacoes')->onDelete('cascade');
+            $table->integer('comp_id')->unsigned()->onDelete('cascade');
+            $table->foreign('comp_id')->references('id')->on('competencias')->onDelete('cascade');
         });
     }
 

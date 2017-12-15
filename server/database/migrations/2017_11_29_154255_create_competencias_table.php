@@ -12,7 +12,7 @@ class CreateCompetenciasTable extends Migration
     public function up()
     {
         Schema::create('competencias', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->onDelete('cascade');
             $table->string('nome')->unique();
             $table->string('descricao');
         });

@@ -13,10 +13,10 @@ class CreateIndCompCargoTable extends Migration
     {
         Schema::create('ind_cargo', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('indicador_id')->unsigned();
-            $table->foreign('indicador_id')->references('id')->on('indicadores');
-            $table->integer('cargo_id')->unsigned();
-            $table->foreign('cargo_id')->references('id')->on('cargos');
+            $table->integer('indicador_id')->unsigned()->onDelete('cascade');
+            $table->foreign('indicador_id')->references('id')->on('indicadores')->onDelete('cascade');
+            $table->integer('cargo_id')->unsigned()->onDelete('cascade');
+            $table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');
         });
     }
 

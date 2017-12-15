@@ -95,13 +95,16 @@ export class LaravelService {
     })
   }
 
-  post(what, where, redirectTo = '') {
+  post(what, where, redirectTo = '', func = null) {
     this.validate(what)
       .then(() => {
         this.http
           .post(this._API + where, what, this.headers)
           .subscribe(
-          () => { if (redirectTo) this.router.navigate([redirectTo]) },
+          res => {
+            if (func) func()
+            if (redirectTo) this.router.navigate([redirectTo])
+          },
           error => {
             document.querySelector('html').innerHTML = error.text()
             alert(JSON.stringify(error.text()))

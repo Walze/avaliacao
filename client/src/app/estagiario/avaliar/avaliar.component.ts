@@ -9,6 +9,7 @@ import { Avaliacao } from './avaliacao';
   templateUrl: './avaliar.component.html',
   styleUrls: ['./avaliar.component.css']
 })
+
 export class AvaliarComponent implements OnInit {
 
   public estagiario: Estagiario = {
@@ -28,7 +29,6 @@ export class AvaliarComponent implements OnInit {
   private id
 
   constructor(private lara: LaravelService, private route: ActivatedRoute) {
-
     this._getRouteParams()
   }
 

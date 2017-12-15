@@ -66,7 +66,8 @@ export class GestorComponent implements OnInit {
   }
 
   alterar() {
-    console.log(this.gestor)
+    this.lara.post(this.gestor, 'editarGestor')
+    this.lara.loggout()
   }
 
   criarComp() {

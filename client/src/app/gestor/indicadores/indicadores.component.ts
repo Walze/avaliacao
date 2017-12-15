@@ -110,7 +110,13 @@ export class IndicadoresComponent implements OnInit {
   }
 
   alterarComp() {
+    this.lara.post(this.comp, 'comp/' + this.id, '', () => alert('Alterado'))
+  }
 
+  deletarComp() {
+    if (confirm('Deseja Realmente Apagar?')) {
+      this.lara.delete(this.comp.id, 'comp/', '/gestor')
+    }
   }
 
   handleRadio(ind, comp) {
@@ -152,6 +158,7 @@ export class IndicadoresComponent implements OnInit {
           .then((res: Response) => {
             let data: any = res.json()
             this.comp = data.competencia
+            this.comp.id = params.id
             this.comps = data.comps
             // Ordem Alfabetica
             this._indicadoresOrig = data.indicadores

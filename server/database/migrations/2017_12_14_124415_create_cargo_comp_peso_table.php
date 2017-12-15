@@ -8,10 +8,10 @@ class CreateCargoCompPesoTable extends Migration
     {
         Schema::create('cargo_comp_peso', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cargo_id')->unsigned();
-            $table->foreign('cargo_id')->references('id')->on('cargos');
-            $table->integer('comp_id')->unsigned();
-            $table->foreign('comp_id')->references('id')->on('competencias');
+            $table->integer('cargo_id')->unsigned()->onDelete('cascade');
+            $table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');
+            $table->integer('comp_id')->unsigned()->onDelete('cascade');
+            $table->foreign('comp_id')->references('id')->on('competencias')->onDelete('cascade');
             $table->integer('peso');
         });
     }
