@@ -41,11 +41,23 @@
     </h3>
     <br />
 
-    <label class="custom-control custom-checkbox">
-      <input (click)='showHereOnly($event)' [(ngModel)]='showCurrent' type="checkbox" class="custom-control-input">
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">Mostrar somente os indicadores desta competência</span>
-    </label>
+    <div class="row">
+      <div class="col-12">
+        <label class="custom-control custom-checkbox">
+          <input (click)='showHereOnly($event)' [(ngModel)]='showCurrent' type="checkbox" class="custom-control-input">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Mostrar somente os indicadores desta competência</span>
+        </label>
+      </div>
+
+      <br />
+      <br />
+
+      <div class="col-md-5 col-sm-12">
+        <input [ngModel]="sort_word" (ngModelChange)="search($event)" class="form-control form-control-sm" placeholder="Procurar"
+        />
+      </div>
+    </div>
 
     <ul class="list-group col-12" *ngFor='let ind of indicadores; let indi = index'>
       <li class="list-group-item" (click)='toggleInds($event.target)'>
@@ -84,6 +96,15 @@
                 <span class="custom-control-description">{{cargo.nome}}</span>
               </label>
             </div>
+            <br />
+            <br />
+
+            <div class="col-12 d-flex justify-content-center">
+              <button (click)='toggleInds($event.target.parent)' class="btn btn-danger col-sm-12 col-md-5 ">Fechar</button>
+            </div>
+            <br />
+            <br />
+
           </div>
 
         </div>
@@ -93,3 +114,10 @@
   </div>
 
 </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

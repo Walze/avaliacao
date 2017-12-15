@@ -24,10 +24,8 @@ export class IndicadoresComponent implements OnInit {
   private ind_comps = []
   private ind_cargos = []
 
-  public toggle = false
-
   showCurrent: boolean = true
-
+  sort_word
   constructor(private lara: LaravelService, private route: ActivatedRoute) {
     this.lara.all('ind_rels')
       .then((res: any) => {
@@ -42,6 +40,19 @@ export class IndicadoresComponent implements OnInit {
       })
 
     this._getDataFromParams()
+  }
+
+  search(word) {
+    this.showHereOnly()
+    //this.showCurrent = false
+
+
+    this.indicadores = this.indicadores
+      .filter(ind =>
+        Object.keys(ind)
+          .some(k => (ind[k].toString().toLowerCase().indexOf(word) !== -1))
+      )
+
   }
 
   showHereOnly(e = null) {
@@ -61,13 +72,12 @@ export class IndicadoresComponent implements OnInit {
     } else this.indicadores = this._indicadoresOrig
   }
 
-  toggleInds(e: HTMLElement) {
+  toggleInds(e) {
     let edits: HTMLElement = e.closest('.list-group-item').querySelector('.edits')
-    let toggle: NodeListOf<HTMLElement> = e.closest('.list-group-item').querySelectorAll('.toggle')
+    let toggle: Array<HTMLElement> = e.closest('.list-group-item').querySelectorAll('.toggle')
     let toggleTarget: HTMLElement = e
-    console.log(toggleTarget.id)
+
     if (toggleTarget.id != 'indID') {
-      this.toggle = !this.toggle
 
       if (!Boolean(edits.style.height)) edits.style.height = '0'
 
@@ -75,7 +85,7 @@ export class IndicadoresComponent implements OnInit {
         edits.style.height = '100%'
       else edits.style.height = '0px'
 
-      if (this.toggle) {
+      if (toggle[0].style.display == 'none') {
         toggle[0].style.display = 'block'
         toggle[1].style.display = 'none'
       } else {
