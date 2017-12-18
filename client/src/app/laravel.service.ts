@@ -102,7 +102,7 @@ export class LaravelService {
           .post(this._API + where, what, this.headers)
           .subscribe(
           res => {
-            if (func) func()
+            if (func) func(res)
             if (redirectTo) this.router.navigate([redirectTo])
           },
           error => {
@@ -156,7 +156,7 @@ export class LaravelService {
   }
 
   loggout() {
-    this.logged.next(false)
+    //this.logged.next(false)
     this.cookie.delete('userSession')
     this.router.navigate(['/login'])
   }

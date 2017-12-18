@@ -278,3 +278,9 @@ Route::get('/avaliacao/{id}', function ($id) {
 
 	return $avaliacao;
 });
+
+Route::post('/avaliar', function (Request $req) {
+	$aval = Avaliacao::create($req->all());
+
+	return $aval->id;
+});

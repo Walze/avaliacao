@@ -67,7 +67,7 @@ export class AvaliarComponent implements OnInit {
     })
   }
 
-  atualizarMedias(compID, indID, peso) {
+  atualizarMedias(compID, indID) {
     const pesosSoma = this.avaliacao.reduce((a, b) => a + b.peso, 0)
 
     // filtrar todos os resultados por comp
@@ -119,10 +119,25 @@ export class AvaliarComponent implements OnInit {
       found.nota = Number(e.target.value)
 
 
-    this.atualizarMedias(compID, indID, peso)
+    this.atualizarMedias(compID, indID)
   }
 
   salvarResult() {
+
+    let dados = {
+      gestor_id: this.lara.User.id,
+      estagiario_id: this.estagiario.id,
+      media: this.NotaFinal,
+      data: new Date()
+    }
+
+    this.lara
+      .post(dados,
+      '/avaliar', '',
+      res => {
+        console.log(res, dados)
+      })
+
     console.warn(this.resultado)
   }
 
