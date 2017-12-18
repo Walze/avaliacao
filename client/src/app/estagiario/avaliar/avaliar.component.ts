@@ -33,6 +33,7 @@ export class AvaliarComponent implements OnInit {
 
   public resultado: object[] = []
   public medias: object[] = []
+  public NotaFinal: number = 0
 
   constructor(
     private lara: LaravelService,
@@ -66,7 +67,9 @@ export class AvaliarComponent implements OnInit {
     })
   }
 
-  atualizarMedias(compID, indID) {
+  atualizarMedias(compID, indID, peso) {
+    const pesosSoma = this.avaliacao.reduce((a, b) => a + b.peso, 0)
+
     // filtrar todos os resultados por comp
     const found: any = this.resultado.filter((el: any) => el.comp_id == compID)
 
@@ -78,6 +81,28 @@ export class AvaliarComponent implements OnInit {
     mediaElement.innerHTML = media
 
 
+    // salva media num array
+    let mediaFound: any = this.medias.find((el: any) => el.comp_id == compID)
+    if (!mediaFound)
+      this.medias.push({
+        media: Number(media),
+        comp_id: compID,
+        ind_id: indID
+      })
+    else
+      mediaFound.media = Number(media)
+
+
+    // media ponderada
+    let pond = this.resultado
+      .reduce((prev, curr: any) => prev + (curr.nota * curr.peso), 0) / pesosSoma
+
+    // Atualiza valor no DOM
+    const mediaPondElement = this.el.nativeElement.querySelector(`#media-pond`)
+    mediaPondElement.innerHTML = pond
+
+
+    this.NotaFinal = pond
   }
 
   criarResult(e, compID, indID, peso) {
@@ -94,7 +119,7 @@ export class AvaliarComponent implements OnInit {
       found.nota = Number(e.target.value)
 
 
-    this.atualizarMedias(compID, indID)
+    this.atualizarMedias(compID, indID, peso)
   }
 
   salvarResult() {
