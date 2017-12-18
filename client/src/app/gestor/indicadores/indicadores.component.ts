@@ -73,12 +73,11 @@ export class IndicadoresComponent implements OnInit {
   }
 
   toggleInds(e, ind) {
+    let edits: HTMLElement = e.target.closest('.list-group-item').querySelector('.edits')
+    let toggle: Array<HTMLElement> = e.target.closest('.list-group-item').querySelectorAll('.toggle')
+    let toggleTarget: HTMLElement = e.target
 
-    let edits: HTMLElement = e.closest('.list-group-item').querySelector('.edits')
-    let toggle: Array<HTMLElement> = e.closest('.list-group-item').querySelectorAll('.toggle')
-    let toggleTarget: HTMLElement = e
-
-    if (toggleTarget.id != 'indID') {
+    if (toggleTarget.id != 'indID' || e.type == 'keyup') {
 
       if (!Boolean(edits.style.height)) edits.style.height = '0'
 

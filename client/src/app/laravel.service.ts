@@ -156,9 +156,9 @@ export class LaravelService {
   }
 
   loggout() {
+    this.logged.next(false)
     this.cookie.delete('userSession')
     this.router.navigate(['/login'])
-    this.logged.next(false)
   }
 
 }

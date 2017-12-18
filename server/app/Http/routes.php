@@ -249,6 +249,7 @@ Route::get('/avaliacao/{id}', function ($id) {
 	$competencias = Competencia::all();
 
 	$avaliacao = [];
+
 	foreach ($relacoes as $i1 => $relacao) {
 		foreach ($competencias as $i2 => $comp) {
 
@@ -261,9 +262,11 @@ Route::get('/avaliacao/{id}', function ($id) {
 				$avaliacao[$i1]->nome = $comp->nome;
 				$avaliacao[$i1]->descricao = $comp->descricao;
 				$avaliacao[$i1]->indicadores = [];
+				$avaliacao[$i1]->ind_count = 0;
 
 				foreach ($indicadores as $i3 => $ind) {
 					if ($ind->comp_id == $comp->id) {
+						$avaliacao[$i1]->ind_count++;
 						unset($ind->cargo_id,
 							$ind->duracao_meses);
 						array_push($avaliacao[$i1]->indicadores, $ind);

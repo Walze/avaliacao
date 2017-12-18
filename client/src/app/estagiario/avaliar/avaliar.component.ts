@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LaravelService } from '../../laravel.service';
 import { ActivatedRoute } from '@angular/router';
 import { Estagiario } from '../estagiario';
-import { Avaliacao } from './avaliacao';
+import { Competencias } from './AvalComps';
+import { ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-avaliar',
@@ -22,14 +23,25 @@ export class AvaliarComponent implements OnInit {
     localidade_id: 0,
     setor_id: 0
   }
-  public carregando = true
 
-  public avaliacao: Avaliacao
+  public carregando = true
+  ind_count = 0
+
+  public avaliacao: Competencias[]
 
   private id
 
-  constructor(private lara: LaravelService, private route: ActivatedRoute) {
+  public resultado: object[] = []
+  public medias: object[] = []
+
+  constructor(
+    private lara: LaravelService,
+    private route: ActivatedRoute,
+    private el: ElementRef
+  ) {
     this._getRouteParams()
+
+    window.dis = this
   }
 
   private _getRouteParams() {
@@ -44,13 +56,49 @@ export class AvaliarComponent implements OnInit {
         this.lara.show('avaliacao', this.estagiario.cargo_id).subscribe(res => {
           this.carregando = false
           this.avaliacao = res.json()
+          this.ind_count = 0
 
-          console.log([this.avaliacao, this.estagiario])
+          this.avaliacao.map(comp => this.ind_count += comp.ind_count)
         })
 
 
       })
     })
+  }
+
+  atualizarMedias(compID, indID) {
+    // filtrar todos os resultados por comp
+    const found: any = this.resultado.filter((el: any) => el.comp_id == compID)
+
+    //tirando media deles
+    const media = found.reduce((prev, curr) => (prev + curr.nota), 0) / found.length
+
+    // select no ID do elemento da comp e atribuindo valor
+    const mediaElement = this.el.nativeElement.querySelector(`#media-comp-${compID} span`)
+    mediaElement.innerHTML = media
+
+
+  }
+
+  criarResult(e, compID, indID, peso) {
+    let found: any = this.resultado.find((el: any) => el.ind_id == indID)
+
+    if (!found)
+      this.resultado.push({
+        nota: Number(e.target.value),
+        comp_id: compID,
+        ind_id: indID,
+        peso
+      })
+    else
+      found.nota = Number(e.target.value)
+
+
+    this.atualizarMedias(compID, indID)
+  }
+
+  salvarResult() {
+    console.warn(this.resultado)
   }
 
   ngOnInit() {

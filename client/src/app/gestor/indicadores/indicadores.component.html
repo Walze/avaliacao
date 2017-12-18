@@ -60,9 +60,10 @@
     </div>
 
     <ul class="list-group col-12" *ngFor='let ind of indicadores; let indi = index'>
-      <li class="list-group-item" (click)='toggleInds($event.target, ind)'>
+      <li class="list-group-item" (click)='toggleInds($event, ind)'>
         <div class="heading">
-          <input id="indID" [(ngModel)]='ind.nome' style="display:none" class="toggle form-control" value='{{ind.nome}}' type="text">
+          <input id="indID" [(ngModel)]='ind.nome' (keyup.enter)='toggleInds($event, ind)' style="display:none" class="toggle form-control"
+            value='{{ind.nome}}' type="text">
           <b class='toggle'>
             {{ind.nome}}
           </b>
@@ -90,7 +91,7 @@
 
             <div *ngFor='let cargo of cargos' class="col-md-6 col-sm-12">
               <label class="custom-control custom-checkbox">
-                <input [checked]='ind.cargo_id.includes(cargo.id)' (click)='handleCheck(ind.id, cargo.id, $event.target.checked)' type="checkbox"
+                <input [checked]='ind.cargo_id.includes(cargo.id)' (click)='handleCheck(ind.id, cargo.id, $event.checked)' type="checkbox"
                   name={{indi}} class="custom-control-input" value='{{cargo.id}}'>
                 <span class="custom-control-indicator"></span>
                 <span class="custom-control-description">{{cargo.nome}}</span>
@@ -101,7 +102,7 @@
 
             <div class="col-12 row d-flex justify-content-around">
 
-              <button (click)='saveIndNome(ind)' (click)='toggleInds($event.target.parent, ind)' class="btn btn-warning col-sm-12 col-md-5">Fechar</button>
+              <button (click)='saveIndNome(ind)' (click)='toggleInds($event.parent, ind)' class="btn btn-warning col-sm-12 col-md-5">Fechar</button>
 
               <button class="btn btn-danger col-sm-12 col-md-5">Deletar</button>
 
