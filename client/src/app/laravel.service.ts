@@ -17,11 +17,6 @@ export class LaravelService {
     private router: Router
   ) {
     this.sessionChecker()
-
-
-    this.http.get('https://www.googleapis.com/youtube/v3/videos?part=contentDetails&maxResults=50&playlistId=UUdGpd0gNn38UKwoncZd9rmA&key=AIzaSyAFpfwkObY-luKXEUtQaNPQNX1PcaDafcI').subscribe(res => {
-      console.log(res.json())
-    })
   }
 
   getFormData(then) {

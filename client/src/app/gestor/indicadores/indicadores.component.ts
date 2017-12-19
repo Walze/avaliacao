@@ -72,33 +72,45 @@ export class IndicadoresComponent implements OnInit {
     } else this.indicadores = this._indicadoresOrig
   }
 
-  toggleInds(e, ind) {
+  openInds(e, ind) {
+    if (e.target.nodeName == 'BUTTON') return
+
     let edits: HTMLElement = e.target.closest('.list-group-item').querySelector('.edits')
     let toggle: Array<HTMLElement> = e.target.closest('.list-group-item').querySelectorAll('.toggle')
     let toggleTarget: HTMLElement = e.target
 
-    if (toggleTarget.id != 'indID' || e.type == 'keyup') {
-
+    if ((toggleTarget.id != 'indID' || e.type == 'keyup') && e.target.id != 'delete-ind') {
       if (!Boolean(edits.style.height)) edits.style.height = '0'
 
-      if (edits.style.height == '0px' || edits.style.height == '')
-        edits.style.height = '100%'
-      else edits.style.height = '0px'
+      edits.style.height = '100%'
+      toggle[0].style.display = 'block'
+      toggle[1].style.display = 'none'
+    }
 
-      if (toggle[0].style.display == 'none') {
-        toggle[0].style.display = 'block'
-        toggle[1].style.display = 'none'
-      } else {
-        this.saveIndNome(ind)
-        toggle[1].style.display = 'block'
-        toggle[0].style.display = 'none'
-      }
+  }
+  closeInds(e) {
+    let edits: HTMLElement = e.closest('.list-group-item').querySelector('.edits')
+    let toggle: Array<HTMLElement> = e.closest('.list-group-item').querySelectorAll('.toggle')
+    let toggleTarget: HTMLElement = e.closest('.list-group-item')
+
+    if ((toggleTarget.id != 'indID' || e.type == 'keyup') && e.id != 'delete-ind') {
+      if (!Boolean(edits.style.height)) edits.style.height = '0'
+
+      edits.style.height = '0px'
+      toggle[1].style.display = 'block'
+      toggle[0].style.display = 'none'
     }
 
   }
 
   saveIndNome(ind) {
     this.lara.post(ind, `ind/${ind.id}`)
+  }
+
+  deletarInd(e, ind) {
+    if (confirm('Deseja Realmente Apagar?')) {
+      this.lara.delete(ind.id, 'delind/', 'gestor/indicador/' + this.id)
+    }
   }
 
   addComp() {
@@ -128,9 +140,11 @@ export class IndicadoresComponent implements OnInit {
     this.lara.post(this.comp, 'comp/' + this.id, '', () => alert('Alterado'))
   }
 
-  deletarComp() {
+  deletarComp(ind) {
     if (confirm('Deseja Realmente Apagar?')) {
-      this.lara.delete(this.comp.id, 'comp/', '/gestor')
+      //this.lara.delete(this.comp.id, 'comp/', '/gestor')
+      this._indicadoresOrig.filter(i => { if (i.id != ind.id) return i })
+      this.indicadores.filter(i => { if (i.id != ind.id) return i })
     }
   }
 

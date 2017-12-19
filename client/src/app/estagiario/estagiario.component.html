@@ -1,7 +1,8 @@
 <div class="container">
 
   <br />
-  <h3 class="center">Editar Estagiário</h3>
+  <h3 class="center">Editar Estagiário </h3>
+  <h4 class="center">{{estagiario.nome}}</h4>
   <br />
 
   <div *ngIf='estag_carregado' class='row justify-content-center'>
@@ -37,7 +38,7 @@
 
         <div class="col-md-6">
           <div class="form-group">
-            <label>Cargos</label>
+            <label>Cargo</label>
             <select [(ngModel)]='estagiario.cargo_id' class="custom-select col-md-12">
               <option selected disabled value="0">Selecione</option>
               <option *ngFor="let local of cargos; let i = index" value={{local.id}}>{{local.nome}}</option>

@@ -31,7 +31,7 @@ export class AvaliarComponent implements OnInit {
 
   private id
 
-  public resultado: object[] = []
+  public resultadoInputs: object[] = []
   public medias: object[] = []
   public NotaFinal: number = 0
 
@@ -40,12 +40,12 @@ export class AvaliarComponent implements OnInit {
     private route: ActivatedRoute,
     private el: ElementRef
   ) {
-    this._getRouteParams()
+    this._getRouteParamsData()
 
     window.dis = this
   }
 
-  private _getRouteParams() {
+  private _getRouteParamsData() {
     this.route.params.subscribe(params => {
       this.id = params.id
 
@@ -61,17 +61,15 @@ export class AvaliarComponent implements OnInit {
 
           this.avaliacao.map(comp => this.ind_count += comp.ind_count)
         })
-
-
       })
     })
   }
 
   atualizarMedias(compID, indID) {
-    const pesosSoma = this.avaliacao.reduce((a, b) => a + b.peso, 0)
+    const pesosSoma = this.resultadoInputs.reduce((prev, curr: any) => prev + curr.peso, 0)
 
     // filtrar todos os resultados por comp
-    const found: any = this.resultado.filter((el: any) => el.comp_id == compID)
+    const found: any = this.resultadoInputs.filter((el: any) => el.comp_id == compID)
 
     //tirando media deles
     const media = found.reduce((prev, curr) => (prev + curr.nota), 0) / found.length
@@ -79,7 +77,6 @@ export class AvaliarComponent implements OnInit {
     // select no ID do elemento da comp e atribuindo valor
     const mediaElement = this.el.nativeElement.querySelector(`#media-comp-${compID} span`)
     mediaElement.innerHTML = media
-
 
     // salva media num array
     let mediaFound: any = this.medias.find((el: any) => el.comp_id == compID)
@@ -89,27 +86,21 @@ export class AvaliarComponent implements OnInit {
         comp_id: compID,
         ind_id: indID
       })
-    else
-      mediaFound.media = Number(media)
+    else mediaFound.media = Number(media)
 
 
     // media ponderada
-    let pond = this.resultado
+    let pond = this.resultadoInputs
       .reduce((prev, curr: any) => prev + (curr.nota * curr.peso), 0) / pesosSoma
-
-    // Atualiza valor no DOM
-    const mediaPondElement = this.el.nativeElement.querySelector(`#media-pond`)
-    mediaPondElement.innerHTML = pond
-
 
     this.NotaFinal = pond
   }
 
   criarResult(e, compID, indID, peso) {
-    let found: any = this.resultado.find((el: any) => el.ind_id == indID)
+    let found: any = this.resultadoInputs.find((el: any) => el.ind_id == indID)
 
     if (!found)
-      this.resultado.push({
+      this.resultadoInputs.push({
         nota: Number(e.target.value),
         comp_id: compID,
         ind_id: indID,
@@ -138,7 +129,7 @@ export class AvaliarComponent implements OnInit {
         console.log(res, dados)
       })
 
-    console.warn(this.resultado)
+    console.warn(this.resultadoInputs)
   }
 
   ngOnInit() {

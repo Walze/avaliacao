@@ -125,9 +125,17 @@ Route::get('/ind', function () {
 	];
 });
 
+Route::delete('/delind/{id}', function ($id) {
+	Indicador::find($id)->delete();
+
+	return 'ok';
+});
+
 Route::post('/ind/{id}', function (Request $req, $id) {
 	Indicador::find($id)->update($req->all());
 });
+
+
 
 
 

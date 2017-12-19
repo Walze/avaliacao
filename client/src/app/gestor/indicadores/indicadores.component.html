@@ -60,13 +60,15 @@
     </div>
 
     <ul class="list-group col-12" *ngFor='let ind of indicadores; let indi = index'>
-      <li class="list-group-item" (click)='toggleInds($event, ind)'>
-        <div class="heading">
-          <input id="indID" [(ngModel)]='ind.nome' (keyup.enter)='toggleInds($event, ind)' style="display:none" class="toggle form-control"
+      <li class="list-group-item" (click)='openInds($event, ind)'>
+        <div class="heading d-flex justify-content-between align-items-center">
+
+          <input id="indID" [(ngModel)]='ind.nome' (keyup.enter)='closeInds($event); saveIndNome(ind)' style="display:none" class="toggle form-control mr-2"
             value='{{ind.nome}}' type="text">
           <b class='toggle'>
             {{ind.nome}}
           </b>
+          <span class='d-flex align-middle align-items-center'>#{{ind.id}}</span>
         </div>
 
         <div class="edits">
@@ -102,9 +104,9 @@
 
             <div class="col-12 row d-flex justify-content-around">
 
-              <button (click)='saveIndNome(ind)' (click)='toggleInds($event.parent, ind)' class="btn btn-warning col-sm-12 col-md-5">Fechar</button>
+              <button (click)='saveIndNome(ind)' (click)='closeInds($event.target.parentElement, ind)' class="btn btn-warning col-sm-12 col-md-5">Fechar</button>
 
-              <button class="btn btn-danger col-sm-12 col-md-5">Deletar</button>
+              <button id='delete-ind' (click)='deletarInd($event, ind)' class="btn btn-danger col-sm-12 col-md-5">Deletar</button>
 
             </div>
             <br />
