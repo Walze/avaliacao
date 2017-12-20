@@ -242,19 +242,19 @@ Route::delete('/estagiario/{id}', function ($id) {
 Route::post('/notas', function (Request $req) {
 	DB::table('notas')->insert($req->all());
 });
-Route::get('/avaliacao/{id}', function ($id) {
+Route::get('/avaliacao/{cargo_id}', function ($cargo_id) {
 
 	$indicadores = Cargo::select(
 		'*'
 	)
-		->where('cargos.id', $id)
+		->where('cargos.id', $cargo_id)
 		->join('ind_cargo', 'ind_cargo.cargo_id', '=', 'cargos.id')
 		->join('ind_comp', 'ind_comp.indicador_id', '=', 'ind_cargo.indicador_id')
 		->join('indicadores', 'indicadores.id', '=', 'ind_cargo.indicador_id')
 		->get();
 
 	$relacoes = CargoCompPeso::select('*')
-		->where('cargo_id', $id)
+		->where('cargo_id', $cargo_id)
 		->get();
 
 	$competencias = Competencia::all();

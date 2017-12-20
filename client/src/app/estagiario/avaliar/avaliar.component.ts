@@ -41,8 +41,6 @@ export class AvaliarComponent implements OnInit {
     private el: ElementRef
   ) {
     this._getRouteParamsData()
-
-    window['dis'] = this
   }
 
   private _getRouteParamsData() {
