@@ -47,6 +47,7 @@ export class AvaliacaoComponent implements OnInit {
   }
 
   private _getRouteParamsData() {
+
     this.route.params.subscribe(params => {
       this.ids.estag = params.estagiario_id
       this.ids.aval = params.aval_id
@@ -62,12 +63,18 @@ export class AvaliacaoComponent implements OnInit {
           this.ind_count = 0
 
           this.avaliacao.map(comp => this.ind_count += comp.ind_count)
+
+          this.lara.show('notas', this.ids.aval).subscribe(res => {
+            this.resultadoInputs = res.json()
+            this.atualizarResults()
+          })
         })
       })
+
     })
   }
 
-  atualizarMedias(compID, indID) {
+  private atualizarMedias(compID, indID) {
     const pesosSoma = this.resultadoInputs.reduce((prev, curr: any) => prev + curr.peso, 0)
 
     // filtrar todos os resultados por comp
@@ -96,6 +103,15 @@ export class AvaliacaoComponent implements OnInit {
       .reduce((prev, curr: any) => prev + (curr.nota * curr.peso), 0) / pesosSoma
 
     this.NotaFinal = pond
+  }
+
+  atualizarResults() {
+    const selects = Array.apply(null, this.el.nativeElement.querySelectorAll('.custom-select.nota'))
+
+    this.resultadoInputs.map((i: any) =>
+      selects.map(i2 => { if (i2.id.split('-')[1] == i.ind_id) i2.value = i.nota })
+    )
+
   }
 
   criarResult(e, compID, indID, peso) {

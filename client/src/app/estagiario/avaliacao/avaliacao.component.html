@@ -42,7 +42,7 @@
             </div>
 
             <div>
-              <select class="custom-select" (change)="criarResult($event, comp.id + 1, ind.id, comp.peso)">
+              <select id='nota-{{ind.id}}' class="custom-select nota" (change)="criarResult($event, comp.id + 1, ind.id, comp.peso)">
                 <option selected disabled value='0'>Nota</option>
                 <option value="1">1</option>
                 <option value="2">2</option>

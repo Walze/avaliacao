@@ -11,6 +11,7 @@ use \App\IndComp;
 use App\Ind_Comp_Cargo;
 use Illuminate\Http\Request;
 use App\CargoCompPeso;
+use App\Nota;
 
 
 
@@ -241,6 +242,9 @@ Route::delete('/estagiario/{id}', function ($id) {
 // avaliacoes
 Route::post('/notas', function (Request $req) {
 	DB::table('notas')->insert($req->all());
+});
+Route::get('/notas/{aval}', function($aval) {
+	return Nota::where('aval_id', $aval)->get();
 });
 Route::get('/avaliacao/{cargo_id}', function ($cargo_id) {
 
