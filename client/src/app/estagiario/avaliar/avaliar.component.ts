@@ -42,7 +42,7 @@ export class AvaliarComponent implements OnInit {
   ) {
     this._getRouteParamsData()
 
-    window.dis = this
+    window['dis'] = this
   }
 
   private _getRouteParamsData() {
@@ -122,14 +122,13 @@ export class AvaliarComponent implements OnInit {
       data: new Date()
     }
 
-    this.lara
-      .post(dados,
-      '/avaliar', '',
-      res => {
-        console.log(res, dados)
-      })
+    this.lara.post(dados, '/avaliar', '', res => {
 
-    console.warn(this.resultadoInputs)
+      this.resultadoInputs.map((i: any) => i.aval_id = res.json())
+      this.lara.post(this.resultadoInputs, '/notas')
+    })
+
+    console.warn(this.resultadoInputs, dados)
   }
 
   ngOnInit() {

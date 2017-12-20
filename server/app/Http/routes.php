@@ -239,6 +239,9 @@ Route::delete('/estagiario/{id}', function ($id) {
 
 
 // avaliacoes
+Route::post('/notas', function (Request $req) {
+	DB::table('notas')->insert($req->all());
+});
 Route::get('/avaliacao/{id}', function ($id) {
 
 	$indicadores = Cargo::select(
