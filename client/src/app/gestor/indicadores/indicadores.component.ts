@@ -109,7 +109,10 @@ export class IndicadoresComponent implements OnInit {
 
   deletarInd(e, ind) {
     if (confirm('Deseja Realmente Apagar?')) {
-      this.lara.delete(ind.id, 'delind/', 'gestor/indicador/' + this.id)
+      this.lara.delete(ind.id, 'delind/', '', () => {
+        this.indicadores = this.indicadores.filter(i => i.id != ind.id)
+        this._indicadoresOrig = this._indicadoresOrig.filter(i => i.id != ind.id)
+      })
     }
   }
 

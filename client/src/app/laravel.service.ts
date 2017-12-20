@@ -84,8 +84,10 @@ export class LaravelService {
     const errors = []
 
     for (let prop in obj)
-      if (obj[prop] === '' || obj[prop] === 0 || obj[prop] === '0')
+      if (obj[prop] === '' || obj[prop] === 0 || obj[prop] === '0') {
+        console.error(obj[prop], prop)
         errors.push(prop)
+      }
 
     return new Promise(res => {
       if (!errors.length)
@@ -112,12 +114,13 @@ export class LaravelService {
       })
   }
 
-  delete(what, where, redirectTo = '') {
+  delete(what, where, redirectTo = '', then = () => { }) {
     this.http
       .delete(`${this._API}${where}${what}`, this.headers)
       .subscribe(
       res => {
         if (redirectTo) this.router.navigate([redirectTo])
+        then()
       },
       error => {
         document.querySelector('html').innerHTML = error.text()
@@ -156,7 +159,7 @@ export class LaravelService {
   }
 
   loggout() {
-    //this.logged.next(false)
+    this.logged.next(false)
     this.cookie.delete('userSession')
     this.router.navigate(['/login'])
   }

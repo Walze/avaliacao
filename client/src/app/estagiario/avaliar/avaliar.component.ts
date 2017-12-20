@@ -123,12 +123,9 @@ export class AvaliarComponent implements OnInit {
     }
 
     this.lara.post(dados, '/avaliar', '', res => {
-
       this.resultadoInputs.map((i: any) => i.aval_id = res.json())
-      this.lara.post(this.resultadoInputs, '/notas')
+      this.lara.post(this.resultadoInputs, '/notas', `/estagiario/${this.estagiario.id}`)
     })
-
-    console.warn(this.resultadoInputs, dados)
   }
 
   ngOnInit() {

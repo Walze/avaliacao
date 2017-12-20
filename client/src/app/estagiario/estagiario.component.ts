@@ -44,7 +44,6 @@ export class EstagiarioComponent implements OnInit {
       this.lara.show('estagiario', this.id).subscribe(res => {
         const data = res.json()
 
-        if (!data.avaliado && typeof data.avaliado == 'number') data.avaliado = false
         console.log(data)
         this.estagiario = data.estagiario
         this.estag_carregado = true
@@ -58,12 +57,14 @@ export class EstagiarioComponent implements OnInit {
   }
 
   editar() {
-    if (confirm("Deseja mesmo fazer isso?"))
+    if (!this.estagiario.avaliado) this.estagiario.avaliado = false
+    console.log(this.estagiario.avaliado)
+    if (confirm("Deseja mesmo editar?"))
       this.lara.post(this.estagiario, 'editEstagiario/' + this.id, '/home')
   }
 
   deletar() {
-    if (confirm("Deseja mesmo fazer isso?"))
+    if (confirm("Deseja mesmo deletar?"))
       this.lara.delete(this.estagiario.id, 'estagiario/', '/home')
   }
 

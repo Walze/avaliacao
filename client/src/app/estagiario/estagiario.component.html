@@ -121,7 +121,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr (click)='handleClick($event.currentTarget)' data-id="{{avaliacao.id}}" *ngFor="let avaliacao of avaliacoes; let i = index">
+        <tr routerLink='avaliacao/{{avaliacao.id}}' (click)='handleClick($event.currentTarget)' data-id="{{avaliacao.id}}" *ngFor="let avaliacao of avaliacoes; let i = index">
           <td>{{i + 1}}</td>
           <td>{{avaliacao.media}}</td>
           <td>{{avaliacao.data.slice(0, 19).replace('T', ' ás ').split('-').join('/')}}</td>
