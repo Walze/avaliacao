@@ -11,7 +11,7 @@ import { LaravelService } from '../../laravel.service';
 })
 export class AvaliacaoComponent implements OnInit {
 
-  private ids = {
+  private _ids = {
     estag: 0,
     aval: 0
   }
@@ -27,13 +27,12 @@ export class AvaliacaoComponent implements OnInit {
     setor_id: 0
   }
 
-  public carregando = true
-
   public avaliacao: Competencias[]
 
   public resultadoInputs: object[] = []
   public medias: object[] = []
   public NotaFinal: number = 0
+  public carregando = true
 
   constructor(
     private lara: LaravelService,
@@ -48,22 +47,22 @@ export class AvaliacaoComponent implements OnInit {
   private _getRouteParamsData() {
 
     this.route.params.subscribe(params => {
-      this.ids.estag = params.estagiario_id
-      this.ids.aval = params.aval_id
+      this._ids.estag = params.estagiario_id
+      this._ids.aval = params.aval_id
 
-      this.lara.show('estagiario', this.ids.estag).subscribe(res => {
+      this.lara.show('estagiario', this._ids.estag).subscribe(res => {
         const data = res.json()
         if (!data.avaliado || typeof data.avaliado == 'number') data.avaliado = false
         this.estagiario = data.estagiario
 
         this.lara.show('avaliacao', this.estagiario.cargo_id).subscribe(res => {
-          this.carregando = false
           this.avaliacao = res.json()
 
-          this.lara.show('notas', this.ids.aval).subscribe(res => {
+          this.lara.show('notas', this._ids.aval).subscribe(res => {
             this.resultadoInputs = res.json()
-            this.atualizarResults()
+            this._atualizarResults()
             this._atualizarNotaFinal()
+            this.carregando = false
           })
         })
       })
@@ -71,7 +70,7 @@ export class AvaliacaoComponent implements OnInit {
     })
   }
 
-  private atualizarMedias(comp_id, ind_id) {
+  private _atualizarMedias(comp_id, ind_id) {
     // filtrar todos os resultados por comp
     const found: any = this.resultadoInputs.filter((el: any) => el.comp_id == comp_id)
 
@@ -105,7 +104,7 @@ export class AvaliacaoComponent implements OnInit {
     this.NotaFinal = pond
   }
 
-  atualizarResults() {
+  private _atualizarResults() {
     const selects = Array.apply(null, this.el.nativeElement.querySelectorAll('.custom-select.nota'))
 
     this.resultadoInputs.map((i: any) =>
@@ -114,14 +113,14 @@ export class AvaliacaoComponent implements OnInit {
 
   }
 
-  criarResult(e, comp_id, ind_id, peso) {
+  public criarResult(e, comp_id, ind_id, peso) {
     let found: any = this.resultadoInputs.find((el: any) => el.ind_id == ind_id)
 
     if (!found)
       this.resultadoInputs.push({
         nota: Number(e.target.value),
         comp_id,
-        aval_id: Number(this.ids.aval),
+        aval_id: Number(this._ids.aval),
         ind_id,
         peso
       })
@@ -129,13 +128,13 @@ export class AvaliacaoComponent implements OnInit {
       found.nota = Number(e.target.value)
 
 
-    this.atualizarMedias(comp_id, ind_id)
+    this._atualizarMedias(comp_id, ind_id)
   }
 
-  salvarResult() {
+  public salvarResult() {
 
     let aval = {
-      id: this.ids.aval,
+      id: this._ids.aval,
       gestor_id: this.lara.User.id,
       estagiario_id: this.estagiario.id,
       media: this.NotaFinal,
