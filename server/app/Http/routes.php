@@ -248,8 +248,23 @@ Route::get('/notas/{aval}', function ($aval) {
 	return Nota::where('aval_id', $aval)->get();
 });
 
-Route::post('/EditNotas/{aval}', function (Request $req, $aval) {
-	Nota::where('aval_id', $req->aval_id)->update($req->all());
+Route::post('/EditAval', function (Request $req) {
+	foreach ($req->notas as $i => $nota) {
+		unset($nota['id']);
+		$notaDB = Nota::where('ind_id', $nota['ind_id'])->where('aval_id', $nota['aval_id'])->first();
+		if ($notaDB) {
+			$notaDB->nota = $nota['nota'];
+			$notaDB->save();
+		} else {
+			DB::table('notas')->insert($nota);
+		}
+	}
+
+	$aval = Avaliacao::where('id', $req->aval['id'])->first();
+	$aval->media = $req->aval['media'];
+	$aval->save();
+
+	return 'noice';
 });
 
 Route::get('/avaliacaoShow/{id}', function ($id) {

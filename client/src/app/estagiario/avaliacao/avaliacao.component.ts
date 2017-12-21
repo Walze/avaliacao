@@ -63,6 +63,7 @@ export class AvaliacaoComponent implements OnInit {
           this.lara.show('notas', this.ids.aval).subscribe(res => {
             this.resultadoInputs = res.json()
             this.atualizarResults()
+            this._atualizarNotaFinal()
           })
         })
       })
@@ -71,8 +72,6 @@ export class AvaliacaoComponent implements OnInit {
   }
 
   private atualizarMedias(comp_id, ind_id) {
-    const pesosSoma = this.resultadoInputs.reduce((prev, curr: any) => prev + curr.peso, 0)
-
     // filtrar todos os resultados por comp
     const found: any = this.resultadoInputs.filter((el: any) => el.comp_id == comp_id)
 
@@ -93,6 +92,11 @@ export class AvaliacaoComponent implements OnInit {
       })
     else mediaFound.media = Number(media)
 
+    this._atualizarNotaFinal()
+  }
+
+  private _atualizarNotaFinal() {
+    const pesosSoma = this.resultadoInputs.reduce((prev, curr: any) => prev + curr.peso, 0)
 
     // media ponderada
     let pond = this.resultadoInputs
@@ -117,6 +121,7 @@ export class AvaliacaoComponent implements OnInit {
       this.resultadoInputs.push({
         nota: Number(e.target.value),
         comp_id,
+        aval_id: Number(this.ids.aval),
         ind_id,
         peso
       })
@@ -129,7 +134,7 @@ export class AvaliacaoComponent implements OnInit {
 
   salvarResult() {
 
-    let dados = {
+    let aval = {
       id: this.ids.aval,
       gestor_id: this.lara.User.id,
       estagiario_id: this.estagiario.id,
@@ -137,9 +142,16 @@ export class AvaliacaoComponent implements OnInit {
       data: new Date()
     }
 
-    this.lara.post(dados, '/EditAval', '', res => {
-      this.resultadoInputs.map((i: any) => i.aval_id = res.json())
-      this.lara.post(this.resultadoInputs, '/EditNotas', `/estagiario/${this.estagiario.id}`)
+
+    let dados = {
+      aval,
+      notas: this.resultadoInputs
+    }
+
+    console.log(dados)
+    // `/estagiario/${this.estagiario.id}`
+    this.lara.post(dados, 'EditAval', `/estagiario/${this.estagiario.id}`, res => {
+      console.log(res)
     })
   }
 

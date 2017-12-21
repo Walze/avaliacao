@@ -16,6 +16,16 @@
 
   <br />
 
+  <div class="d-flex w-100 justify-content-between">
+    <button class="btn btn-primary" (click)='salvarResult()'>Salvar</button>
+
+    <h4>Média Ponderada Final:
+      <span id='media-pond'>{{NotaFinal}}</span>
+    </h4>
+  </div>
+
+  <br />
+
   <div *ngFor='let comp of avaliacao'>
     <div class="avaliacao" *ngIf='comp.indicadores.length'>
 
@@ -66,5 +76,8 @@
       <span id='media-pond'>{{NotaFinal}}</span>
     </h4>
   </div>
+
+  <br />
+  <br />
 
 </div>
