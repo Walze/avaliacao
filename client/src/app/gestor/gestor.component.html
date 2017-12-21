@@ -32,6 +32,7 @@
           <div class="form-group">
             <select [(ngModel)]='gestor.setor_id' class="custom-select col-12">
               <option selected disabled value="0">Selecione uma setor</option>
+              <option *ngIf='gestor.setor_id == 1' value="1">Admin</option>
               <option *ngFor="let setor of setores; let i = index" value={{setor.id}}>{{setor.nome}}</option>
             </select>
           </div>
@@ -51,7 +52,7 @@
   <br />
 
 
-  <div class="row" *ngIf="competencias">
+  <div class="row" *ngIf="gestor.setor_id == 1">
 
     <h2 class="center col-12">Competências</h2>
     <p class="center col-12 blockquote-footer">Clique em uma competências para ver seus indicadores.</p>

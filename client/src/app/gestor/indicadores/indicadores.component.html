@@ -1,14 +1,12 @@
 <div class="container">
 
-  <br />
-
-  <h3 class="center">
-    Competência
-  </h3>
-  <br />
-
   <div class="d-flex justify-content-center">
     <div class="col-md-8 col-sm-12">
+      <br />
+      <h3 class="center">
+        Competência
+      </h3>
+      <br />
       <div class="col-12 form-group">
         <label>Nome</label>
         <input [(ngModel)]="comp.nome" class="form-control" type="text" placeholder="Digite o nome da Competencia">
@@ -29,6 +27,59 @@
       </div>
     </div>
   </div>
+
+  <div class="col-sm-12">
+    <br />
+    <h3 class="center">
+      Criar indicador
+    </h3>
+    <div class="heading">
+      <label>Nome</label>
+      <input class="toggle form-control" type="text" placeholder="Digite um nome para o Indicador">
+    </div>
+
+    <div>
+      <br>
+      <div class="row">
+        <h6 class="col-12">Competência</h6>
+        <br>
+
+        <div *ngFor='let comp of comps' class="col-md-6 col-sm-12">
+          <label class="custom-control custom-radio">
+            <input type="radio" class="custom-control-input" value='{{comp.id}}'>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">{{comp.nome}}</span>
+          </label>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <h6 class="col-12">Cargos</h6>
+        <br>
+
+        <div *ngFor='let cargo of cargos' class="col-md-6 col-sm-12">
+          <label class="custom-control custom-checkbox">
+            <input class="custom-control-input" value='{{cargo.id}}'>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">{{cargo.nome}}</span>
+          </label>
+        </div>
+        <br />
+        <br />
+
+        <div class="col-12 row d-flex justify-content-around">
+
+          <button class="btn btn-warning col-sm-12 col-md-5">Salvar</button>
+
+        </div>
+        <br />
+        <br />
+
+      </div>
+    </div>
+
+  </div>
+
   <hr />
   <br />
 
