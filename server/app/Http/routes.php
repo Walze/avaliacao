@@ -243,9 +243,19 @@ Route::delete('/estagiario/{id}', function ($id) {
 Route::post('/notas', function (Request $req) {
 	DB::table('notas')->insert($req->all());
 });
-Route::get('/notas/{aval}', function($aval) {
+
+Route::get('/notas/{aval}', function ($aval) {
 	return Nota::where('aval_id', $aval)->get();
 });
+
+Route::post('/EditNotas/{aval}', function (Request $req, $aval) {
+	Nota::where('aval_id', $req->aval_id)->update($req->all());
+});
+
+Route::get('/avaliacaoShow/{id}', function ($id) {
+	return Avaliacao::where('id', $id)->get();
+});
+
 Route::get('/avaliacao/{cargo_id}', function ($cargo_id) {
 
 	$indicadores = Cargo::select(
