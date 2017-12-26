@@ -69,16 +69,6 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col">
-          <label class="custom-control custom-checkbox">
-            <input [(ngModel)]='estagiario.avaliado' type="checkbox" class="custom-control-input">
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">Avaliado</span>
-          </label>
-        </div>
-      </div>
-
       <br />
 
       <div class="row">
@@ -117,7 +107,9 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Média</th>
-          <th scope="col">Data</th>
+          <th scope="col">
+            Data
+          </th>
           <th scope="col">Resultado</th>
         </tr>
       </thead>
@@ -126,7 +118,7 @@
           <td>{{i + 1}}</td>
           <td>{{avaliacao.media}}</td>
           <td>
-            {{avaliacao.data.split('T')[0].split('-').reverse().join('/')}} ás {{avaliacao.data.split('T')[1].split('.')[0]}}
+            {{avaliacao.data.split('T')[0].split('-').reverse().join('/')}}
           </td>
           <td>{{avaliacao.aprovado}}</td>
         </tr>

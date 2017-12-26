@@ -107,18 +107,22 @@ export class AvaliarComponent implements OnInit {
   }
 
   salvarResult() {
+    const selects = Array.apply(null, this.el.nativeElement.querySelectorAll('.custom-select'))
 
-    let dados = {
-      gestor_id: this.lara.User.id,
-      estagiario_id: this.estagiario.id,
-      media: this.NotaFinal,
-      data: new Date()
-    }
+    if (!(selects.some(sel => sel.value == '0'))) {
+      let dados = {
+        gestor_id: this.lara.User.id,
+        estagiario_id: this.estagiario.id,
+        media: this.NotaFinal,
+        data: new Date()
+      }
 
-    this.lara.post(dados, '/avaliar', '', res => {
-      this.resultadoInputs.map((i: any) => i.aval_id = res.json())
-      this.lara.post(this.resultadoInputs, '/notas', `/estagiario/${this.estagiario.id}`)
-    })
+      this.lara.post(dados, '/avaliar', '', res => {
+        this.resultadoInputs.map((i: any) => i.aval_id = res.json())
+        this.lara.post(this.resultadoInputs, '/notas', `/estagiario/${this.estagiario.id}`)
+      })
+    } else
+      alert('Dê uma nota para todos os indicadores.')
   }
 
   ngOnInit() {

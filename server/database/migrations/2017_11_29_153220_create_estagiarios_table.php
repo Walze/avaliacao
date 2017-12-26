@@ -26,7 +26,6 @@ class CreateEstagiariosTable extends Migration
 
 			$table->date('admissao');
 			$table->dateTime('ultima_aval');
-			$table->boolean('avaliado')->default(0);
 		});
 	}
 

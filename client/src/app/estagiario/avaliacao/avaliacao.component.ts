@@ -130,26 +130,33 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
   }
 
   public salvarResult() {
+    const selects: Array<any> = Array.apply(null, this.el.nativeElement.querySelectorAll('.custom-select.nota'))
 
-    let aval = {
-      id: this._ids.aval,
-      gestor_id: this.lara.User.id,
-      estagiario_id: this.estagiario.id,
-      media: this.NotaFinal,
-      data: new Date()
-    }
+    if (selects.some(sel => sel.value != 0)) {
 
 
-    let dados = {
-      aval,
-      notas: this.resultadoInputs
-    }
+      let aval = {
+        id: this._ids.aval,
+        gestor_id: this.lara.User.id,
+        estagiario_id: this.estagiario.id,
+        media: this.NotaFinal,
+        data: new Date()
+      }
 
-    console.log(dados)
-    // `/estagiario/${this.estagiario.id}`
-    this.lara.post(dados, 'EditAval', `/estagiario/${this.estagiario.id}`, res => {
-      console.log(res)
-    })
+
+      let dados = {
+        aval,
+        notas: this.resultadoInputs
+      }
+
+      console.log(dados)
+      // `/estagiario/${this.estagiario.id}`
+      this.lara.post(dados, 'EditAval', `/estagiario/${this.estagiario.id}`, res => {
+        console.log(res)
+      })
+    } else
+      alert('Dê uma nota para todos os indicadores.')
+
   }
 
   ngOnInit() {

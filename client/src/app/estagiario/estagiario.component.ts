@@ -8,13 +8,13 @@ import { Estagiario } from './estagiario';
   templateUrl: './estagiario.component.html',
   styleUrls: ['./estagiario.component.css']
 })
+
 export class EstagiarioComponent implements OnInit {
 
   public estagiario: Estagiario = {
     id: 0,
     nome: '',
     admissao: '',
-    avaliado: false,
     nivel_id: 0,
     cargo_id: 0,
     localidade_id: 0,
@@ -66,8 +66,6 @@ export class EstagiarioComponent implements OnInit {
   }
 
   editar() {
-    if (!this.estagiario.avaliado) this.estagiario.avaliado = false
-    console.log(this.estagiario.avaliado)
     if (confirm("Deseja mesmo editar?"))
       this.lara.post(this.estagiario, 'editEstagiario/' + this.id, '/home')
   }

@@ -288,7 +288,7 @@ Route::get('/avaliacao/{cargo_id}', function ($cargo_id) {
 	$competencias = Competencia::all();
 
 	$avaliacao = [];
-	
+
 	foreach ($relacoes as $i1 => $relacao) {
 		foreach ($competencias as $i2 => $comp) {
 			if ($relacao->comp_id == $comp->id) {
@@ -319,6 +319,10 @@ Route::get('/avaliacao/{cargo_id}', function ($cargo_id) {
 
 Route::post('/avaliar', function (Request $req) {
 	$aval = Avaliacao::create($req->all());
+
+	$estag = Estagiario::find($req->estagiario_id);
+	$estag->ultima_aval = $req->data;
+	$estag->save();
 
 	return $aval->id;
 });

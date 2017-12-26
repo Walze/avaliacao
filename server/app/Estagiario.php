@@ -9,6 +9,6 @@ class Estagiario extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'nome', 'localidade_id', 'setor_id', 'cargo_id', 'nivel_id', 'ultima_aval', 'admissao', 'avaliado'
+        'nome', 'localidade_id', 'setor_id', 'cargo_id', 'nivel_id', 'ultima_aval', 'admissao'
     ];
 }
