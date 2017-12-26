@@ -1,15 +1,15 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Competencias } from '../avaliar/AvalComps';
-import { Estagiario } from '../estagiario';
-import { LaravelService } from '../../laravel.service';
+import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import { Competencias } from '../avaliar/AvalComps'
+import { Estagiario } from '../estagiario'
+import { LaravelService } from '../../laravel.service'
 
 @Component({
   selector: 'app-avaliacao',
   templateUrl: './avaliacao.component.html',
   styleUrls: ['./avaliacao.component.css']
 })
-export class AvaliacaoComponent implements OnInit {
+export class AvaliacaoComponent implements OnInit, AfterViewInit {
 
   private _ids = {
     estag: 0,
@@ -39,12 +39,9 @@ export class AvaliacaoComponent implements OnInit {
     private route: ActivatedRoute,
     private el: ElementRef
   ) {
-    this._getRouteParamsData()
-
-    window['dis'] = this
   }
 
-  private _getRouteParamsData() {
+  private _getRouteParamsData(then) {
 
     this.route.params.subscribe(params => {
       this._ids.estag = params.estagiario_id
@@ -60,9 +57,9 @@ export class AvaliacaoComponent implements OnInit {
 
           this.lara.show('notas', this._ids.aval).subscribe(res => {
             this.resultadoInputs = res.json()
-            this._atualizarResults()
-            this._atualizarNotaFinal()
             this.carregando = false
+
+            then()
           })
         })
       })
@@ -106,10 +103,12 @@ export class AvaliacaoComponent implements OnInit {
 
   private _atualizarResults() {
     const selects = Array.apply(null, this.el.nativeElement.querySelectorAll('.custom-select.nota'))
-
-    this.resultadoInputs.map((i: any) =>
-      selects.map(i2 => { if (i2.id.split('-')[1] == i.ind_id) i2.value = i.nota })
-    )
+    this.resultadoInputs.map((resInput: any) => {
+      selects.map(select => {
+        if (select.id.split('-')[1] == resInput.ind_id)
+          select.value = resInput.nota
+      })
+    })
 
   }
 
@@ -158,4 +157,10 @@ export class AvaliacaoComponent implements OnInit {
     this.lara.sessionChecker()
   }
 
+  ngAfterViewInit() {
+    this._getRouteParamsData(() => {
+      this._atualizarNotaFinal()
+      this._atualizarResults()
+    })
+  }
 }

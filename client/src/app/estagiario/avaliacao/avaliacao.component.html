@@ -1,13 +1,13 @@
 <br />
 
-<h1 *ngIf="carregando" class="display-3 center">
+<h1 [hidden]="!carregando" class="display-3 center">
   Carregando...
 </h1>
 
 <br />
 <br />
 
-<div *ngIf='!carregando' class="container">
+<div [hidden]='carregando' class="container">
 
   <h4 class="display-4 center">
     Editando Avaliação do Estagiário
