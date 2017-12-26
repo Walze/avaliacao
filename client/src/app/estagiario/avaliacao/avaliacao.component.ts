@@ -109,7 +109,6 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
           select.value = resInput.nota
       })
     })
-
   }
 
   public criarResult(e, comp_id, ind_id, peso) {

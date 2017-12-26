@@ -55,18 +55,24 @@ export class LaravelService {
   }
 
   sessionChecker() {
-    if (!this.cookie.check('userSession')) {
-      this.logged.next(false)
-      this.router.navigate(['/login'])
-    } else {
-      this.logged.next(true)
-      try {
+    try {
+      if (!this.cookie.check('userSession')) {
+        this.logged.next(false)
+        this.router.navigate(['/login'])
+      } else {
+        this.logged.next(true)
         this.User = JSON.parse(this.cookie.get('userSession'))
-      } catch (err) {
-        console.error("Deleted All Cookies", err)
-        this.cookie.deleteAll()
       }
+    } catch (err) {
+      this.logged.next(false)
+      console.error("Deleted All Cookies", err)
+      this.cookie.deleteAll()
     }
+  }
+
+  adminOnly() {
+    if (!(this.User.setor_id === 1))
+      this.router.navigate(['/home'])
   }
 
   get User() {
@@ -84,10 +90,8 @@ export class LaravelService {
     const errors = []
 
     for (let prop in obj)
-      if (obj[prop] === '' || obj[prop] === 0 || obj[prop] === '0') {
-        console.error(obj[prop], prop)
-        errors.push(prop)
-      }
+      if (obj[prop] === '' || obj[prop] == '0')
+        errors.push(prop[0].toUpperCase() + prop.slice(1).replace('_id', ''))
 
     return new Promise(res => {
       if (!errors.length)
@@ -110,7 +114,8 @@ export class LaravelService {
           error => {
             document.querySelector('html').innerHTML = error.text()
             alert(JSON.stringify(error.text()))
-          })
+          }
+          )
       })
   }
 

@@ -169,7 +169,6 @@ export class IndicadoresComponent implements OnInit {
       cargo_id: Number(cargo),
       checked
     }
-
     const indi = this.ind_cargos
       .find(i => i.indicador_id == ind && i.cargo_id == cargo)
 
@@ -179,6 +178,8 @@ export class IndicadoresComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.lara.sessionChecker()
+    this.lara.adminOnly()
   }
 
   private _getDataFromParams() {

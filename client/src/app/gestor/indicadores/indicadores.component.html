@@ -144,7 +144,7 @@
 
             <div *ngFor='let cargo of cargos' class="col-md-6 col-sm-12">
               <label class="custom-control custom-checkbox">
-                <input [checked]='ind.cargo_id.includes(cargo.id)' (click)='handleCheck(ind.id, cargo.id, $event.checked)' type="checkbox"
+                <input [checked]='ind.cargo_id.includes(cargo.id)' (click)='handleCheck(ind.id, cargo.id, $event.target.checked)' type="checkbox"
                   name={{indi}} class="custom-control-input" value='{{cargo.id}}'>
                 <span class="custom-control-indicator"></span>
                 <span class="custom-control-description">{{cargo.nome}}</span>

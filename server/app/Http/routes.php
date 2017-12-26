@@ -281,7 +281,6 @@ Route::get('/avaliacao/{cargo_id}', function ($cargo_id) {
 		->join('ind_comp', 'ind_comp.indicador_id', '=', 'ind_cargo.indicador_id')
 		->join('indicadores', 'indicadores.id', '=', 'ind_cargo.indicador_id')
 		->get();
-
 	$relacoes = CargoCompPeso::select('*')
 		->where('cargo_id', $cargo_id)
 		->get();
@@ -289,10 +288,9 @@ Route::get('/avaliacao/{cargo_id}', function ($cargo_id) {
 	$competencias = Competencia::all();
 
 	$avaliacao = [];
-
+	
 	foreach ($relacoes as $i1 => $relacao) {
 		foreach ($competencias as $i2 => $comp) {
-
 			if ($relacao->comp_id == $comp->id) {
 				$avaliacao[$i1] = new stdClass();
 

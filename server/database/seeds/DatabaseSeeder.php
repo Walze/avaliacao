@@ -10,18 +10,27 @@ class DatabaseSeeder extends Seeder
    */
   public function run()
   {
+
     DB::table('localidades')->insert([
       ['nome' => 'Rio de Janeiro'],
       ['nome' => 'São Paulo'],
       ['nome' => 'Minas Gerais'],
     ]);
     DB::table('setores')->insert([
-      ['nome' => 'Ademir'],
+      ['nome' => 'Admin'],
       ['nome' => 'Talentos'],
       ['nome' => 'Vendas'],
       ['nome' => 'Recursos Humanos'],
       ['nome' => 'Financeiro'],
       ['nome' => 'Contábil']
+    ]);
+
+    DB::table('users')->insert([
+      'nome' => 'Administrador',
+      'email' => 'admin@root',
+      'localidade_id' => 1,
+      'setor_id' => 1,
+      'senha' => 'astral'
     ]);
 
     DB::table('cargos')->insert([

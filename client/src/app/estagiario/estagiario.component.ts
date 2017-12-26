@@ -20,7 +20,7 @@ export class EstagiarioComponent implements OnInit {
     localidade_id: 0,
     setor_id: 0
   }
-  private estag_carregado = false
+  public estag_carregado = false
 
   public avaliacoes
   public tabela_texto = 'Carregando...'
@@ -43,13 +43,22 @@ export class EstagiarioComponent implements OnInit {
 
       this.lara.show('estagiario', this.id).subscribe(res => {
         const data = res.json()
-
         console.log(data)
+        let avals = data.avaliacoes
+
+
         this.estagiario = data.estagiario
         this.estag_carregado = true
 
-        if (data.avaliacoes.length)
-          this.avaliacoes = data.avaliacoes
+        if (avals.length) {
+          avals.map(aval => {
+            if (aval.media >= 2.8)
+              aval.aprovado = "Aprovado"
+            else
+              aval.aprovado = "Reprovado"
+          })
+          this.avaliacoes = avals
+        }
         else
           this.tabela_texto = 'Ainda não avaliado'
       })
