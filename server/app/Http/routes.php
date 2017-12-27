@@ -135,6 +135,33 @@ Route::delete('/delind/{id}', function ($id) {
 Route::post('/ind/{id}', function (Request $req, $id) {
 	Indicador::find($id)->update($req->all());
 });
+Route::post('/ind', function (Request $req) {
+	try {
+
+		$ind = Indicador::create([
+			'nome' => $req->indicador
+		])->id;
+
+		$ind_comp = new IndComp;
+		$ind_comp->comp_id = $req->comp_id;
+		$ind_comp->indicador_id = $ind;
+		$ind_comp->save();
+
+		foreach ($req->ind_cargos as $i => $cargo) {
+			$ind_cargo = new Ind_Comp_Cargo;
+			$ind_cargo->cargo_id = $cargo;
+			$ind_cargo->indicador_id = $ind;
+			$ind_cargo->save();
+		}
+
+		return $ind;
+
+	} catch (Exception $e) {
+		return $e;
+	}
+});
+
+
 
 
 
@@ -164,6 +191,9 @@ Route::delete('/comp/{id}', function ($id) {
 
 	return $id;
 });
+
+
+
 
 
 
@@ -322,7 +352,7 @@ Route::post('/avaliar', function (Request $req) {
 
 	$estag = Estagiario::find($req->estagiario_id);
 
-	if($estag->nivel_id != 3 && $aval->media >= 2.8) {
+	if ($estag->nivel_id != 3 && $aval->media >= 2.8) {
 		$estag->nivel_id++;
 	}
 

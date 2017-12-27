@@ -184,7 +184,22 @@ export class IndicadoresComponent implements OnInit {
   }
 
   saveNewInd() {
-    console.log(this.newInd)
+    const indicador = this.newInd.ind,
+      comp_id = Number(this.newInd.comp),
+      ind_cargos = this.newInd.cargos
+        .map((cargo, index) => index)
+        .join('').split('')
+        .map(i => Number(i)),
+      data = {
+        indicador,
+        comp_id,
+        ind_cargos
+      }
+
+
+    this.lara.post(data, 'ind', '', res => {
+      window.location.reload()
+    })
   }
   ngOnInit() {
     this.lara.sessionChecker()
