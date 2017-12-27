@@ -35,7 +35,7 @@ export class EstagiarioComponent implements OnInit {
     this.lara.getFormData(res => {
       this.localidades = res.localidades
       this.cargos = res.cargos
-      this.setores = res.setores.filter(setor => { return setor.nome != 'Ademir' })
+      this.setores = res.setores.filter(setor => { return setor.id != 1 })
     })
 
     this.route.params.subscribe(params => {

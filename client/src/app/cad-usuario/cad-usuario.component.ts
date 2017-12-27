@@ -23,7 +23,7 @@ export class CadUsuarioComponent implements OnInit {
 
     this.lara.getFormData(res => {
       this.localidades = res.localidades
-      this.setores = res.setores.filter(setor => { return setor.nome != 'Ademir' })
+      this.setores = res.setores.filter(setor => { return setor.nome != 'Admin' })
     })
 
   }

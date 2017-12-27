@@ -321,6 +321,11 @@ Route::post('/avaliar', function (Request $req) {
 	$aval = Avaliacao::create($req->all());
 
 	$estag = Estagiario::find($req->estagiario_id);
+
+	if($estag->nivel_id != 3 && $aval->media >= 2.8) {
+		$estag->nivel_id++;
+	}
+
 	$estag->ultima_aval = $req->data;
 	$estag->save();
 

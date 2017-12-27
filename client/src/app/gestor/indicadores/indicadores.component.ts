@@ -24,6 +24,12 @@ export class IndicadoresComponent implements OnInit {
   private ind_comps = []
   private ind_cargos = []
 
+  newInd = {
+    ind: '',
+    cargos: [],
+    comp: 0
+  }
+
   showCurrent: boolean = true
   sort_word
   constructor(private lara: LaravelService, private route: ActivatedRoute) {
@@ -86,8 +92,8 @@ export class IndicadoresComponent implements OnInit {
       toggle[0].style.display = 'block'
       toggle[1].style.display = 'none'
     }
-
   }
+
   closeInds(e) {
     let edits: HTMLElement = e.closest('.list-group-item').querySelector('.edits')
     let toggle: Array<HTMLElement> = e.closest('.list-group-item').querySelectorAll('.toggle')
@@ -177,6 +183,9 @@ export class IndicadoresComponent implements OnInit {
     this.lara.post(postData, 'ind_cargo')
   }
 
+  saveNewInd() {
+    console.log(this.newInd)
+  }
   ngOnInit() {
     this.lara.sessionChecker()
     this.lara.adminOnly()

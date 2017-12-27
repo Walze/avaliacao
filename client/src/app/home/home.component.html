@@ -29,7 +29,7 @@
         <td>{{estagiario.nome}}</td>
         <td>{{estagiario.cargo}}</td>
         <td>{{estagiario.local}}</td>
-        <td>{{estagiario.ultima_aval}}</td>
+        <td>{{estagiario.ultima_aval.split(' ')[0].split('-').reverse().join('/')}}</td>
       </tr>
     </tbody>
   </table>

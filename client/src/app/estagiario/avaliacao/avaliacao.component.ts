@@ -20,7 +20,6 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
     id: 0,
     nome: '',
     admissao: '',
-    avaliado: false,
     nivel_id: 0,
     cargo_id: 0,
     localidade_id: 0,

@@ -54,7 +54,8 @@ export class GestorComponent implements OnInit {
   constructor(private lara: LaravelService) {
     this.lara.getFormData(res => {
       this.localidades = res.localidades
-      this.setores = res.setores.filter(setor => { return setor.nome != 'Ademir' })
+      console.log(res.setores)
+      this.setores = res.setores.filter(setor => { return setor.nome != 'Admin' })
     })
 
     this.lara.getComps()

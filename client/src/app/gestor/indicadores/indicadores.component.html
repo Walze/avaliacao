@@ -35,7 +35,7 @@
     </h3>
     <div class="heading">
       <label>Nome</label>
-      <input class="toggle form-control" type="text" placeholder="Digite um nome para o Indicador">
+      <input [(ngModel)]='newInd.ind' class="toggle form-control" type="text" placeholder="Digite um nome para o Indicador">
     </div>
 
     <div>
@@ -46,7 +46,7 @@
 
         <div *ngFor='let comp of comps' class="col-md-6 col-sm-12">
           <label class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" value='{{comp.id}}'>
+            <input [(ngModel)]='newInd.comp' name="criarIndRadio" type="radio" class="custom-control-input" value='{{comp.id}}'>
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">{{comp.nome}}</span>
           </label>
@@ -59,7 +59,7 @@
 
         <div *ngFor='let cargo of cargos' class="col-md-6 col-sm-12">
           <label class="custom-control custom-checkbox">
-            <input class="custom-control-input" value='{{cargo.id}}'>
+            <input [(ngModel)]='newInd.cargos[cargo.id]' type='checkbox' class="custom-control-input" value='{{cargo.id}}'>
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">{{cargo.nome}}</span>
           </label>
@@ -69,7 +69,7 @@
 
         <div class="col-12 row d-flex justify-content-around">
 
-          <button class="btn btn-warning col-sm-12 col-md-5">Salvar</button>
+          <button (click)='saveNewInd()' class="btn btn-warning col-sm-12 col-md-5">Salvar</button>
 
         </div>
         <br />
