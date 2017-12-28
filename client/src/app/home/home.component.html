@@ -15,15 +15,14 @@
       Clique nas linhas da tabela para mais detalhes
     </i>
   </small>
-  <table class="table table-hover table-bordered">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th class='thead' name='nome' scope="col">Nome</th>
         <th class='thead' name='cargo' scope="col">Cargo</th>
         <th class='thead' name='local' scope="col">Localidade</th>
-        <th class='thead' name='avaliado' scope="col">Ultima Avaliação</th>
-        <th class='thead' name='avaliado' scope="col">Ultima Avaliação</th>
-        <th class='thead' name='avaliado' scope="col">Ultima Avaliação</th>
+        <th class='thead' name='ultima_aval' scope="col">Ultima Avaliação</th>
+        <th class='thead' name='dias' scope="col">Dias desde Ultima Prova</th>
       </tr>
     </thead>
     <tbody>
@@ -32,8 +31,7 @@
         <td>{{estagiario.cargo}}</td>
         <td>{{estagiario.local}}</td>
         <td>{{estagiario.ultima_aval.split(' ')[0].split('-').reverse().join('/')}}</td>
-        <td>{{estagiario.ultima_aval}}</td>
-        <td>{{dateDiff(estagiario.ultima_aval)}}</td>
+        <td [ngClass]="estagiario.dias.diff > 182.5 ? 'red' : ''">{{estagiario.dias.text}}</td>
       </tr>
     </tbody>
   </table>

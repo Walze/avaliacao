@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core'
 import { LaravelService } from '../laravel.service'
 import { Router } from '@angular/router'
-import { Estagiario } from '../estagiario/estagiario';
+import { Estagiario } from '../estagiario/estagiario'
 
 @Component({
   selector: 'app-home',
@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
     render.listen(el.nativeElement, 'click', e => {
       if (e.target.className === 'thead') this.order(e)
     })
+
   }
 
   search(word) {
@@ -71,19 +72,31 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.lara.estagiarios()
-      .subscribe(res =>
+      .subscribe(res => {
+
         this.estagiarios = this.estagiariosOriginal = res.json()
-      )
+        this.estagiarios.map(esta => esta.dias = this.dateDiff(esta.ultima_aval))
+        this.estagiarios = this.estagiariosOriginal
+      })
     this.lara.sessionChecker()
   }
 
   dateDiff(a, b = new Date()) {
-    let _MS_PER_DAY = 1000 * 60 * 60 * 24;
+    a = new Date(a)
+    let _MS_PER_DAY = 1000 * 60 * 60 * 24
 
-    let utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
-    let utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+    let utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())
+    let utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate())
 
-    return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+    let diff = Math.floor((utc2 - utc1) / _MS_PER_DAY);
+
+    let text = diff + (diff > 1 ? ' Dias' : ' Dia')
+
+
+    return {
+      diff,
+      text: isNaN(diff) ? 'Sem Provas' : text
+    }
   }
 
 }

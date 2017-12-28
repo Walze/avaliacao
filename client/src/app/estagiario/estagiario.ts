@@ -11,4 +11,8 @@ export interface Estagiario {
   local?: string,
   ultima_aval?: string,
   setor?: string,
+  dias?: {
+    diff: number,
+    text: string
+  }
 }
