@@ -174,7 +174,8 @@ Route::post('/ind', function (Request $req) {
 Route::get('/comp', function () {
 	return [
 		'competencias' => Competencia::all(),
-		'indicadores' => Indicador::all()
+		'indicadores' => Indicador::all(),
+		'cargos' => Cargo::all()
 	];
 });
 
@@ -238,14 +239,16 @@ Route::post('/ind_cargo', function (Request $req) {
 	return $data;
 });
 
-Route::get('/cargo_comp_peso/{id}', function (Request $req, $id) {
-	return CargoCompPeso::where('comp_id', $id)->get();
-});
-
 Route::post('/cargo_comp_peso', function (Request $req) {
-	CargoCompPeso::create($req->all());
+	CargoCompPeso::updateOrCreate(
+		['comp_id' => $req->comp_id, 'cargo_id' => cargo_id],
+		['peso' => $req->peso]
+	);
 });
 
+Route::get('/cargo_comp_peso', function (Request $req) {
+	return CargoCompPeso::all();
+});
 
 
 // Estagiario Related
@@ -341,8 +344,7 @@ Route::get('/avaliacao/{cargo_id}', function ($cargo_id) {
 				foreach ($indicadores as $i3 => $ind) {
 					if ($ind->comp_id == $comp->id) {
 						$avaliacao[$i1]->ind_count++;
-						unset($ind->cargo_id,
-							$ind->duracao_meses);
+						unset($ind->cargo_id, $ind->duracao_meses);
 						array_push($avaliacao[$i1]->indicadores, $ind);
 					}
 				}
@@ -352,6 +354,7 @@ Route::get('/avaliacao/{cargo_id}', function ($cargo_id) {
 
 	return $avaliacao;
 });
+
 
 Route::post('/avaliar', function (Request $req) {
 	$aval = Avaliacao::create($req->all());

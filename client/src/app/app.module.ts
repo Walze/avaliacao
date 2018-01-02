@@ -1,24 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserModule } from '@angular/platform-browser'
+import { NgModule } from '@angular/core'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
-import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { RouterModule, Routes } from '@angular/router'
+import { FormsModule } from '@angular/forms'
+import { HttpModule } from '@angular/http'
 
-import { AppComponent } from './app.component';
-import { CadUsuarioComponent } from './cad-usuario/cad-usuario.component';
-import { LoginUsuarioComponent } from './login-usuario/login-usuario.component';
-import { LaravelService } from './laravel.service';
-import { CookieService } from 'ngx-cookie-service';
-import { HomeComponent } from './home/home.component';
-import { EstagiarioComponent } from './estagiario/estagiario.component';
-import { CadEstagiarioComponent } from './cad-estagiario/cad-estagiario.component';
-import { AvaliarComponent } from './estagiario/avaliar/avaliar.component';
-import { AvaliacaoComponent } from './estagiario/avaliacao/avaliacao.component';
-import { GestorComponent } from './gestor/gestor.component';
-import { IndicadoresComponent } from './gestor/indicadores/indicadores.component';
-import { PesosComponent } from './gestor/pesos/pesos.component';
+import { AppComponent } from './app.component'
+import { CadUsuarioComponent } from './cad-usuario/cad-usuario.component'
+import { LoginUsuarioComponent } from './login-usuario/login-usuario.component'
+import { LaravelService } from './laravel.service'
+import { CookieService } from 'ngx-cookie-service'
+import { HomeComponent } from './home/home.component'
+import { EstagiarioComponent } from './estagiario/estagiario.component'
+import { CadEstagiarioComponent } from './cad-estagiario/cad-estagiario.component'
+import { AvaliarComponent } from './estagiario/avaliar/avaliar.component'
+import { AvaliacaoComponent } from './estagiario/avaliacao/avaliacao.component'
+import { GestorComponent } from './gestor/gestor.component'
+import { IndicadoresComponent } from './gestor/indicadores/indicadores.component'
+import { PesosComponent } from './gestor/pesos/pesos.component'
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginUsuarioComponent },
@@ -33,13 +33,10 @@ const appRoutes: Routes = [
   { path: 'estagiario/:id', component: EstagiarioComponent },
   { path: 'estagiario/:id/avaliar', component: AvaliarComponent },
   { path: 'estagiario/:estagiario_id/avaliacao/:aval_id', component: AvaliacaoComponent },
-  {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  },
+
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: LoginUsuarioComponent }
-];
+]
 
 @NgModule({
   declarations: [
