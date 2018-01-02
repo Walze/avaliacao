@@ -2,7 +2,7 @@
   <h3 class="center">Perfil</h3>
 
   <br />
-  <div class='row justify-content-center'>
+  <div class='alterar-gestor row justify-content-center'>
     <div class="col-6">
 
       <div class="row">
@@ -17,21 +17,22 @@
         </div>
       </div>
 
-      <br>
       <div class="row">
-        <div class="col-6">
-          <div class="form-group">
-            <select [(ngModel)]='gestor.localidade_id' class="custom-select col-12">
-              <option selected disabled value="0">Selecione uma Localidade</option>
-              <option *ngFor="let local of localidades; let i = index" value={{local.id}}>{{local.nome}}</option>
-            </select>
-          </div>
+        <div class="col-6 form-group">
+          <label>Localidade</label>
+
+          <select [(ngModel)]='gestor.localidade_id' class="custom-select col-12">
+            <option selected disabled value="0">Selecione uma Localidade</option>
+            <option *ngFor="let local of localidades; let i = index" value={{local.id}}>{{local.nome}}</option>
+          </select>
         </div>
 
         <div class="col-6">
           <div class="form-group">
+            <label>Setor</label>
+
             <select [(ngModel)]='gestor.setor_id' class="custom-select col-12">
-              <option selected disabled value="0">Selecione uma setor</option>
+              <option selected disabled value="0">Selecione um setor</option>
               <option *ngIf='gestor.setor_id == 1' value="1">Admin</option>
               <option *ngFor="let setor of setores; let i = index" value={{setor.id}}>{{setor.nome}}</option>
             </select>
@@ -48,11 +49,13 @@
     </div>
   </div>
 
-  <br />
-  <br />
+  <div class="row cargo-comps justify-content-center">
+    <div class="col-md-6 col-sm-12">
+      <button routerLink='pesos' class="btn btn-info col-12">Alterar Pesos</button>
+    </div>
+  </div>
 
-
-  <div class="row" *ngIf="gestor.setor_id == 1">
+  <div class="mt-5 competencias row" *ngIf="gestor.setor_id == 1">
 
     <h2 class="center col-12">Competências</h2>
     <p class="center col-12 blockquote-footer">Clique em uma competências para ver seus indicadores.</p>
@@ -67,29 +70,27 @@
       <li class="list-group-item">{{comp.descricao}}</li>
     </ul>
 
+    <div class='mt-4 col-12'>
+      <h4 class="col-12 center">
+        Criar nova Competência
+      </h4>
+      <div class="col-12 d-flex justify-content-center">
+        <div class="col-md-8 col-sm-12">
+          <div class="col-12 form-group">
+            <label>Nome</label>
+            <input [(ngModel)]="novaComp.nome" class="form-control" type="text" placeholder="Digite o nome da Competencia">
+          </div>
 
-    <br />
-    <br />
+          <div class="col-12">
+            <label>Descrição</label>
+            <textarea [(ngModel)]="novaComp.descricao" class="form-control" placeholder="Digite uma Descrição"></textarea>
+          </div>
 
-    <h4 class="center">
-      Criar nova Competência
-    </h4>
-    <div class="d-flex justify-content-center">
-      <div class="col-md-8 col-sm-12">
-        <div class="col-12 form-group">
-          <label>Nome</label>
-          <input [(ngModel)]="novaComp.nome" class="form-control" type="text" placeholder="Digite o nome da Competencia">
-        </div>
+          <br />
 
-        <div class="col-12">
-          <label>Descrição</label>
-          <textarea [(ngModel)]="novaComp.descricao" class="form-control" placeholder="Digite uma Descrição"></textarea>
-        </div>
-
-        <br />
-
-        <div class="col-12 form-group">
-          <button (click)='criarComp()' class="btn btn-success col-12">Criar</button>
+          <div class="col-12 form-group">
+            <button (click)='criarComp()' class="btn btn-success col-12">Criar</button>
+          </div>
         </div>
       </div>
     </div>
@@ -97,8 +98,6 @@
   </div>
 </div>
 
-<br />
-<br />
 <br />
 <br />
 <br />

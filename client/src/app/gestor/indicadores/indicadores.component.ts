@@ -10,6 +10,7 @@ import { Indicador } from './indicador'
   styleUrls: ['./indicadores.component.css']
 })
 export class IndicadoresComponent implements OnInit {
+  cargo_comp_peso: any;
 
   public id: number
 
@@ -46,6 +47,8 @@ export class IndicadoresComponent implements OnInit {
       })
 
     this._getDataFromParams()
+
+    window['dis'] = this
   }
 
   search(word) {
@@ -122,7 +125,7 @@ export class IndicadoresComponent implements OnInit {
     }
   }
 
-  addComp() {
+  private addComp() {
     this.indicadores = this._indicadoresOrig.map(i => {
       let comp = this.ind_comps.filter(ic => ic.indicador_id == i.id)[0]
 
@@ -134,7 +137,7 @@ export class IndicadoresComponent implements OnInit {
     this._indicadoresOrig = this.indicadores
   }
 
-  addCargos() {
+  private addCargos() {
     this.indicadores = this._indicadoresOrig.map(i => {
       i.cargo_id = this.ind_cargos
         .filter(ic => ic.indicador_id == i.id)
@@ -150,11 +153,8 @@ export class IndicadoresComponent implements OnInit {
   }
 
   deletarComp(ind) {
-    if (confirm('Deseja Realmente Apagar?')) {
-      //this.lara.delete(this.comp.id, 'comp/', '/gestor')
-      this._indicadoresOrig.filter(i => { if (i.id != ind.id) return i })
-      this.indicadores.filter(i => { if (i.id != ind.id) return i })
-    }
+    if (confirm('Deseja Realmente Apagar?'))
+      this.lara.delete(this.comp.id, 'comp/', '/gestor')
   }
 
   handleRadio(ind, comp) {
@@ -207,28 +207,30 @@ export class IndicadoresComponent implements OnInit {
   }
 
   private _getDataFromParams() {
-    this.route.params
-      .subscribe(params => {
-        this.id = params.id
-        this.lara
-          .getIndsComp(this.id)
-          .then((res: Response) => {
-            let data: any = res.json()
-            this.comp = data.competencia
-            this.comp.id = params.id
-            this.comps = data.comps
-            // Ordem Alfabetica
-            this._indicadoresOrig = data.indicadores
-              .sort((a, b) => {
-                if (a.nome < b.nome) return -1
-                else if (a.nome > b.nome) return 1
-                return 0
-              })
-            this.addComp()
-            this.addCargos()
-            this.showHereOnly()
-          })
-      })
+    this.route.params.subscribe(params => {
+      this.id = params.id
+
+      this.lara.getIndsComp(this.id)
+        .then((res: Response) => {
+          let data: any = res.json()
+          this.comp = data.competencia
+          this.comp.id = params.id
+          this.comps = data.comps
+          // Ordem Alfabetica
+          this._indicadoresOrig = data.indicadores
+            .sort((a, b) => {
+              if (a.nome < b.nome) return -1
+              else if (a.nome > b.nome) return 1
+              return 0
+            })
+          this.addComp()
+          this.addCargos()
+          this.showHereOnly()
+
+          this.lara.show('cargo_comp_peso', this.comp.id).subscribe(res => this.cargo_comp_peso = res.json())
+        })
+
+    })
   }
 
 }

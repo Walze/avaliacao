@@ -238,7 +238,13 @@ Route::post('/ind_cargo', function (Request $req) {
 	return $data;
 });
 
+Route::get('/cargo_comp_peso/{id}', function (Request $req, $id) {
+	return CargoCompPeso::where('comp_id', $id)->get();
+});
 
+Route::post('/cargo_comp_peso', function (Request $req) {
+	CargoCompPeso::create($req->all());
+});
 
 
 
