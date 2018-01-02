@@ -1,4 +1,4 @@
-import { Component, ElementRef, AfterViewChecked } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { LaravelService } from '../../laravel.service';
 import { Competencia } from '../competencia';
 
@@ -8,7 +8,7 @@ import { Competencia } from '../competencia';
   styleUrls: ['./pesos.component.css']
 })
 
-export class PesosComponent implements AfterViewChecked {
+export class PesosComponent {
 
   public competencias: Competencia[]
   public cargos: Array<{}>
