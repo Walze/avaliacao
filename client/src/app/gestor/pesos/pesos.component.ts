@@ -17,7 +17,6 @@ export class PesosComponent {
   public loading = true
 
   constructor(private lara: LaravelService, private el: ElementRef) {
-    window['dis'] = this
     this._displayData()
   }
 

@@ -33,6 +33,8 @@ export class CadUsuarioComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.lara.sessionChecker()
+    this.lara.adminOnly()
   }
 
 }

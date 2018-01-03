@@ -9,28 +9,22 @@ import { LaravelService } from './laravel.service'
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  User
-
-  logged = false
+  user: any = false
 
   constructor(
     private cookie: CookieService,
     private router: Router,
     private lara: LaravelService
   ) {
-    console.log('Cookie:' + cookie.get('userSession') || 'No Cookie')
+    // console.log('Cookie:' + cookie.get('userSession') || 'No Cookie')
 
-    if (cookie.check('userSession')) {
-      this.logged = true
-      this.User = this.lara.User
-    }
+    if (cookie.check('userSession')) this.user = this.lara.User
   }
 
   ngOnInit() {
     this.lara.logged.subscribe(e => {
-      this.logged = e
-      if (e)
-        this.User = this.lara.User
+      if (e) this.user = this.lara.User
+      else this.user = false
     })
   }
 

@@ -1,27 +1,4 @@
-<!-- <nav *ngIf="logged; else notLogged">
-  <ul class="nav justify-content-center">
-    <li class="nav-item">
-      <a class="nav-link active" routerLink="/home">
-        Início
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/cad-estagiario">Cadastrar Estagiário</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" (click)="sair($event)" href="#">Sair</a>
-    </li>
-    <li class="nav-item user">
-      <a class="nav-link active" routerLink="/gestor">
-        <span class="alert alert-primary">
-          Usuário: {{User.nome}}
-        </span>
-      </a>
-    </li>
-  </ul>
-</nav> -->
-
-<nav *ngIf="logged; else notLogged">
+<nav *ngIf="user">
   <div class="container">
 
     <ul class="nav">
@@ -31,6 +8,9 @@
             <a class="nav-link active" routerLink="/home">
               Início
             </a>
+          </li>
+          <li *ngIf='user.setor_id == 1' class="nav-item">
+            <a class="nav-link" routerLink="/cadastro">Cadastrar Gestor</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/cad-estagiario">Cadastrar Estagiário</a>
@@ -42,7 +22,7 @@
           <li class="nav-item">
             <a class="nav-link active" routerLink="/gestor">
               <span class="alert alert-primary">
-                {{User.nome}}
+                {{user.nome}}
               </span>
             </a>
           </li>
@@ -58,8 +38,7 @@
     </ul>
   </div>
 </nav>
-
-<ng-template #notLogged>
+<!-- <ng-template #notLogged>
   <ul class="nav justify-content-center">
     <li class="nav-item">
       <a class="nav-link active" routerLink="/login">Login</a>
@@ -68,6 +47,6 @@
       <a class="nav-link" routerLink="/cadastro">Cadastrar</a>
     </li>
   </ul>
-</ng-template>
+</ng-template> -->
 
 <router-outlet></router-outlet>

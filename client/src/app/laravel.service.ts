@@ -149,8 +149,6 @@ export class LaravelService {
         this.User.avaliacoes = resp.avaliacoes
         this.User.nome = this.User.nome.charAt(0).toUpperCase() + this.User.nome.slice(1)
 
-        console.log(this.User)
-
         this.cookie.set('userSession', JSON.stringify(this.User))
         this.router.navigate(['/home'])
         this.logged.next(true)
