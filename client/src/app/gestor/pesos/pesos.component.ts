@@ -14,16 +14,11 @@ export class PesosComponent {
   public cargos: Array<{}>
   public relacoes = []
 
-  public counter = 0
-  public total
-
   public loading = true
-
-  private _firedOnce = false
 
   constructor(private lara: LaravelService, private el: ElementRef) {
     window['dis'] = this
-    this._getData().then(() => this._start())
+    this._displayData()
   }
 
   private _getData() {
@@ -32,7 +27,6 @@ export class PesosComponent {
         this.competencias = data.json().competencias
         this.cargos = data.json().cargos
 
-        this.total = this.competencias.length * this.cargos.length
         this.lara.all('cargo_comp_peso').then((data: any) => {
           this.relacoes = data.json()
           then()
@@ -41,37 +35,31 @@ export class PesosComponent {
     })
   }
 
-  _start() {
-    if (!this._firedOnce) {
-      const els = this.el.nativeElement.querySelectorAll('.peso-input')
-      console.log(els)
-      if (els.length && this.counter <= 0) {
-        this._firedOnce = true
-        console.log(els, this.counter)
-        els.forEach((el: HTMLInputElement, index) => {
-          this.counter++
+  private _updateInputs(what, then) {
+    const els = this.el.nativeElement.querySelectorAll(`[data-${what}]`)
 
-          if (this.counter >= this.total) this.loading = false
+    els.forEach((el: HTMLInputElement) => {
+      const comp_id = Number(el.dataset[what].split('&')[0])
+      const cargo_id = Number(el.dataset[what].split('&')[1])
 
-          const comp_id = Number(el.dataset.peso.split('&')[0])
-          const cargo_id = Number(el.dataset.peso.split('&')[1])
-
-          el.value = this.getPesoValue(comp_id, cargo_id)
-        })
-      }
-    }
+      then(el, comp_id, cargo_id)
+    })
   }
-  getPesoValue(comp, cargo) {
-    let found: any = false
 
-    found = this.relacoes.find(el => el.comp_id == comp && el.cargo_id == cargo)
+  private _getPesoValue(comp, cargo) {
+    let found = this.relacoes.find(el => el.comp_id == comp && el.cargo_id == cargo)
 
     if (found) return found.peso
-    else return null
-  }
-  ngAfterViewChecked() {
+    else return false
   }
 
-
-
+  private _displayData() {
+    this._getData().then(() => {
+      this._updateInputs('peso', (input, comp, cargo) => input.value = this._getPesoValue(comp, cargo))
+      this._updateInputs('check', (input, comp, cargo) => {
+        if (this._getPesoValue(comp, cargo)) input.checked = true
+      })
+      this.loading = false
+    })
+  }
 }

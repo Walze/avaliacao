@@ -24,7 +24,7 @@
         <div class="d-flex col-12 justify-content-between" *ngFor='let comp of competencias'>
           <div>
             <label class="custom-control custom-checkbox">
-              <input type='checkbox' class="custom-control-input">
+              <input attr.data-check='{{comp.id}}&{{cargo.id}}' type='checkbox' class="custom-control-input">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">
                 {{comp.nome}}

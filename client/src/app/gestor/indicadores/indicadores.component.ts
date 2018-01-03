@@ -201,6 +201,7 @@ export class IndicadoresComponent implements OnInit {
       window.location.reload()
     })
   }
+
   ngOnInit() {
     this.lara.sessionChecker()
     this.lara.adminOnly()
