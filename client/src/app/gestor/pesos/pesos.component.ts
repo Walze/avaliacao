@@ -35,7 +35,7 @@ export class PesosComponent {
     })
   }
 
-  private _updateInputs(what, then) {
+  private _getInputs(what, then, done: any = false) {
     const els = this.el.nativeElement.querySelectorAll(`[data-${what}]`)
 
     els.forEach((el: HTMLInputElement) => {
@@ -44,6 +44,8 @@ export class PesosComponent {
 
       then(el, comp_id, cargo_id)
     })
+
+    if (done) done()
   }
 
   private _getPesoValue(comp, cargo) {
@@ -55,11 +57,40 @@ export class PesosComponent {
 
   private _displayData() {
     this._getData().then(() => {
-      this._updateInputs('peso', (input, comp, cargo) => input.value = this._getPesoValue(comp, cargo))
-      this._updateInputs('check', (input, comp, cargo) => {
+      this._getInputs('peso', (input, comp, cargo) => input.value = this._getPesoValue(comp, cargo))
+      this._getInputs('check', (input, comp, cargo) => {
         if (this._getPesoValue(comp, cargo)) input.checked = true
       })
       this.loading = false
+    })
+  }
+
+  public post(cargo) {
+    const data = []
+
+    this._getInputs('peso', (input, comp_id, cargo_id) => {
+      if (cargo_id == cargo) {
+
+        let checkboxInput = this.el.nativeElement.querySelector(`[data-check='${comp_id}&${cargo_id}']`)
+
+        if (checkboxInput.checked && input.value)
+          data.push({
+            peso: input.value,
+            comp_id,
+            cargo_id
+          })
+        else if (checkboxInput.checked != input.value) { }
+        //alert('Você deve marcar a competência e digitar um peso')
+
+      }
+
+    }, () => {
+      if (data.length > 0)
+        this.lara.post(data, `cargo_comp_peso/${cargo}`, '', e => {
+          alert('Salvo!')
+        })
+
+      console.log(data)
     })
   }
 }

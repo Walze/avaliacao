@@ -2,15 +2,16 @@
 
 <div [hidden]='loading' class="container mt-5">
   <div class="center justify-content-center">
-    <h2>Pesos</h2>
+    <h2>Avaliações e Pesos</h2>
     <small>
       <i class="text-secondary">
-        Clique nas linhas da tabela para mais detalhes
+        Edite quais competências aparecem nas provas de cada cargo
+        <br /> e dê seus pesos.
       </i>
     </small>
   </div>
   <div class="list-group mt-5">
-    <div *ngFor='let cargo of cargos' class="list-group-item mb-2">
+    <div *ngFor='let cargo of cargos; let i = index' class="list-group-item mb-2">
       <h5 class='mb-3'>
         {{cargo.nome}}
         <small>
@@ -21,7 +22,7 @@
       </h5>
 
       <div class="row">
-        <div class="d-flex col-12 justify-content-between" *ngFor='let comp of competencias'>
+        <div class="d-flex col-12 justify-content-between" *ngFor='let comp of competencias; let i2 = index'>
           <div>
             <label class="custom-control custom-checkbox">
               <input attr.data-check='{{comp.id}}&{{cargo.id}}' type='checkbox' class="custom-control-input">
@@ -37,7 +38,7 @@
         </div>
 
         <div class="col-12">
-          <div class="btn btn-warning col-sm-12 col-md-3 mt-2">Salvar</div>
+          <div class="btn btn-warning col-sm-12 col-md-3 mt-2" (click)='post(cargo.id)'>Salvar</div>
         </div>
 
       </div>

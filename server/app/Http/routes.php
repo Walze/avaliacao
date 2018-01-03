@@ -239,11 +239,12 @@ Route::post('/ind_cargo', function (Request $req) {
 	return $data;
 });
 
-Route::post('/cargo_comp_peso', function (Request $req) {
-	CargoCompPeso::updateOrCreate(
-		['comp_id' => $req->comp_id, 'cargo_id' => cargo_id],
-		['peso' => $req->peso]
-	);
+Route::post('/cargo_comp_peso/{cargo}', function (Request $datas, $cargo) {
+	CargoCompPeso::where('cargo_id', $cargo)->delete();
+
+	foreach ($datas->all() as $index => $data) {
+		CargoCompPeso::create($data);
+	}
 });
 
 Route::get('/cargo_comp_peso', function (Request $req) {
