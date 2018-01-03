@@ -304,6 +304,11 @@ Route::post('/EditAval', function (Request $req) {
 	$aval->media = $req->aval['media'];
 	$aval->save();
 
+	$estag = Estagiario::find($aval->estagiario_id);
+
+	$estag->ultima_aval = $req->data;
+	$estag->save();
+
 	return 'noice';
 });
 
@@ -355,7 +360,6 @@ Route::get('/avaliacao/{cargo_id}', function ($cargo_id) {
 
 	return $avaliacao;
 });
-
 
 Route::post('/avaliar', function (Request $req) {
 	$aval = Avaliacao::create($req->all());
