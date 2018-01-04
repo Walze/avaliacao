@@ -56,11 +56,9 @@ export class LaravelService {
 
   sessionChecker() {
     try {
-      if (!this.cookie.check('userSession')) {
-        this.logged.next(false)
-        this.router.navigate(['/login'])
-      } else {
-        this.logged.next(true)
+      if (!this.cookie.check('userSession')) this.loggout()
+      else {
+        if (!this.logged) this.logged.next(true)
         this.User = JSON.parse(this.cookie.get('userSession'))
       }
     } catch (err) {
@@ -71,8 +69,7 @@ export class LaravelService {
   }
 
   adminOnly() {
-    if (!(this.User.setor_id === 1))
-      this.router.navigate(['/home'])
+    if (this.User.setor_id != 1) this.router.navigate(['/home'])
   }
 
   get User() {
@@ -143,18 +140,17 @@ export class LaravelService {
       .subscribe(res => {
         const resp = res.json()
 
-        //this.User = resp.gestor
-        let rest
         this.User = resp.gestor
         this.User.avaliacoes = resp.avaliacoes
         this.User.nome = this.User.nome.charAt(0).toUpperCase() + this.User.nome.slice(1)
 
         this.cookie.set('userSession', JSON.stringify(this.User))
-        this.router.navigate(['/home'])
         this.logged.next(true)
+        this.router.navigate(['/home'])
       },
       error => {
         this.logged.next(false)
+        this.cookie.deleteAll()
         // document.querySelector('html').innerHTML = error.text()
         alert(JSON.stringify(error.text()))
 
