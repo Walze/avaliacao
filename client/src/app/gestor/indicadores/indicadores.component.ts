@@ -150,7 +150,7 @@ export class IndicadoresComponent implements OnInit {
     this.lara.post(this.comp, 'comp/' + this.id, '', () => alert('Alterado'))
   }
 
-  deletarComp(ind) {
+  deletarComp() {
     if (confirm('Deseja Realmente Apagar?'))
       this.lara.delete(this.comp.id, 'comp/', '/gestor')
   }

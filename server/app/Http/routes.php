@@ -18,7 +18,7 @@ use App\Nota;
 
 
 // Home data
-Route::get('/', function () {
+Route::get('/home', function () {
 	$estag = Estagiario::select(
 		'estagiarios.id',
 		'estagiarios.nome',

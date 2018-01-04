@@ -8,7 +8,7 @@ export class LaravelService {
   @Output() logged: EventEmitter<boolean> = new EventEmitter();
 
   private _User: Gestor
-  private _API = 'http://localhost:8000/';
+  private _API = 'http://talentos.conexaomercado.com.br/avaliacaoDesempenhoServer/';
   private headers = { headers: new Headers({ 'Content-Type': 'application/json' }) }
 
   constructor(
@@ -20,7 +20,7 @@ export class LaravelService {
   }
 
   getFormData(then) {
-    this.http.get('http://localhost:8000/form', this.headers)
+    this.http.get(this._API + 'form', this.headers)
       .subscribe(res => then(res.json()))
   }
 
@@ -80,7 +80,7 @@ export class LaravelService {
   }
 
   estagiarios() {
-    return this.http.get(this._API, this.headers)
+    return this.http.get(this._API + 'home', this.headers)
   }
 
   validate(obj) {
@@ -136,7 +136,7 @@ export class LaravelService {
 
   login(user) {
     this.http
-      .post('http://localhost:8000/login', user, this.headers)
+      .post(this._API + 'login', user, this.headers)
       .subscribe(res => {
         const resp = res.json()
 

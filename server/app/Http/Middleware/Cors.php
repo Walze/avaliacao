@@ -2,7 +2,7 @@
 
 use Closure;
 
-class CORS
+class Cors
 {
 
     /**
