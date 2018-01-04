@@ -47,8 +47,6 @@ export class IndicadoresComponent implements OnInit {
       })
 
     this._getDataFromParams()
-
-    window['dis'] = this
   }
 
   search(word) {

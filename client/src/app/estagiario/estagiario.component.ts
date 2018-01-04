@@ -43,7 +43,6 @@ export class EstagiarioComponent implements OnInit {
 
       this.lara.show('estagiario', this.id).subscribe(res => {
         const data = res.json()
-        console.log(data)
         let avals = data.avaliacoes
 
 
@@ -76,7 +75,6 @@ export class EstagiarioComponent implements OnInit {
   }
 
   handleClick(e) {
-    console.log(e)
   }
 
   ngOnInit() {

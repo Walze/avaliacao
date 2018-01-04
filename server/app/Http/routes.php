@@ -270,9 +270,12 @@ Route::post('/estagiario', function (Request $req) {
 });
 
 Route::delete('/estagiario/{id}', function ($id) {
+	$aval = Avaliacao::where('estagiario_id', $id)->first();
+	Nota::where('aval_id', $aval->id)->delete();
+	Avaliacao::where('estagiario_id', $id)->delete();
 	Estagiario::find($id)->delete();
 
-	return ':ok_hand:';
+	return 'lol';
 });
 
 
@@ -303,11 +306,6 @@ Route::post('/EditAval', function (Request $req) {
 	$aval = Avaliacao::where('id', $req->aval['id'])->first();
 	$aval->media = $req->aval['media'];
 	$aval->save();
-
-	$estag = Estagiario::find($aval->estagiario_id);
-
-	$estag->ultima_aval = $req->data;
-	$estag->save();
 
 	return 'noice';
 });

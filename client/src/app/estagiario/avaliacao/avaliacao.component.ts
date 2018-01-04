@@ -90,6 +90,18 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
     this._atualizarNotaFinal()
   }
 
+  private _atualizarTodasMedias() {
+    // Pegar todos os comds e inds
+    const inputs = this.el.nativeElement.querySelectorAll('[data-indComp]')
+
+    inputs.forEach(el => {
+      const comp = el.dataset.indcomp.split('&')[0]
+      const ind = el.dataset.indcomp.split('&')[1]
+
+      this._atualizarMedias(comp, ind)
+    })
+  }
+
   private _atualizarNotaFinal() {
     const pesosSoma = this.resultadoInputs.reduce((prev, curr: any) => prev + curr.peso, 0)
 
@@ -97,7 +109,7 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
     let pond = this.resultadoInputs
       .reduce((prev, curr: any) => prev + (curr.nota * curr.peso), 0) / pesosSoma
 
-    this.NotaFinal = pond
+    this.NotaFinal = Math.round(pond * 100) / 100
   }
 
   private _atualizarResults() {
@@ -148,10 +160,7 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
         notas: this.resultadoInputs
       }
 
-      console.log(dados)
-      // `/estagiario/${this.estagiario.id}`
       this.lara.post(dados, 'EditAval', `/estagiario/${this.estagiario.id}`, res => {
-        console.log(res)
       })
     } else
       alert('Dê uma nota para todos os indicadores.')
@@ -166,6 +175,7 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
     this._getRouteParamsData(() => {
       this._atualizarNotaFinal()
       this._atualizarResults()
+      this._atualizarTodasMedias()
     })
   }
 }
