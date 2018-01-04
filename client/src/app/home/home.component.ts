@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
       if (e.target.className === 'thead') this.order(e)
     })
 
+    window['dis']=this
   }
 
   search(word) {
@@ -75,7 +76,10 @@ export class HomeComponent implements OnInit {
       .subscribe(res => {
 
         this.estagiarios = this.estagiariosOriginal = res.json()
-        this.estagiarios.map(esta => esta.dias = this.dateDiff(esta.ultima_aval))
+        this.estagiarios.map(esta => {
+          esta.dias = this.dateDiff(esta.ultima_aval)
+          esta.ultima_aval = esta.ultima_aval.split(' ')[0].split('-').reverse().join('/')
+        })
         this.estagiarios = this.estagiariosOriginal
       })
     this.lara.sessionChecker()
