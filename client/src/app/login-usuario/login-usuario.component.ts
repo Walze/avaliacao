@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginUsuarioComponent implements OnInit {
 
-  private usuario = {}
+  public usuario: any = {}
 
   constructor(private lara: LaravelService, private cookie: CookieService, private router: Router) {
     if (cookie.check('userSession')) {

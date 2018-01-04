@@ -1,0 +1,8 @@
+.list-group a {
+    padding: 10px;
+    font-weight: bold
+}
+
+.list-group .list-group-item {
+    padding: 5px;
+}

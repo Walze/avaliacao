@@ -1,0 +1,41 @@
+<br />
+
+<h1 *ngIf="carregando" class="display-3 center">
+  Carregando...
+</h1>
+
+<div *ngIf='!carregando' class="container">
+
+  <h4 class="display-4 small center mb-3">
+    Avaliação Estagiário {{estagiario.nome}}
+  </h4>
+
+  <div *ngFor='let comp of avaliacao' class='mb-3'>
+    <div class="avaliacao" *ngIf='comp.indicadores.length'>
+
+      <div class="list-group">
+        <a class="bg-primary text-white list-group-item list-group-item-action flex-column align-items-center">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{comp.nome}}</h5>
+          </div>
+          <div class="d-flex w-100 justify-content-between">
+            <small class="mb-1">{{comp.descricao}}</small>
+          </div>
+
+        </a>
+        <a *ngFor='let ind of comp.indicadores; let i2 = index' class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <h6 class="mb-1">{{ind.nome}}</h6>
+            </div>
+
+            <div class='col-2'>
+              <input type="text" class='form-control'>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { LaravelService } from '../../laravel.service';
 import { ActivatedRoute } from '@angular/router';
 import { Estagiario } from '../estagiario';
 import { Competencias } from './AvalComps';
-import { ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-avaliar',

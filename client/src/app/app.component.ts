@@ -1,6 +1,6 @@
 import { Component, Input, ChangeDetectorRef, OnInit } from '@angular/core'
 import { CookieService } from 'ngx-cookie-service'
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute, RouterEvent } from '@angular/router'
 import { LaravelService } from './laravel.service'
 
 @Component({
@@ -11,14 +11,21 @@ import { LaravelService } from './laravel.service'
 export class AppComponent implements OnInit {
   user: any = false
 
+  hideNav = false
   constructor(
     private cookie: CookieService,
     private router: Router,
+    private activRoute: ActivatedRoute,
     private lara: LaravelService
   ) {
     // console.log('Cookie:' + cookie.get('userSession') || 'No Cookie')
 
     if (cookie.check('userSession')) this.user = this.lara.User
+
+    this.router.events.subscribe((val: RouterEvent) => {
+      if (val.url == '/estagiario/1/imprimir') this.hideNav = true
+      else this.hideNav = false
+    })
   }
 
   ngOnInit() {
@@ -26,6 +33,8 @@ export class AppComponent implements OnInit {
       if (e) this.user = this.lara.User
       else this.user = false
     })
+
+
   }
 
   sair(e) {

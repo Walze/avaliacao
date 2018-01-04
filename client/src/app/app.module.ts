@@ -18,7 +18,8 @@ import { AvaliarComponent } from './estagiario/avaliar/avaliar.component'
 import { AvaliacaoComponent } from './estagiario/avaliacao/avaliacao.component'
 import { GestorComponent } from './gestor/gestor.component'
 import { IndicadoresComponent } from './gestor/indicadores/indicadores.component'
-import { PesosComponent } from './gestor/pesos/pesos.component'
+import { PesosComponent } from './gestor/pesos/pesos.component';
+import { ImprimirComponent } from './estagiario/imprimir/imprimir.component'
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginUsuarioComponent },
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   { path: 'gestor/indicador/:id', component: IndicadoresComponent },
 
   { path: 'cad-estagiario', component: CadEstagiarioComponent },
+  { path: 'estagiario/:id/imprimir', component: ImprimirComponent },
   { path: 'estagiario/:id', component: EstagiarioComponent },
   { path: 'estagiario/:id/avaliar', component: AvaliarComponent },
   { path: 'estagiario/:estagiario_id/avaliacao/:aval_id', component: AvaliacaoComponent },
@@ -51,6 +53,7 @@ const appRoutes: Routes = [
     GestorComponent,
     IndicadoresComponent,
     PesosComponent,
+    ImprimirComponent,
   ],
   imports: [
     NgbModule.forRoot(),
