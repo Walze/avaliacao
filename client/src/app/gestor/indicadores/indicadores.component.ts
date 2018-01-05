@@ -180,7 +180,7 @@ export class IndicadoresComponent implements OnInit {
 
     if (!indi) this.ind_cargos.push(postData)
 
-    this.lara.post(postData, 'ind_cargo')
+    this.lara.post(postData, 'ind_cargo', '', false, true)
   }
 
   saveNewInd() {
@@ -224,7 +224,7 @@ export class IndicadoresComponent implements OnInit {
               else if (a.nome > b.nome) return 1
               return 0
             })
-            
+
           this._addComp(() =>
             this._addCargos(() =>
               this.showHereOnly(null, () => this.loading = false)
