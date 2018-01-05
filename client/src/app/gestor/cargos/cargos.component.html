@@ -1,3 +1,72 @@
-<p>
-  cargos works!
-</p>
+<h1 class='mt-5 center' *ngIf='loading'>Carregando...</h1>
+
+<div [hidden]='loading' class="container mt-5">
+  <div class="center justify-content-center">
+    <h2>Cargos</h2>
+    <small>
+      <i class="text-secondary">
+        Edite, Crie ou Delete cargos.
+        <br /> E veja suas avaliações.
+      </i>
+    </small>
+  </div>
+
+
+  <div class="mt-5 d-flex justify-content-center col-12">
+    <div class="list-group-item mb-5 col-md-6 col-sm-12 ">
+      <div class="row mb-2">
+        <h4 class="center col-12">Criar Cargo</h4>
+        <br />
+        <div class="col-12">
+          <label>
+            <i>Nome</i>
+          </label>
+          <input [(ngModel)]='newCargo.nome' type="text" class="form-control form-control-lg">
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-sm-12">
+          <div class="btn btn-success col-sm-12 mt-2" (click)='post()'>Salvar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="list-group">
+    <div *ngFor='let cargoLoop of cargos; let i = index' class="list-group-item mb-5">
+      <div class="row">
+        <div class="col-6">
+          <label>
+            <i>Nome</i>
+          </label>
+          <input #input [value]='cargoLoop.nome' type="text" class="form-control form-control-lg">
+        </div>
+        <div class="col-6">
+          <label>
+            <i>Duração em meses</i>
+          </label>
+          <input #input2 [value]='cargoLoop.duracao_meses' type="number" class="form-control form-control-lg">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <div class="btn btn-success col-sm-12 mt-2" (click)='put(cargoLoop, input.value, input2.value)'>Salvar</div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+          <div class="btn btn-info col-sm-12 mt-2" [routerLink]="['/imprimir/', cargoLoop.id]">Ver avaliação desse cargo</div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+          <div class="btn btn-danger col-sm-12 mt-2" (click)='delete(cargoLoop.id)'>Deletar</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
