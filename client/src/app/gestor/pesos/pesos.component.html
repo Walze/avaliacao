@@ -11,9 +11,9 @@
     </small>
   </div>
   <div class="list-group mt-5">
-    <div *ngFor='let cargo of cargos; let i = index' class="list-group-item mb-2">
+    <div *ngFor='let cargoLoop of cargos; let i = index' class="list-group-item mb-2">
       <h5 class='mb-3'>
-        {{cargo.nome}}
+        {{cargoLoop.nome}}
         <small>
           <i class="text-secondary">
             - cargo
@@ -25,7 +25,7 @@
         <div class="d-flex col-12 justify-content-between" *ngFor='let comp of competencias; let i2 = index'>
           <div>
             <label class="custom-control custom-checkbox">
-              <input attr.data-check='{{comp.id}}&{{cargo.id}}' type='checkbox' class="custom-control-input">
+              <input attr.data-check='{{comp.id}}&{{cargoLoop.id}}' type='checkbox' class="custom-control-input">
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">
                 {{comp.nome}}
@@ -33,12 +33,12 @@
             </label>
           </div>
           <div class='col-2'>
-            <input attr.data-peso='{{comp.id}}&{{cargo.id}}' type="number" class='peso-input form-control'>
+            <input attr.data-peso='{{comp.id}}&{{cargoLoop.id}}' type="number" class='peso-input form-control'>
           </div>
         </div>
 
         <div class="col-12">
-          <div class="btn btn-warning col-sm-12 col-md-3 mt-2" (click)='post(cargo.id)'>Salvar</div>
+          <div class="btn btn-warning col-sm-12 col-md-3 mt-2" (click)='post(cargoLoop.id)'>Salvar</div>
         </div>
 
       </div>

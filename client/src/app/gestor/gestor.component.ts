@@ -58,7 +58,7 @@ export class GestorComponent implements OnInit {
       this.localidades = res.localidades
       this.setores = res.setores.filter(setor => { return setor.nome != 'Admin' })
     })
-    
+
     if (this.gestor.setor_id == 1)
       this.lara.getComps()
         .then((res: Response) => {
@@ -69,7 +69,7 @@ export class GestorComponent implements OnInit {
   }
 
   alterar() {
-    this.lara.post(this.gestor, 'editarGestor')
+    this.lara.post(this.gestor, 'editarGestor/' + this.gestor.id, '', user => { })
     this.lara.loggout()
   }
 

@@ -12,7 +12,7 @@ export class CargosComponent {
 
   public cargos
 
-  public newCargo: object = {
+  public newCargo: any = {
     nome: '',
     duracao_meses: 0
   }

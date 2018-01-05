@@ -23,8 +23,6 @@ export class HomeComponent implements OnInit {
     render.listen(el.nativeElement, 'click', e => {
       if (e.target.className === 'thead') this.order(e)
     })
-
-    window['dis']=this
   }
 
   search(word) {

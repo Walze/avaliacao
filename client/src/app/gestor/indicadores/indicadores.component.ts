@@ -10,7 +10,7 @@ import { Indicador } from './indicador'
   styleUrls: ['./indicadores.component.css']
 })
 export class IndicadoresComponent implements OnInit {
-  // cargo_comp_peso: any;
+  //cargo_comp_peso: any;
 
   public id: number
 

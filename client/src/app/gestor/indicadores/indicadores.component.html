@@ -17,16 +17,6 @@
         <textarea [(ngModel)]="comp.descricao" class="form-control" placeholder="Digite uma Descrição"></textarea>
       </div>
 
-      <div class="row col-12">
-        <div class="col-6" *ngFor='let rela of cargo_comp_peso'>
-          <label class="custom-control custom-checkbox">
-            <input type='checkbox' class="custom-control-input">
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">{{rela.cargo_id}}</span>
-          </label>
-        </div>
-      </div>
-
       <br />
 
       <div class="col-12 form-group">

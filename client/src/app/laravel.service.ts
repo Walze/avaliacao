@@ -80,7 +80,11 @@ export class LaravelService {
   }
 
   estagiarios() {
-    return this.http.get(this._API + 'home', this.headers)
+    if (this.User.setor_id != 1)
+      return this.http.get(this._API + 'home/' + this.User.setor_id, this.headers)
+    else
+      return this.http.get(this._API + 'home', this.headers)
+
   }
 
   validate(obj) {
