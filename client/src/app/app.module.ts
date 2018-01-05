@@ -31,7 +31,7 @@ const appRoutes: Routes = [
   { path: 'gestor/indicador/:id', component: IndicadoresComponent },
 
   { path: 'cad-estagiario', component: CadEstagiarioComponent },
-  { path: 'estagiario/:id/imprimir', component: ImprimirComponent },
+  { path: 'imprimir/:cargo', component: ImprimirComponent },
   { path: 'estagiario/:id', component: EstagiarioComponent },
   { path: 'estagiario/:id/avaliar', component: AvaliarComponent },
   { path: 'estagiario/:estagiario_id/avaliacao/:aval_id', component: AvaliacaoComponent },

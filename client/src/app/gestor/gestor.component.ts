@@ -52,18 +52,20 @@ export class GestorComponent implements OnInit {
   }
 
   constructor(private lara: LaravelService) {
+    this.gestor = this.lara.User
+
     this.lara.getFormData(res => {
       this.localidades = res.localidades
-      console.log(res.setores)
       this.setores = res.setores.filter(setor => { return setor.nome != 'Admin' })
     })
-
-    this.lara.getComps()
-      .then((res: Response) => {
-        let data: any = res.json()
-        this.competencias = data.competencias
-        this.indicadores = data.indicadores
-      })
+    
+    if (this.gestor.setor_id == 1)
+      this.lara.getComps()
+        .then((res: Response) => {
+          let data: any = res.json()
+          this.competencias = data.competencias
+          this.indicadores = data.indicadores
+        })
   }
 
   alterar() {
@@ -73,12 +75,14 @@ export class GestorComponent implements OnInit {
 
   criarComp() {
     new Promise(() => {
-      this.competencias.push(this.novaComp)
-      this.lara.post(this.novaComp, 'comp', '/gestor')
+      this.lara.post(this.novaComp, 'comp', '/gestor', id => {
+        this.novaComp.id = id.json()
+        this.competencias.push(this.novaComp)
+      })
     }).then(() => {
       this.novaComp.nome = ''
       this.novaComp.descricao = ''
-      window.location.reload()
+      // window.location.reload()
     })
   }
 

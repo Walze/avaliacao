@@ -10,7 +10,7 @@ import { Indicador } from './indicador'
   styleUrls: ['./indicadores.component.css']
 })
 export class IndicadoresComponent implements OnInit {
-  cargo_comp_peso: any;
+  // cargo_comp_peso: any;
 
   public id: number
 
@@ -226,7 +226,7 @@ export class IndicadoresComponent implements OnInit {
           this.addCargos()
           this.showHereOnly()
 
-          this.lara.show('cargo_comp_peso', this.comp.id).subscribe(res => this.cargo_comp_peso = res.json())
+          // this.lara.show('cargo_comp_peso', this.comp.id).subscribe(res => this.cargo_comp_peso = res.json())
         })
 
     })

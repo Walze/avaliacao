@@ -23,8 +23,10 @@ export class AppComponent implements OnInit {
     if (cookie.check('userSession')) this.user = this.lara.User
 
     this.router.events.subscribe((val: RouterEvent) => {
-      if (val.url == '/estagiario/1/imprimir') this.hideNav = true
-      else this.hideNav = false
+      console.log(val.url)
+      if (typeof val.url != 'undefined')
+        if (val.url.indexOf('/imprimir') > -1) this.hideNav = true
+        else this.hideNav = false
     })
   }
 

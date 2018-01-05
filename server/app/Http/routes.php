@@ -180,7 +180,8 @@ Route::get('/comp', function () {
 });
 
 Route::post('/comp', function (Request $req) {
-	Competencia::create($req->all());
+	$comp = Competencia::create($req->all());
+	return $comp->id;
 });
 
 Route::post('/comp/{id}', function (Request $req, $id) {
