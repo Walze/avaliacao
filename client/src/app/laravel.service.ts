@@ -87,12 +87,13 @@ export class LaravelService {
 
   }
 
-  validate(obj) {
+  validate(obj, dont) {
     const errors = []
 
-    for (let prop in obj)
-      if (obj[prop] === '' || obj[prop] == '0')
-        errors.push(prop[0].toUpperCase() + prop.slice(1).replace('_id', ''))
+    if (!dont)
+      for (let prop in obj)
+        if (obj[prop] === '' || obj[prop] == '0')
+          errors.push(prop[0].toUpperCase() + prop.slice(1).replace('_id', ''))
 
     return new Promise(res => {
       if (!errors.length)
@@ -102,8 +103,8 @@ export class LaravelService {
     })
   }
 
-  post(what, where, redirectTo = '', func = null) {
-    this.validate(what)
+  post(what, where, redirectTo = '', func = null, dont = false) {
+    this.validate(what, dont)
       .then(() => {
         this.http
           .post(this._API + where, what, this.headers)

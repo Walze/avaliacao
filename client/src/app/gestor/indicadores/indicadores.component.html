@@ -1,4 +1,8 @@
-<div class="container">
+<h4 class="center mt-5" *ngIf='loading'>
+  Carregando...
+</h4>
+
+<div class="container" [hidden]='loading'>
 
   <div class="d-flex justify-content-center">
     <div class="col-md-8 col-sm-12">

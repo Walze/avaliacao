@@ -11,7 +11,7 @@ import { Indicador } from './indicador'
 })
 export class IndicadoresComponent implements OnInit {
   //cargo_comp_peso: any;
-
+  loading = true
   public id: number
 
   public comps: Competencia[]
@@ -34,19 +34,18 @@ export class IndicadoresComponent implements OnInit {
   showCurrent: boolean = true
   sort_word
   constructor(private lara: LaravelService, private route: ActivatedRoute) {
-    this.lara.all('ind_rels')
-      .then((res: any) => {
-        this.ind_comps = res.json().ind_comps
-        this.ind_cargos = res.json().ind_cargos
-      })
-
     this.lara.all('form')
       .then((res: any) => {
         let data = res.json()
         this.cargos = data.cargos
-      })
 
-    this._getDataFromParams()
+        this.lara.all('ind_rels')
+          .then((res: any) => {
+            this.ind_comps = res.json().ind_comps
+            this.ind_cargos = res.json().ind_cargos
+            this._getDataFromParams()
+          })
+      })
   }
 
   search(word) {
@@ -62,7 +61,7 @@ export class IndicadoresComponent implements OnInit {
 
   }
 
-  showHereOnly(e = null) {
+  showHereOnly(e = null, then: any = false) {
     if (e !== null) this.showCurrent = e.target.checked
 
     if (this.showCurrent) {
@@ -77,6 +76,7 @@ export class IndicadoresComponent implements OnInit {
       this.indicadores = this._indicadoresOrig.filter(i => whiteList.includes(i.id))
 
     } else this.indicadores = this._indicadoresOrig
+    if (then) then()
   }
 
   openInds(e, ind) {
@@ -123,7 +123,7 @@ export class IndicadoresComponent implements OnInit {
     }
   }
 
-  private addComp() {
+  private _addComp(then: any = false) {
     this.indicadores = this._indicadoresOrig.map(i => {
       let comp = this.ind_comps.filter(ic => ic.indicador_id == i.id)[0]
 
@@ -133,9 +133,10 @@ export class IndicadoresComponent implements OnInit {
       return i
     })
     this._indicadoresOrig = this.indicadores
+    if (then) then()
   }
 
-  private addCargos() {
+  private _addCargos(then: any = false) {
     this.indicadores = this._indicadoresOrig.map(i => {
       i.cargo_id = this.ind_cargos
         .filter(ic => ic.indicador_id == i.id)
@@ -144,6 +145,7 @@ export class IndicadoresComponent implements OnInit {
       return i
     })
     this._indicadoresOrig = this.indicadores
+    if (then) then()
   }
 
   alterarComp() {
@@ -222,11 +224,13 @@ export class IndicadoresComponent implements OnInit {
               else if (a.nome > b.nome) return 1
               return 0
             })
-          this.addComp()
-          this.addCargos()
-          this.showHereOnly()
+            
+          this._addComp(() =>
+            this._addCargos(() =>
+              this.showHereOnly(null, () => this.loading = false)
+            )
+          )
 
-          // this.lara.show('cargo_comp_peso', this.comp.id).subscribe(res => this.cargo_comp_peso = res.json())
         })
 
     })
