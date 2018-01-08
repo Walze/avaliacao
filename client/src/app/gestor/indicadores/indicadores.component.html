@@ -1,4 +1,4 @@
-<h4 class="center mt-5" *ngIf='loading'>
+<h4 class="center mt-5" [hidden]='!loading'>
   Carregando...
 </h4>
 
@@ -32,6 +32,7 @@
     </div>
   </div>
 
+  <!-- Criar  -->
   <div class="col-sm-12">
     <br />
     <h3 class="center">
@@ -89,7 +90,7 @@
 
 
 
-  <div *ngIf='indicadores' class="row">
+  <div [hidden]='!indicadores' class="row">
 
     <h3 class="center col-12">
       Indicadores
@@ -134,8 +135,7 @@
 
             <div *ngFor='let comp of comps' class="col-md-6 col-sm-12">
               <label class="custom-control custom-radio">
-                <input [checked]='ind.comp_id == comp.id' (click)='handleRadio(ind.id, comp.id)' type="radio" name={{indi}} class="custom-control-input"
-                  value='{{comp.id}}'>
+                <input [checked]='ind.comp_id === comp.id' (click)='handleRadio(ind.id, comp.id)' type="radio" name={{indi}} class="custom-control-input">
                 <span class="custom-control-indicator"></span>
                 <span class="custom-control-description">{{comp.nome}}</span>
               </label>

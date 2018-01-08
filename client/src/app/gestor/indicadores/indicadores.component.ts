@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ApplicationRef } from '@angular/core'
 import { LaravelService } from '../../laravel.service'
 import { ActivatedRoute } from '@angular/router'
 import { Competencia } from '../competencia'
 import { Indicador } from './indicador'
+import { log } from 'util';
 
 @Component({
   selector: 'app-indicadores',
@@ -33,54 +34,58 @@ export class IndicadoresComponent implements OnInit {
 
   showCurrent: boolean = true
   sort_word
-  constructor(private lara: LaravelService, private route: ActivatedRoute) {
-    this.lara.all('form')
-      .then((res: any) => {
-        let data = res.json()
-        this.cargos = data.cargos
+  constructor(
+    private lara: LaravelService,
+    private route: ActivatedRoute,
+    private app: ApplicationRef
+  ) {
+    this.lara.all('form').then((res: any) => {
+      let data = res.json()
+      this.cargos = data.cargos
 
-        this.lara.all('ind_rels')
-          .then((res: any) => {
-            this.ind_comps = res.json().ind_comps
-            this.ind_cargos = res.json().ind_cargos
-            this._getDataFromParams()
-          })
-      })
+      this.lara.all('ind_rels')
+        .then((res: any) => {
+          this.ind_comps = res.json().ind_comps
+          this.ind_cargos = res.json().ind_cargos
+          this._getDataFromParams()
+        })
+    })
+
+    window['dis'] = this
   }
 
   search(word) {
-    this.showHereOnly()
-    //this.showCurrent = false
-
-
-    this.indicadores = this.indicadores
-      .filter(ind =>
+    this.showHereOnly(null, () => {
+      this.indicadores = this.indicadores.filter(ind =>
         Object.keys(ind)
-          .some(k => (ind[k].toString().toLowerCase().indexOf(word) !== -1))
+          .some(k => (String(ind[k]).toLowerCase().indexOf(word) != -1))
       )
-
+      this.app.tick()
+    })
   }
 
   showHereOnly(e = null, then: any = false) {
+    console.log(e, this.showCurrent)
     if (e !== null) this.showCurrent = e.target.checked
-
     if (this.showCurrent) {
       const whiteList = []
 
       this.ind_comps.map(i => {
-        if (i.comp_id == this.id)
-          whiteList.push(i.indicador_id)
+        if (i.comp_id == this.id) whiteList.push(i.indicador_id)
       })
-      this.indicadores = new Array
-
+      this.indicadores = []
       this.indicadores = this._indicadoresOrig.filter(i => whiteList.includes(i.id))
 
-    } else this.indicadores = this._indicadoresOrig
+    } else {
+      this.indicadores = this._indicadoresOrig
+      console.log(this._indicadoresOrig)
+    }
+
     if (then) then()
   }
 
   openInds(e, ind) {
-    if (e.target.nodeName == 'BUTTON') return
+    if (e.target.nodeName == 'BUTTON') return false
 
     let edits: HTMLElement = e.target.closest('.list-group-item').querySelector('.edits')
     let toggle: Array<HTMLElement> = e.target.closest('.list-group-item').querySelectorAll('.toggle')
@@ -148,6 +153,10 @@ export class IndicadoresComponent implements OnInit {
     if (then) then()
   }
 
+  check(comp, ind) {
+    return this.ind_comps.some(el => el.comp_id == comp.id && el.indicador_id == ind.id)
+  }
+
   alterarComp() {
     this.lara.post(this.comp, 'comp/' + this.id, '', () => alert('Alterado'))
   }
@@ -207,6 +216,17 @@ export class IndicadoresComponent implements OnInit {
     this.lara.adminOnly()
   }
 
+  private _renderList(cb: any = false) {
+    this._addComp(() =>
+      this._addCargos(() =>
+        this.showHereOnly(null, () => {
+          if (cb) cb()
+          this.loading = false
+        })
+      )
+    )
+  }
+
   private _getDataFromParams() {
     this.route.params.subscribe(params => {
       this.id = params.id
@@ -225,14 +245,8 @@ export class IndicadoresComponent implements OnInit {
               return 0
             })
 
-          this._addComp(() =>
-            this._addCargos(() =>
-              this.showHereOnly(null, () => this.loading = false)
-            )
-          )
-
+          this._renderList()
         })
-
     })
   }
 
