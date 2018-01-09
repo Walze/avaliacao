@@ -51,7 +51,8 @@
 
         <div *ngFor='let comp of comps' class="col-md-6 col-sm-12">
           <label class="custom-control custom-radio">
-            <input [(ngModel)]='newInd.comp' name="criarIndRadio" type="radio" class="custom-control-input" value='{{comp.id}}'>
+            <input [(ngModel)]='newInd.comp' name="criarIndRadio" type="radio" class="custom-control-input"
+              value='{{comp.id}}'>
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">{{comp.nome}}</span>
           </label>

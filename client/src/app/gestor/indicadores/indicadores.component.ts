@@ -28,7 +28,7 @@ export class IndicadoresComponent implements OnInit {
   newInd = {
     ind: '',
     cargos: [],
-    comp: 0
+    comp: this.id
   }
 
   thisComp = false
@@ -91,6 +91,7 @@ export class IndicadoresComponent implements OnInit {
   private _getDataFromParams() {
     this.route.params.subscribe(params => {
       this.id = params.id
+      this.newInd.comp = this.id
 
       this.lara.getIndsComp(this.id).then((res: Response) => {
         let data: any = res.json()
