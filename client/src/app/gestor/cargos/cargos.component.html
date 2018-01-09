@@ -17,11 +17,17 @@
       <div class="row mb-2">
         <h4 class="center col-12">Criar Cargo</h4>
         <br />
-        <div class="col-12">
+        <div class="col-12 mb-3">
           <label>
             <i>Nome</i>
           </label>
           <input [(ngModel)]='newCargo.nome' type="text" class="form-control form-control-lg">
+        </div>
+        <div class="col-12">
+          <label>
+            <i>Duração em Meses</i>
+          </label>
+          <input [(ngModel)]='newCargo.duracao_meses' type="number" class="form-control form-control-lg">
         </div>
       </div>
 
