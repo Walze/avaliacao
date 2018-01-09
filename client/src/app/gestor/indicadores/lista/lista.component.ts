@@ -21,11 +21,7 @@ export class ListaComponent implements OnChanges {
   @Input() private ind_comps = []
   @Input() private ind_cargos = []
 
-  newInd = {
-    ind: '',
-    cargos: [],
-    comp: 0
-  }
+  placeHolder: any
 
   constructor(
     private lara: LaravelService,

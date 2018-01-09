@@ -24,13 +24,12 @@ export class CargosComponent {
       this.loading = false
     })
   }
-  
+
   post() {
-    console.log(this.newCargo)
-    /*this.lara.post(this.newCargo, 'cargo', '', res => {
+    this.lara.post(this.newCargo, 'cargo', '', res => {
       alert('Salvo')
       window.location.reload()
-    })*/
+    })
   }
 
   put(cargo, input, input2) {
