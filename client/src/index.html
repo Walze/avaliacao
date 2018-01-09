@@ -25,8 +25,19 @@
     .display-4 {
       font-size: 3rem !important
     }
+
     .display-4.small {
       font-size: 2rem !important
+    }
+
+    @media (max-width: 570px) {
+      .table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+      }
     }
   </style>
 </head>

@@ -1,7 +1,7 @@
 <nav *ngIf="user?.nome && !hideNav">
   <div class="container">
 
-    <ul class="nav">
+    <ul class="nav d-flex justify-content-between">
       <li class="nav-item">
         <ul class="nav">
           <li class="nav-item">
@@ -17,7 +17,7 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item user">
+      <li class="nav-item">
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link active" routerLink="/gestor">
