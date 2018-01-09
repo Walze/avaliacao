@@ -88,91 +88,33 @@
   <hr />
   <br />
 
-
-
-  <div [hidden]='!indicadores' class="row">
-
+  <div class="row">
     <h3 class="center col-12">
       Indicadores
     </h3>
     <br />
+    <br />
 
-    <div class="row">
-      <div class="col-12">
-        <label class="custom-control custom-checkbox">
-          <input (click)='showHereOnly($event)' [(ngModel)]='showCurrent' type="checkbox" class="custom-control-input">
-          <span class="custom-control-indicator"></span>
-          <span class="custom-control-description">Mostrar somente os indicadores desta competência</span>
-        </label>
-      </div>
-
-      <br />
-      <br />
-
-      <div class="col-md-5 col-sm-12">
-        <input [ngModel]="sort_word" (ngModelChange)="search($event)" class="form-control form-control-sm" placeholder="Procurar"
-        />
-      </div>
+    <div class="col-12">
+      <label class="custom-control custom-checkbox">
+        <input [(ngModel)]='thisComp' type="checkbox" class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Mostrar somente os indicadores desta competência</span>
+      </label>
     </div>
+  </div>
 
-    <ul class="list-group col-12" *ngFor='let ind of indicadores; let indi = index'>
-      <li class="list-group-item" (click)='openInds($event, ind)'>
-        <div class="heading d-flex justify-content-between align-items-center">
+  <div *ngIf='!thisComp'>
+    <lista-indicadores [INDICADORES]='_indicadoresOrig' [comps]='comps' [cargos]='cargos' [id]='id' [ind_cargos]='ind_cargos'
+      [ind_comps]='ind_comps'>
+      Carregando...
+    </lista-indicadores>
+  </div>
 
-          <input id="indID" [(ngModel)]='ind.nome' (keyup.enter)='closeInds($event); saveIndNome(ind)' style="display:none" class="toggle form-control mr-2"
-            value='{{ind.nome}}' type="text">
-          <b class='toggle'>
-            {{ind.nome}}
-          </b>
-          <span class='d-flex align-middle align-items-center'>#{{ind.id}}</span>
-        </div>
-
-        <div class="edits">
-          <br>
-          <div class="row">
-            <h6 class="col-12">Competência</h6>
-            <br>
-
-            <div *ngFor='let comp of comps' class="col-md-6 col-sm-12">
-              <label class="custom-control custom-radio">
-                <input [checked]='ind.comp_id === comp.id' (click)='handleRadio(ind.id, comp.id)' type="radio" name={{indi}} class="custom-control-input">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">{{comp.nome}}</span>
-              </label>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <h6 class="col-12">Cargos</h6>
-            <br>
-
-            <div *ngFor='let cargo of cargos' class="col-md-6 col-sm-12">
-              <label class="custom-control custom-checkbox">
-                <input [checked]='ind.cargo_id.includes(cargo.id)' (click)='handleCheck(ind.id, cargo.id, $event.target.checked)' type="checkbox"
-                  name={{indi}} class="custom-control-input" value='{{cargo.id}}'>
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">{{cargo.nome}}</span>
-              </label>
-            </div>
-            <br />
-            <br />
-
-            <div class="col-12 row d-flex justify-content-around">
-
-              <button (click)='saveIndNome(ind)' (click)='closeInds($event.target.parentElement, ind)' class="btn btn-warning col-sm-12 col-md-5">Fechar</button>
-
-              <button id='delete-ind' (click)='deletarInd($event, ind)' class="btn btn-danger col-sm-12 col-md-5">Deletar</button>
-
-            </div>
-            <br />
-            <br />
-
-          </div>
-
-        </div>
-      </li>
-
-    </ul>
+  <div *ngIf='thisComp'>
+    <lista-indicadores [INDICADORES]='_thisCompInds' [comps]='comps' [cargos]='cargos' [id]='id' [ind_cargos]='ind_cargos' [ind_comps]='ind_comps'>
+      Carregando...
+    </lista-indicadores>
   </div>
 
 </div>

@@ -20,7 +20,8 @@ import { GestorComponent } from './gestor/gestor.component'
 import { IndicadoresComponent } from './gestor/indicadores/indicadores.component'
 import { PesosComponent } from './gestor/pesos/pesos.component';
 import { ImprimirComponent } from './estagiario/imprimir/imprimir.component';
-import { CargosComponent } from './gestor/cargos/cargos.component'
+import { CargosComponent } from './gestor/cargos/cargos.component';
+import { ListaComponent } from './gestor/indicadores/lista/lista.component'
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginUsuarioComponent },
@@ -57,6 +58,7 @@ const appRoutes: Routes = [
     PesosComponent,
     ImprimirComponent,
     CargosComponent,
+    ListaComponent,
   ],
   imports: [
     NgbModule.forRoot(),

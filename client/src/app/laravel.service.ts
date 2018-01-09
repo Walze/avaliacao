@@ -58,8 +58,10 @@ export class LaravelService {
     try {
       if (!this.cookie.check('userSession')) this.loggout()
       else {
-        if (!this.logged) this.logged.next(true)
-        this.User = JSON.parse(this.cookie.get('userSession'))
+        if (JSON.stringify(this.User) != this.cookie.get('userSession')) {
+          if (!this.logged) this.logged.next(true)
+          this.User = JSON.parse(this.cookie.get('userSession'))
+        }
       }
     } catch (err) {
       this.logged.next(false)
