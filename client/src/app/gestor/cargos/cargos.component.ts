@@ -14,7 +14,7 @@ export class CargosComponent {
 
   public newCargo: any = {
     nome: '',
-    duracao_meses: 0
+    duracao_meses: 6
   }
 
   constructor(private lara: LaravelService) {

@@ -16,6 +16,8 @@ export class ImprimirComponent {
 
   private id
 
+  cargo
+
   constructor(
     private lara: LaravelService,
     private route: ActivatedRoute,
@@ -28,8 +30,12 @@ export class ImprimirComponent {
     this.route.params.subscribe(params => {
       this.id = params.cargo
       this.lara.show('avaliacao', this.id).subscribe(res => {
-        this.carregando = false
-        this.avaliacao = res.json()
+        this.lara.getFormData(then => {
+          this.avaliacao = res.json()
+
+          this.cargo = then.cargos.find(cargo => cargo.id == this.id).nome
+          this.carregando = false
+        })
       })
     })
   }
