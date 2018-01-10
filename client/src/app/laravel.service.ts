@@ -5,10 +5,10 @@ import { Router } from '@angular/router'
 import { Gestor } from './gestor/gestor'
 @Injectable()
 export class LaravelService {
-  @Output() logged: EventEmitter<boolean> = new EventEmitter();
+  @Output() logged: EventEmitter<boolean> = new EventEmitter()
 
   private _User: Gestor
-  //private _API = API_URL_HERE;
+  private _API = 'API_URL_HERE'
   private headers = { headers: new Headers({ 'Content-Type': 'application/json' }) }
 
   constructor(
@@ -138,7 +138,7 @@ export class LaravelService {
   }
 
   show(where, id) {
-    return this.http.get(`${this._API}${where}/${id}`, this.headers);
+    return this.http.get(`${this._API}${where}/${id}`, this.headers)
   }
 
   login(user) {
