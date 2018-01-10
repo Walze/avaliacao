@@ -8,7 +8,7 @@ export class LaravelService {
   @Output() logged: EventEmitter<boolean> = new EventEmitter();
 
   private _User: Gestor
-  private _API = 'http://talentos.conexaomercado.com.br/avaliacaoDesempenhoServer/';
+  //private _API = API_URL_HERE;
   private headers = { headers: new Headers({ 'Content-Type': 'application/json' }) }
 
   constructor(
