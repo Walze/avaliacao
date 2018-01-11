@@ -19,16 +19,6 @@
 
   <br />
 
-  <div class="d-flex w-100 justify-content-between">
-    <button class="btn btn-primary" (click)='salvarResult()'>Salvar</button>
-
-    <h4>Média Final:
-      <span id='media-pond'>{{NotaFinal}}</span>
-    </h4>
-  </div>
-
-  <br />
-
   <div *ngFor='let comp of avaliacao'>
     <div class="avaliacao" *ngIf='comp.indicadores.length'>
 
@@ -68,9 +58,9 @@
 
       </div>
       <br>
-      <br>
     </div>
   </div>
+
 
   <div class="d-flex w-100 justify-content-between">
     <button class="btn btn-primary" (click)='salvarResult()'>Salvar</button>
@@ -80,6 +70,7 @@
     </h4>
   </div>
 
+  <button class="mt-4 btn btn-info col-12" [routerLink]="['/imprimir/', estagiario.cargo_id, estagiario.id, _ids.aval]">Imprimir Prova</button>
   <br />
   <br />
 

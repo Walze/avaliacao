@@ -11,7 +11,7 @@ import { LaravelService } from '../../laravel.service'
 })
 export class AvaliacaoComponent implements OnInit, AfterViewInit {
 
-  private _ids = {
+  public _ids = {
     estag: 0,
     aval: 0
   }
@@ -41,7 +41,6 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
   }
 
   private _getRouteParamsData(then) {
-
     this.route.params.subscribe(params => {
       this._ids.estag = params.estagiario_id
       this._ids.aval = params.aval_id

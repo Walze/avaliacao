@@ -1,14 +1,19 @@
-<br />
-
-<h1 *ngIf="carregando" class="display-3 center">
+<h1 [hidden]="!carregando" class="display-3 center">
   Carregando...
 </h1>
+<div [hidden]='carregando' class="container">
 
-<div *ngIf='!carregando' class="container">
+  <h3 class="center mb-3">
+    Avaliação de Desempenho por Competências
+  </h3>
 
-  <h4 class="display-4 small center mb-3">
-    Avaliação {{cargo}}
-  </h4>
+  <div *ngIf='estag' class='mb-3 mt-4'>
+    <h6>
+      Nome: {{estag.nome}}
+      <br> Cargo: {{cargo}}
+      <br>
+    </h6>
+  </div>
 
   <div *ngFor='let comp of avaliacao' class='mb-3'>
     <div class="avaliacao">
@@ -19,7 +24,9 @@
             <h5 class="mb-1">{{comp.nome}}</h5>
           </div>
           <div class="d-flex w-100 justify-content-between">
-            <small class="mb-1">{{comp.descricao}}</small>
+            <div class="row col-10">
+              <small class="mb-1">{{comp.descricao}}</small>
+            </div>
             <small>Peso: {{comp.peso}}</small>
           </div>
 
@@ -31,12 +38,25 @@
             </div>
 
             <div class='col-2'>
-              <input type="text" class='form-control'>
+              <input id='nota-{{ind.id}}' type="text" class='form-control nota'>
             </div>
           </div>
         </a>
 
       </div>
     </div>
+  </div>
+
+  <div *ngIf='estag' class='mb-3 mt-4'>
+    <h6>
+      Média mínima para alcançar mudança de nível de bolsa: 2,8.
+      <br /> Média máxima para alcançar mudança de nível de bolsa: 4,0.
+      <br />
+
+    </h6>
+    <h6>
+      Resultado:
+      <b>{{avalMedia.media}}</b>, {{avalMedia.texto}}.
+    </h6>
   </div>
 </div>

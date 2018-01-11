@@ -35,6 +35,7 @@ const appRoutes: Routes = [
 
   { path: 'cad-estagiario', component: CadEstagiarioComponent },
   { path: 'imprimir/:cargo', component: ImprimirComponent },
+  { path: 'imprimir/:cargo/:id/:aval', component: ImprimirComponent },
   { path: 'estagiario/:id', component: EstagiarioComponent },
   { path: 'estagiario/:id/avaliar', component: AvaliarComponent },
   { path: 'estagiario/:estagiario_id/avaliacao/:aval_id', component: AvaliacaoComponent },
