@@ -1,7 +1,7 @@
 <div class="container">
 
   <br />
-  <h3 class="center">Estagiários</h3>
+  <h3 class="center">Colaboradores</h3>
   <br />
   <div class="row">
     <div class="col-md-3 col-sm-12">
@@ -21,8 +21,7 @@
         <th class='thead' name='nome' scope="col">Nome</th>
         <th class='thead' name='cargo' scope="col">Cargo</th>
         <th class='thead' name='local' scope="col">Localidade</th>
-        <th class='thead' name='ultima_aval' scope="col">Ultima Avaliação</th>
-        <th class='thead' name='ultima_aval' scope="col">Dias desde Ultima Prova</th>
+        <th class='thead' name='diff' scope="col">Dias até Próxima Prova</th>
       </tr>
     </thead>
     <tbody>
@@ -30,8 +29,7 @@
         <td>{{estagiario.nome}}</td>
         <td>{{estagiario.cargo}}</td>
         <td>{{estagiario.local}}</td>
-        <td>{{estagiario.ultima_aval}}</td>
-        <td [ngClass]="estagiario.dias.diff > 182.5 ? 'red' : ''">{{estagiario.dias.text}}</td>
+        <td [ngClass]="estagiario.diff <= 1 ? 'red' : ''">{{estagiario.text}}</td>
       </tr>
     </tbody>
   </table>

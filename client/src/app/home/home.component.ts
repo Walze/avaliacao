@@ -75,7 +75,8 @@ export class HomeComponent implements OnInit {
 
         this.estagiarios = this.estagiariosOriginal = res.json()
         this.estagiarios.map(esta => {
-          esta.dias = this.dateDiff(esta.ultima_aval)
+          esta.diff = this.dateDiff(esta.ultima_aval).diff
+          esta.text = this.dateDiff(esta.ultima_aval).text
           esta.ultima_aval = esta.ultima_aval.split(' ')[0].split('-').reverse().join('/')
         })
         this.estagiarios = this.estagiariosOriginal
@@ -90,15 +91,14 @@ export class HomeComponent implements OnInit {
     let utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())
     let utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate())
 
-    let diff = Math.floor((utc2 - utc1) / _MS_PER_DAY);
-
+    let diff: any = Math.floor((utc2 - utc1) / _MS_PER_DAY);
+    diff = 182 - diff
     let text = diff + (diff > 1 ? ' Dias' : ' Dia')
 
+    if (isNaN(diff)) diff = false
+    text = diff <= 0 ? 'Necessário Fazer Avaliação' : text
 
-    return {
-      diff,
-      text: isNaN(diff) ? 'Sem Provas' : text
-    }
+    return { diff, text }
   }
 
 }
