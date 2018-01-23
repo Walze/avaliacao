@@ -10,7 +10,7 @@
       <div class="row">
         <div class="form-group col">
           <label>Nome</label>
-          <input [(ngModel)]='estagiario.nome' type="text" class="form-control" placeholder="Digite um nome" />
+          <input [disabled]='setor_id != 1' [(ngModel)]='estagiario.nome' type="text" class="form-control" placeholder="Digite um nome" />
         </div>
       </div>
 
@@ -18,7 +18,16 @@
         <div class="col">
           <div class="form-group">
             <label>Data de Admissão</label>
-            <input [(ngModel)]='estagiario.admissao' class="form-control" type="date">
+            <input [disabled]='setor_id != 1' [(ngModel)]='estagiario.admissao' class="form-control" type="date">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label>Última Avaliação</label>
+            <input disabled [(ngModel)]='estagiario.ultima_aval' class="form-control" type="date">
           </div>
         </div>
       </div>
@@ -27,7 +36,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label>Nível</label>
-            <select [(ngModel)]='estagiario.nivel_id' [disabled]='setor_id != 1' class="custom-select col-md-12">
+            <select [disabled]='setor_id != 1' [(ngModel)]='estagiario.nivel_id' [disabled]='setor_id != 1' class="custom-select col-md-12">
               <option selected disabled value="0">Selecione</option>
               <option value=1>1</option>
               <option value=2>2</option>
@@ -39,7 +48,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label>Cargo</label>
-            <select [(ngModel)]='estagiario.cargo_id' class="custom-select col-md-12">
+            <select [disabled]='setor_id != 1' [(ngModel)]='estagiario.cargo_id' class="custom-select col-md-12">
               <option selected disabled value="0">Selecione</option>
               <option *ngFor="let local of cargos; let i = index" value={{local.id}}>{{local.nome}}</option>
             </select>
@@ -51,7 +60,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label>Localidade</label>
-            <select [(ngModel)]='estagiario.localidade_id' class="custom-select col-md-12">
+            <select [disabled]='setor_id != 1' [(ngModel)]='estagiario.localidade_id' class="custom-select col-md-12">
               <option selected disabled value="0">Selecione</option>
               <option *ngFor="let local of localidades; let i = index" value={{local.id}}>{{local.nome}}</option>
             </select>
@@ -61,7 +70,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label>Setor</label>
-            <select [(ngModel)]='estagiario.setor_id' class="custom-select col-md-12">
+            <select [disabled]='setor_id != 1' [(ngModel)]='estagiario.setor_id' class="custom-select col-md-12">
               <option selected disabled value="0">Selecione</option>
               <option *ngFor="let setor of setores; let i = index" value={{setor.id}}>{{setor.nome}}</option>
             </select>

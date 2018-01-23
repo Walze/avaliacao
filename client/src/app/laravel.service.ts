@@ -170,7 +170,7 @@ export class LaravelService {
     try {
       this.cookie.delete('userSession')
       this.logged.next(false)
-      this.router.navigate(['/login'])
+      //this.router.navigate(['/login'])
     } catch (e) {
       this.cookie.deleteAll()
       window.location.reload()
