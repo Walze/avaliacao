@@ -30,7 +30,7 @@ export class EstagiarioComponent implements OnInit {
   public cargos
 
   private id
-
+  public setor_id
   constructor(private lara: LaravelService, private route: ActivatedRoute) {
     this.lara.getFormData(res => {
       this.localidades = res.localidades
@@ -47,7 +47,6 @@ export class EstagiarioComponent implements OnInit {
 
 
         this.estagiario = data.estagiario
-        this.estag_carregado = true
 
         if (avals.length) {
           avals.map(aval => {
@@ -60,6 +59,9 @@ export class EstagiarioComponent implements OnInit {
         }
         else
           this.tabela_texto = 'Ainda não avaliado'
+
+        this.estag_carregado = true
+        this.setor_id = this.lara.User.setor_id
       })
     })
   }

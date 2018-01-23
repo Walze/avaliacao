@@ -32,12 +32,15 @@ export class AvaliarComponent implements OnInit {
   public medias: object[] = []
   public NotaFinal: number = 0
 
+  public setor_id
+
   constructor(
     private lara: LaravelService,
     private route: ActivatedRoute,
     private el: ElementRef
   ) {
     this._getRouteParamsData()
+    this.setor_id = this.lara.User.setor_id
   }
 
   private _getRouteParamsData() {

@@ -39,6 +39,6 @@ export class AppComponent implements OnInit {
 
   sair(e) {
     e.preventDefault()
-    this.lara.loggout()
+    this.lara.loggout(true)
   }
 }

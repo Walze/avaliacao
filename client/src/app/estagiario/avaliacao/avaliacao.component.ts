@@ -33,11 +33,13 @@ export class AvaliacaoComponent implements OnInit, AfterViewInit {
   public NotaFinal: number = 0
   public carregando = true
 
+  public setor_id
   constructor(
     private lara: LaravelService,
     private route: ActivatedRoute,
     private el: ElementRef
   ) {
+    this.setor_id = this.lara.User.setor_id
   }
 
   private _getRouteParamsData(then) {

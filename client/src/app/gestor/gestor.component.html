@@ -15,6 +15,10 @@
           <label>E-mail</label>
           <input [(ngModel)]='gestor.email' type="email" class="form-control" placeholder="Exemplo@telelistas.net" />
         </div>
+        <div class="form-group col-12">
+          <label>Senha</label>
+          <input [(ngModel)]='gestor.senha' type="password" class="form-control" placeholder="Senha" />
+        </div>
       </div>
 
       <div class="row" *ngIf='gestor.setor_id==1'>

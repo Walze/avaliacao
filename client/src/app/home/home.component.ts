@@ -96,7 +96,7 @@ export class HomeComponent implements OnInit {
     let text = diff + (diff > 1 ? ' Dias' : ' Dia')
 
     if (isNaN(diff)) diff = false
-    text = diff <= 0 ? 'Necessário Fazer Avaliação' : text
+    if (diff <= 0) text = 'Necessário Fazer Avaliação'
 
     return { diff, text }
   }

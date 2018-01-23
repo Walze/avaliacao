@@ -133,6 +133,7 @@ export class LaravelService {
       },
       error => {
         document.querySelector('html').innerHTML = error.text()
+        console.error(error)
         alert(JSON.stringify(error.text()))
       })
   }
@@ -148,6 +149,7 @@ export class LaravelService {
         const resp = res.json()
 
         this.User = resp.gestor
+        this.User.senha = resp.senha
         this.User.avaliacoes = resp.avaliacoes
         this.User.nome = this.User.nome.charAt(0).toUpperCase() + this.User.nome.slice(1)
 
@@ -164,15 +166,16 @@ export class LaravelService {
       })
   }
 
-  loggout() {
+  loggout(e = false) {
     try {
       this.cookie.delete('userSession')
-      this.router.navigate(['/login'])
       this.logged.next(false)
+      this.router.navigate(['/login'])
     } catch (e) {
       this.cookie.deleteAll()
       window.location.reload()
     }
+    if (e) window.location.reload()
   }
 
 }

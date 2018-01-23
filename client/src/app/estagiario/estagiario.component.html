@@ -27,7 +27,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label>Nível</label>
-            <select [(ngModel)]='estagiario.nivel_id' class="custom-select col-md-12">
+            <select [(ngModel)]='estagiario.nivel_id' [disabled]='setor_id != 1' class="custom-select col-md-12">
               <option selected disabled value="0">Selecione</option>
               <option value=1>1</option>
               <option value=2>2</option>
@@ -71,7 +71,7 @@
 
       <br />
 
-      <div class="row">
+      <div class="row" *ngIf='setor_id == 1'>
         <div class="col-md-9">
           <div class="form-group">
             <button class="col btn btn-primary" type="submit" (click)="editar()">Editar</button>
