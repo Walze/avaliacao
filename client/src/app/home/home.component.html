@@ -29,7 +29,7 @@
         <td>{{estagiario.nome}}</td>
         <td>{{estagiario.cargo}}</td>
         <td>{{estagiario.local}}</td>
-        <td [ngClass]="estagiario.diff <= 1 ? 'red' : ''">{{estagiario.text}}</td>
+        <td [ngClass]="estagiario.diff <= 0 ? 'red' : ''" [innerHTML]='estagiario.text'></td>
       </tr>
     </tbody>
   </table>
